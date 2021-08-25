@@ -13,10 +13,5 @@ namespace Utils.Exceptions
             : base(message)
         {
         }
-
-        public BadRequestException(string message, Exception innerException)
-            : base(message, innerException)
-        {
-        }
     }
 }

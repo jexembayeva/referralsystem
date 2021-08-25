@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Utils.Helpers
 {
@@ -29,6 +27,5 @@ namespace Utils.Helpers
         {
             return string.IsNullOrEmpty(@string?.Trim());
         }
-        
     }
 }

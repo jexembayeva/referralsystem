@@ -1,13 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Reflection;
-using Utils.Exceptions;
-using Utils.Helpers;
-
 namespace Utils.Validators
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Reflection;
+    using Utils.Exceptions;
+    using Utils.Helpers;
+
     public class EntityValidator<T>
     {
         private readonly T _entity;

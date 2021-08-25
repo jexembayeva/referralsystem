@@ -9,7 +9,8 @@ namespace ReferralSystem.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CrudControllerBase<T>: ControllerBase where T:  class, IBaseModel
+    public class CrudControllerBase<T> : ControllerBase
+        where T : class, IBaseModel
     {
         private readonly IRepository<T> _repository;
 

@@ -13,7 +13,8 @@ using Utils.Validators;
 
 namespace ReferralSystem.Database.Repositories.Base
 {
-    public abstract class Repository<T> : IRepository<T> where T : class, IBaseModel
+    public abstract class Repository<T> : IRepository<T>
+        where T : class, IBaseModel
     {
         private readonly string _tableName;
         private readonly IDatabaseConnectionFactory _connection;
@@ -24,7 +25,7 @@ namespace ReferralSystem.Database.Repositories.Base
             _connection = connection ?? throw new ArgumentNullException(nameof(connection));
         }
 
-        private IEnumerable<PropertyInfo> GetProperties => typeof(T).GetProperties();
+        private static IEnumerable<PropertyInfo> GetProperties => typeof(T).GetProperties();
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
@@ -34,7 +35,7 @@ namespace ReferralSystem.Database.Repositories.Base
         public async Task<T> GetByIdAsync(long id)
         {
             return await _connection.GetConnection()
-                       .QuerySingleOrDefaultAsync<T>($"SELECT * FROM {_tableName} WHERE Id=@Id", new {Id = id})
+                       .QuerySingleOrDefaultAsync<T>($"SELECT * FROM {_tableName} WHERE Id=@Id", new { Id = id })
                    ?? throw ResourceNotFoundException.CreateFromEntity<T>(id);
         }
 
@@ -42,7 +43,7 @@ namespace ReferralSystem.Database.Repositories.Base
         {
             t.ThrowIfNull(nameof(t));
             t.ThrowIfInvalid();
-            
+
             var updateQuery = GenerateUpdateQuery();
             await _connection.GetConnection().ExecuteAsync(updateQuery, t);
         }
@@ -51,16 +52,16 @@ namespace ReferralSystem.Database.Repositories.Base
         {
             t.ThrowIfNull(nameof(t));
             t.ThrowIfInvalid();
-            
+
             var insertQuery = GenerateInsertQuery();
             await _connection.GetConnection().ExecuteAsync(insertQuery, t);
         }
 
         public async Task DeleteAsync(long id)
         {
-            await _connection.GetConnection().ExecuteAsync($"DELETE FROM {_tableName} WHERE Id=@Id", new {Id = id});
+            await _connection.GetConnection().ExecuteAsync($"DELETE FROM {_tableName} WHERE Id=@Id", new { Id = id });
         }
-        
+
         private string GenerateUpdateQuery()
         {
             var updateQuery = new StringBuilder($"UPDATE {_tableName} SET ");
@@ -79,7 +80,6 @@ namespace ReferralSystem.Database.Repositories.Base
 
             return updateQuery.ToString();
         }
-
 
         private static List<string> GenerateListOfProperties(IEnumerable<PropertyInfo> listOfProperties)
         {

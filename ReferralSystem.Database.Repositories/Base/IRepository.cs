@@ -8,12 +8,13 @@ namespace ReferralSystem.Database.Repositories.Base
         where TEntity : class, IBaseModel
     {
         Task<IEnumerable<TEntity>> GetAllAsync();
-        
+
         Task DeleteAsync(long id);
-        
+
         Task<TEntity> GetByIdAsync(long id);
-        
+
         Task UpdateAsync(TEntity t);
+
         Task InsertAsync(TEntity t);
     }
 }

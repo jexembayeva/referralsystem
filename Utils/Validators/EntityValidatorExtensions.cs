@@ -1,3 +1,5 @@
+using Utils.Exceptions;
+
 namespace Utils.Validators
 {
     public static class EntityValidatorExtensions

@@ -14,7 +14,7 @@ namespace TestUtils
         public void Insert<T>(T item)
         {
             using var db = OpenConnection();
-            
+
             db.CreateTableIfNotExists<T>();
 
             db.Insert(item);

@@ -20,16 +20,16 @@ namespace ReferralSystem.Database.Repositories.Tests
         [Fact]
         public async Task GetByIdAsync_OkAsync()
         {
-            var result = await new FakeRepository("fakeEntity", PrepareDatabase().Object).GetAllAsync();
+            var result = await new FakeRepository("fakeEntity", PrepareDatabase().Object).GetByIdAsync(1);
 
-            Assert.Single(result);
+            Assert.NotNull(result);
         }
-        
+
         [Fact]
         public async Task InsertAsync_OkAsync()
         {
             var connectionFactoryMock = PrepareDatabase();
-            
+
             await new FakeRepository("fakeEntity", connectionFactoryMock.Object).InsertAsync(new FakeEntity());
 
             var result = await new FakeRepository("fakeEntity", connectionFactoryMock.Object).GetAllAsync();
@@ -41,38 +41,44 @@ namespace ReferralSystem.Database.Repositories.Tests
         public async Task DeleteRowAsync_OkAsync()
         {
             var connectionFactoryMock = PrepareDatabase();
-            
+
             await new FakeRepository("fakeEntity", connectionFactoryMock.Object).InsertAsync(new FakeEntity());
 
             var entities = await new FakeRepository("fakeEntity", connectionFactoryMock.Object).GetAllAsync();
 
             var entityToDelete = entities.FirstOrDefault();
             if (entityToDelete != null)
+            {
                 await new FakeRepository("fakeEntity", connectionFactoryMock.Object).DeleteAsync(entityToDelete.Id);
+            }
 
             var result = await new FakeRepository("fakeEntity", connectionFactoryMock.Object).GetAllAsync();
 
             Assert.Single(result);
         }
-        
+
         [Fact]
         public async Task UpdateAsync_OkAsync()
         {
             var connectionFactoryMock = PrepareDatabase();
-            
+
             await new FakeRepository("fakeEntity", connectionFactoryMock.Object).InsertAsync(new FakeEntity());
 
             var entities = await new FakeRepository("fakeEntity", connectionFactoryMock.Object).GetAllAsync();
 
             var entityToUpdate = entities.FirstOrDefault();
-            if (entityToUpdate != null) entityToUpdate.FirstName = Faker.Name.First();
+            if (entityToUpdate != null)
+            {
+                entityToUpdate.FirstName = Faker.Name.First();
+            }
 
             await new FakeRepository("fakeEntity", connectionFactoryMock.Object).UpdateAsync(entityToUpdate);
-            
+
             var result = await new FakeRepository("fakeEntity", connectionFactoryMock.Object).GetAllAsync();
 
-            Assert.Equal(entityToUpdate.FirstName, result.FirstOrDefault()?.FirstName);
+            Assert.Equal(entityToUpdate?.FirstName, result.FirstOrDefault()?.FirstName);
         }
+
         private static Mock<IDatabaseConnectionFactory> PrepareDatabase()
         {
             var connectionFactoryMock = new Mock<IDatabaseConnectionFactory>();
