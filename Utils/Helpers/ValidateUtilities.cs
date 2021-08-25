@@ -25,7 +25,7 @@ namespace Utils.Helpers
             throw exception;
         }
 
-        public static bool NullOrEmpty(this string @string)
+        private static bool NullOrEmpty(this string @string)
         {
             return string.IsNullOrEmpty(@string?.Trim());
         }
