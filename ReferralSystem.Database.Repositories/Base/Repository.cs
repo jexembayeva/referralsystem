@@ -60,9 +60,7 @@ namespace ReferralSystem.Database.Repositories.Base
         {
             await _connection.GetConnection().ExecuteAsync($"DELETE FROM {_tableName} WHERE Id=@Id", new {Id = id});
         }
-
-        #region helper private methods
-
+        
         private string GenerateUpdateQuery()
         {
             var updateQuery = new StringBuilder($"UPDATE {_tableName} SET ");
@@ -112,7 +110,5 @@ namespace ReferralSystem.Database.Repositories.Base
 
             return insertQuery.ToString();
         }
-
-        #endregion
     }
 }
