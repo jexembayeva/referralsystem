@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="ServiceStack.OrmLite, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\..\..\.nuget\packages\servicestack.ormlite\5.12.0\lib\netstandard2.0\ServiceStack.OrmLite.dll</HintPath>
+      </Reference>
+      <Reference Include="ServiceStack.OrmLite.Sqlite, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\..\..\.nuget\packages\servicestack.ormlite.sqlite\5.12.0\lib\netstandard2.0\ServiceStack.OrmLite.Sqlite.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ReferralSystem.Database.Repositories\ReferralSystem.Database.Repositories.csproj" />
+      <ProjectReference Include="..\ReferralSystem.Database\ReferralSystem.Database.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Faker.NETCore" Version="1.0.2" />
+      <PackageReference Include="ServiceStack.OrmLite" Version="5.12.0" />
+      <PackageReference Include="ServiceStack.OrmLite.Sqlite" Version="5.12.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="ServiceStack.OrmLite" />
+      <None Remove="ServiceStack.OrmLite.Sqlite" />
+    </ItemGroup>
+</Project>

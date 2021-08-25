@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "lRb3hV3t63Denq/QuvY0Sgdc21vKqOojNOn+Qg1b42J3HzjLJWIDCNv49hJUiD5DfiuXQS/9lvNyiWobLVHA0Q==",
+  "success": true,
+  "projectFilePath": "/Users/gaukharjexembayeva/Projects/referralsystem/ReferralSystem.Database.Repositories/ReferralSystem.Database.Repositories.csproj",
+  "expectedPackageFiles": [
+    "/Users/gaukharjexembayeva/.nuget/packages/dapper/2.0.90/dapper.2.0.90.nupkg.sha512",
+    "/Users/gaukharjexembayeva/.nuget/packages/npgsql/5.0.7/npgsql.5.0.7.nupkg.sha512",
+    "/Users/gaukharjexembayeva/.nuget/packages/system.runtime.compilerservices.unsafe/4.6.0/system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
+  ],
+  "logs": []
+}
