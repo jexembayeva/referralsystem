@@ -18,7 +18,7 @@
     "Utils/1.0.0": {
       "type": "project",
       "path": "../Utils/Utils.csproj",
-      "msbuildProject": "../Utils/Utils.csproj"
+      "msbuildProject": "../../referralsystem/Utils/Utils.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -43,7 +43,7 @@
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/gaukharjexembayeva/.config/NuGet/NuGet.Config"
+        "/Users/gaukharjexembayeva/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
