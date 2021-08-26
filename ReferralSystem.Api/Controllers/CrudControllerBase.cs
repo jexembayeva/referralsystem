@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using ReferralSystem.Database.Repositories.Base;
 using Utils.Interfaces;
 
-namespace ReferralSystem.Controllers
+namespace ReferralSystem.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
