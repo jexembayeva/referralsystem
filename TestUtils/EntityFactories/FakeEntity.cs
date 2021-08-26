@@ -15,6 +15,8 @@ namespace TestUtils.EntityFactories
 
         public DateTimeOffset? UpdatedAt { get; set; }
 
+        public string UpdateToken { get; set; }
+
         public FakeEntity()
         {
             Id = new Random((int)DateTimeOffset.Now.Ticks).Next(1, int.MaxValue);
@@ -22,6 +24,7 @@ namespace TestUtils.EntityFactories
             LastName = Faker.Name.Last();
             CreatedAt = null;
             UpdatedAt = null;
+            UpdateToken = Guid.NewGuid().ToString();
         }
     }
 }

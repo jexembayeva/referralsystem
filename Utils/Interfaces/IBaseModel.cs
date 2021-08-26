@@ -1,6 +1,6 @@
 ﻿namespace Utils.Interfaces
 {
-    public interface IBaseModel : IHasId, IHasDates
+    public interface IBaseModel : IHasId, IHasDates, IHasUpdateToken
     {
     }
 }
