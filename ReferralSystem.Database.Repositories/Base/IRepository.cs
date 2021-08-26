@@ -13,8 +13,8 @@ namespace ReferralSystem.Database.Repositories.Base
 
         Task<TEntity> GetByIdAsync(long id);
 
-        Task UpdateAsync(TEntity t);
+        Task UpdateAsync(TEntity data);
 
-        Task InsertAsync(TEntity t);
+        Task InsertAsync(TEntity entity);
     }
 }

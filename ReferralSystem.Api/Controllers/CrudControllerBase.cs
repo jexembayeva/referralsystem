@@ -39,9 +39,9 @@ namespace ReferralSystem.Controllers
         }
 
         [HttpPut]
-        public virtual async Task<IActionResult> UpdateAsync(T entity)
+        public virtual async Task<IActionResult> UpdateAsync(T data)
         {
-            await _repository.UpdateAsync(entity);
+            await _repository.UpdateAsync(data);
             return Ok();
         }
 

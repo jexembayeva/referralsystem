@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using ReferralSystem.Database.Repositories.Extensions;
 using Utils.Exceptions;
 using Utils.Helpers;
 using Utils.Interfaces;
@@ -39,76 +40,27 @@ namespace ReferralSystem.Database.Repositories.Base
                    ?? throw ResourceNotFoundException.CreateFromEntity<T>(id);
         }
 
-        public async Task UpdateAsync(T t)
+        public async Task UpdateAsync(T data)
         {
-            t.ThrowIfNull(nameof(t));
-            t.ThrowIfInvalid();
+            data.ThrowIfNull(nameof(data));
+            data.ThrowIfInvalid();
 
-            var updateQuery = GenerateUpdateQuery();
-            await _connection.GetConnection().ExecuteAsync(updateQuery, t);
+            var updateQuery = UpdateQuery.GenerateUpdateQuery(_tableName, GetProperties);
+            await _connection.GetConnection().ExecuteAsync(updateQuery, data);
         }
 
-        public async Task InsertAsync(T t)
+        public async Task InsertAsync(T entity)
         {
-            t.ThrowIfNull(nameof(t));
-            t.ThrowIfInvalid();
+            entity.ThrowIfNull(nameof(entity));
+            entity.ThrowIfInvalid();
 
-            var insertQuery = GenerateInsertQuery();
-            await _connection.GetConnection().ExecuteAsync(insertQuery, t);
+            var insertQuery = InsertQuery.GenerateInsertQuery(_tableName, GetProperties);
+            await _connection.GetConnection().ExecuteAsync(insertQuery, entity);
         }
 
         public async Task DeleteAsync(long id)
         {
             await _connection.GetConnection().ExecuteAsync($"DELETE FROM {_tableName} WHERE Id=@Id", new { Id = id });
-        }
-
-        private string GenerateUpdateQuery()
-        {
-            var updateQuery = new StringBuilder($"UPDATE {_tableName} SET ");
-            var properties = GenerateListOfProperties(GetProperties);
-
-            properties.ForEach(property =>
-            {
-                if (!property.Equals("Id"))
-                {
-                    updateQuery.Append($"{property}=@{property},");
-                }
-            });
-
-            updateQuery.Remove(updateQuery.Length - 1, 1);
-            updateQuery.Append(" WHERE Id=@Id");
-
-            return updateQuery.ToString();
-        }
-
-        private static List<string> GenerateListOfProperties(IEnumerable<PropertyInfo> listOfProperties)
-        {
-            return (from prop in listOfProperties
-                    let attributes = prop.GetCustomAttributes(typeof(DescriptionAttribute), false)
-                    where attributes.Length <= 0 || (attributes[0] as DescriptionAttribute)?.Description != "ignore"
-                    select prop.Name).ToList();
-        }
-
-        private string GenerateInsertQuery()
-        {
-            var insertQuery = new StringBuilder($"INSERT INTO {_tableName} ");
-
-            insertQuery.Append('(');
-
-            var properties = GenerateListOfProperties(GetProperties);
-            properties.ForEach(prop => { insertQuery.Append($"[{prop}],"); });
-
-            insertQuery
-                .Remove(insertQuery.Length - 1, 1)
-                .Append(") VALUES (");
-
-            properties.ForEach(prop => { insertQuery.Append($"@{prop},"); });
-
-            insertQuery
-                .Remove(insertQuery.Length - 1, 1)
-                .Append(')');
-
-            return insertQuery.ToString();
         }
     }
 }
