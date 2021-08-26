@@ -23,7 +23,7 @@ namespace Utils.Validators
             _errors = new List<string>();
         }
 
-        public bool Valid()
+        private bool Valid()
         {
             _valid ??= ValidInternal();
 

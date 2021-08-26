@@ -4,7 +4,7 @@ namespace Utils.Exceptions
 {
     public class ResourceNotFoundException : Exception
     {
-        public ResourceNotFoundException(string message)
+        private ResourceNotFoundException(string message)
             : base(message)
         {
         }
