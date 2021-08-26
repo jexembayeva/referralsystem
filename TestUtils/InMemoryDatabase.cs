@@ -7,7 +7,7 @@ namespace TestUtils
     public class InMemoryDatabase
     {
         private readonly OrmLiteConnectionFactory _dbFactory =
-            new(":memory:", SqliteOrmLiteDialectProvider.Instance);
+            new (":memory:", SqliteOrmLiteDialectProvider.Instance);
 
         public IDbConnection OpenConnection() => _dbFactory.OpenDbConnection();
 
