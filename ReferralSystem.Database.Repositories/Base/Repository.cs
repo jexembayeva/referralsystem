@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using ReferralSystem.Database.Repositories.Extensions;
@@ -14,8 +11,8 @@ using Utils.Validators;
 
 namespace ReferralSystem.Database.Repositories.Base
 {
-    public abstract class Repository<T> : IRepository<T>
-        where T : class, IBaseModel
+    public abstract class Repository<TEntity> : IRepository<TEntity>
+        where TEntity : class, IBaseModel
     {
         private readonly string _tableName;
         private readonly IDatabaseConnectionFactory _connection;
@@ -26,21 +23,21 @@ namespace ReferralSystem.Database.Repositories.Base
             _connection = connection ?? throw new ArgumentNullException(nameof(connection));
         }
 
-        private static IEnumerable<PropertyInfo> GetProperties => typeof(T).GetProperties();
+        private static IEnumerable<PropertyInfo> GetProperties => typeof(TEntity).GetProperties();
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await _connection.GetConnection().QueryAsync<T>($"SELECT * FROM {_tableName}");
+            return await _connection.GetConnection().QueryAsync<TEntity>($"SELECT * FROM {_tableName}");
         }
 
-        public async Task<T> GetByIdAsync(long id)
+        public async Task<TEntity> GetByIdAsync(long id)
         {
             return await _connection.GetConnection()
-                       .QuerySingleOrDefaultAsync<T>($"SELECT * FROM {_tableName} WHERE Id=@Id", new { Id = id })
-                   ?? throw ResourceNotFoundException.CreateFromEntity<T>(id);
+                       .QuerySingleOrDefaultAsync<TEntity>($"SELECT * FROM {_tableName} WHERE Id=@Id", new { Id = id })
+                   ?? throw ResourceNotFoundException.CreateFromEntity<TEntity>(id);
         }
 
-        public async Task UpdateAsync(T data)
+        public async Task UpdateAsync(TEntity data)
         {
             data.ThrowIfNull(nameof(data));
             data.ThrowIfInvalid();
@@ -49,7 +46,7 @@ namespace ReferralSystem.Database.Repositories.Base
             await _connection.GetConnection().ExecuteAsync(updateQuery, data);
         }
 
-        public async Task InsertAsync(T entity)
+        public async Task InsertAsync(TEntity entity)
         {
             entity.ThrowIfNull(nameof(entity));
             entity.ThrowIfInvalid();
