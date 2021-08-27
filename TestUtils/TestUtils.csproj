@@ -6,15 +6,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Reference Include="ServiceStack.OrmLite, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\..\.nuget\packages\servicestack.ormlite\5.12.0\lib\netstandard2.0\ServiceStack.OrmLite.dll</HintPath>
-      </Reference>
-      <Reference Include="ServiceStack.OrmLite.Sqlite, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\..\.nuget\packages\servicestack.ormlite.sqlite\5.12.0\lib\netstandard2.0\ServiceStack.OrmLite.Sqlite.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\ReferralSystem.Database.Repositories\ReferralSystem.Database.Repositories.csproj" />
       <ProjectReference Include="..\ReferralSystem.Database\ReferralSystem.Database.csproj" />
     </ItemGroup>

@@ -1,26 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferralSystem.Api", "ReferralSystem.Api\ReferralSystem.Api.csproj", "{9CED590E-608D-4D81-9BC8-77E1380B5DA9}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReferralSystem.Api", "ReferralSystem.Api\ReferralSystem.Api.csproj", "{9CED590E-608D-4D81-9BC8-77E1380B5DA9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{AECB07B3-5EA4-49D8-8483-B04FCF89AAC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{22FA7F3E-5F9E-45CC-9574-C983BC4060D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils", "Utils\Utils.csproj", "{22FA7F3E-5F9E-45CC-9574-C983BC4060D5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{68BE4E0F-C758-47C8-AE4E-5966A168A3F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferralSystem.Database.Repositories", "ReferralSystem.Database.Repositories\ReferralSystem.Database.Repositories.csproj", "{34BBEF2F-8DFD-425D-B864-2B988F7934E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReferralSystem.Database.Repositories", "ReferralSystem.Database.Repositories\ReferralSystem.Database.Repositories.csproj", "{34BBEF2F-8DFD-425D-B864-2B988F7934E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferralSystem.Database.Repositories.Tests", "ReferralSystem.Database.Repositories.Tests\ReferralSystem.Database.Repositories.Tests.csproj", "{2EE832D1-7C19-4F7B-984E-02136CFA1E01}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUtils", "TestUtils\TestUtils.csproj", "{2936F273-EB8E-45B0-8512-407D5E4BC8D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestUtils", "TestUtils\TestUtils.csproj", "{2936F273-EB8E-45B0-8512-407D5E4BC8D3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{F63F4559-3ED8-4C85-AF82-FF6A1E2F2FAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferralSystem.Models", "ReferralSystem.Models\ReferralSystem.Models.csproj", "{F242BB91-AB42-4948-837E-C5EB2FEA0F74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReferralSystem.Models", "ReferralSystem.Models\ReferralSystem.Models.csproj", "{F242BB91-AB42-4948-837E-C5EB2FEA0F74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferralSystem.Database", "ReferralSystem.Database\ReferralSystem.Database.csproj", "{24BF3102-B5BC-4D2F-844F-156406E36168}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReferralSystem.Database", "ReferralSystem.Database\ReferralSystem.Database.csproj", "{24BF3102-B5BC-4D2F-844F-156406E36168}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{9AF377D0-620C-444A-B4A5-074B31414918}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferralSystem.Database.Repositories.Tests", "ReferralSystem.Database.Repositories.Tests\ReferralSystem.Database.Repositories.Tests.csproj", "{7CCCDEFE-2EF6-414E-8F55-4B45D9D8C98E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,10 +43,6 @@ Global
 		{34BBEF2F-8DFD-425D-B864-2B988F7934E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34BBEF2F-8DFD-425D-B864-2B988F7934E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34BBEF2F-8DFD-425D-B864-2B988F7934E9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2EE832D1-7C19-4F7B-984E-02136CFA1E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2EE832D1-7C19-4F7B-984E-02136CFA1E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2EE832D1-7C19-4F7B-984E-02136CFA1E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2EE832D1-7C19-4F7B-984E-02136CFA1E01}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2936F273-EB8E-45B0-8512-407D5E4BC8D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2936F273-EB8E-45B0-8512-407D5E4BC8D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2936F273-EB8E-45B0-8512-407D5E4BC8D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -56,14 +55,24 @@ Global
 		{24BF3102-B5BC-4D2F-844F-156406E36168}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24BF3102-B5BC-4D2F-844F-156406E36168}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24BF3102-B5BC-4D2F-844F-156406E36168}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CCCDEFE-2EF6-414E-8F55-4B45D9D8C98E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CCCDEFE-2EF6-414E-8F55-4B45D9D8C98E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CCCDEFE-2EF6-414E-8F55-4B45D9D8C98E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CCCDEFE-2EF6-414E-8F55-4B45D9D8C98E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{9CED590E-608D-4D81-9BC8-77E1380B5DA9} = {9AF377D0-620C-444A-B4A5-074B31414918}
 		{22FA7F3E-5F9E-45CC-9574-C983BC4060D5} = {AECB07B3-5EA4-49D8-8483-B04FCF89AAC3}
 		{34BBEF2F-8DFD-425D-B864-2B988F7934E9} = {68BE4E0F-C758-47C8-AE4E-5966A168A3F2}
-		{2EE832D1-7C19-4F7B-984E-02136CFA1E01} = {68BE4E0F-C758-47C8-AE4E-5966A168A3F2}
 		{2936F273-EB8E-45B0-8512-407D5E4BC8D3} = {AECB07B3-5EA4-49D8-8483-B04FCF89AAC3}
 		{F242BB91-AB42-4948-837E-C5EB2FEA0F74} = {F63F4559-3ED8-4C85-AF82-FF6A1E2F2FAC}
 		{24BF3102-B5BC-4D2F-844F-156406E36168} = {68BE4E0F-C758-47C8-AE4E-5966A168A3F2}
-		{9CED590E-608D-4D81-9BC8-77E1380B5DA9} = {9AF377D0-620C-444A-B4A5-074B31414918}
+		{7CCCDEFE-2EF6-414E-8F55-4B45D9D8C98E} = {68BE4E0F-C758-47C8-AE4E-5966A168A3F2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {186B47B2-F462-4425-A2C1-E3C91BEC1649}
 	EndGlobalSection
 EndGlobal
