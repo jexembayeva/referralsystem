@@ -1,0 +1,20 @@
+version: "3.4"
+
+networks:
+  referralsystem-network:
+    driver: bridge
+
+services:
+  database.api:
+    container_name: referralsystem-api-database
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Str0ngPass!
+      POSTGRES_DB: referralsystem
+      POSTGRES_ADMIN_PASSWORD: Str0ngPass!
+    ports:
+      - 5432:5432
+    networks:
+      - referralsystem-network
