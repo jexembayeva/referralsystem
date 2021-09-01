@@ -50,6 +50,7 @@ namespace ReferralSystem.Api
             catch (Exception exception)
             {
                 Environment.ExitCode = 1;
+                Log.Fatal(exception, " ");
             }
             finally
             {
