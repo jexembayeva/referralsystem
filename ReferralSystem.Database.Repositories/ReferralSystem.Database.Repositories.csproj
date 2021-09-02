@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ReferralSystem.Database\ReferralSystem.Database.csproj" />
+      <ProjectReference Include="..\ReferralSystem.Models\ReferralSystem.Models.csproj" />
       <ProjectReference Include="..\Utils\Utils.csproj" />
     </ItemGroup>
 

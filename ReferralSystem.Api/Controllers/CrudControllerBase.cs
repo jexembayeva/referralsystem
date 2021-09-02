@@ -1,54 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ReferralSystem.Database.Repositories.Base;
-using Utils.Interfaces;
+using ReferralSystem.Domain.Services.Routes;
+using ReferralSystem.Models.Domain.Routes;
 
 namespace ReferralSystem.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CrudControllerBase<T> : ControllerBase
-        where T : class, IBaseModel
+    public class RouteController : ControllerBase
     {
-        private readonly IRepository<T> _repository;
+        private readonly IRouteService _routeService;
 
-        public CrudControllerBase(IRepository<T> repository)
+        public RouteController(IRouteService routeService)
         {
-            _repository = repository;
+            _routeService = routeService;
         }
 
         [HttpGet]
-        public virtual async Task<IEnumerable<T>> GetAllAsync()
+        public virtual async Task<IEnumerable<Route>> GetAllAsync()
         {
-            return await _repository.GetAllAsync();
+            return await _routeService.GetAllAsync();
         }
 
         [HttpGet("{id}")]
-        public virtual async Task<T> GetByIdAsync([FromRoute] long id)
+        public virtual async Task<Route> GetByIdAsync([FromRoute] long id)
         {
-            return await _repository.GetByIdAsync(id);
+            return await _routeService.GetByIdAsync(id);
         }
 
         [HttpPost]
-        public virtual async Task<IActionResult> CreateAsync(T entity)
+        public virtual async Task<IActionResult> CreateAsync(Route entity)
         {
-            await _repository.InsertAsync(entity);
+            await _routeService.InsertAsync(entity);
             return Ok();
         }
 
         [HttpPut]
-        public virtual async Task<IActionResult> UpdateAsync(T data)
+        public virtual async Task<IActionResult> UpdateAsync(Route data)
         {
-            await _repository.UpdateAsync(data);
+            await _routeService.UpdateAsync(data);
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(long id)
         {
-            await _repository.DeleteAsync(id);
+            await _routeService.DeleteAsync(id);
             return Ok();
         }
     }
