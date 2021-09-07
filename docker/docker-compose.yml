@@ -1,16 +1,25 @@
 version: "3.4"
 
+networks:
+  referral-system-network:
+    driver: bridge
+
 services:
-  referral-system-database:
-    image: postgres
+
+  database.refferralsystem:
     container_name: referral-system-database
+    image: postgres:13
+    restart: always
     environment:
       POSTGRES_USER: rs
       POSTGRES_PASSWORD: Str0ngPass!
-      POSTGRES_DB: referralsystem
-    restart: always
+      POSTGRES_DB: refferralsystem
+      POSTGRES_ADMIN_PASSWORD: Str0ngPass!
     ports:
       - 5433:5432
+    volumes:
+      # copy the sql script to create tables
+      - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
 
   pgadmin:
     container_name: pgadmin
