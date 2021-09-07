@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -7,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Npgsql;
+using ReferralSystem.Database;
+using ReferralSystem.Database.Repositories.Routes;
+using ReferralSystem.Domain.Services.Routes;
 using ReferralSystem.General.Services.HealthChecks;
 using ReferralSystem.General.Services.Middlewares;
 
@@ -35,6 +39,15 @@ namespace ReferralSystem.Api
                     .AllowAnyMethod()
                     .AllowAnyHeader();
             }));
+
+            services
+                .AddTransient<IRouteService>(options =>
+                    new RouteService(
+                        options.GetRequiredService<IRouteRepository>()));
+
+            services.AddTransient<IDatabaseConnectionFactory, DapperDbConnectionFactory>();
+
+            services.AddScoped<IRouteRepository, RouteRepository>();
 
             services.AddControllers().AddJsonOptions(options =>
             {

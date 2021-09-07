@@ -1,14 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ReferralSystem.Database.Repositories.Routes;
 using ReferralSystem.Models.Domain.Routes;
 
 namespace ReferralSystem.Domain.Services.Routes
 {
     public class RouteService : IRouteService
     {
-        public Task<IEnumerable<Route>> GetAllAsync()
+        private readonly IRouteRepository _routeRepository;
+
+        public RouteService(IRouteRepository routeRepository)
         {
-            throw new System.NotImplementedException();
+            _routeRepository = routeRepository;
+        }
+
+        public async Task<IEnumerable<Route>> GetAllAsync()
+        {
+            return await _routeRepository.GetAllAsync();
         }
 
         public Task DeleteAsync(long id)
