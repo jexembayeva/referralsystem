@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ReferralSystem.Database.Repositories.Routes;
+using ReferralSystem.Domain.Dtos.Routes;
 using ReferralSystem.Models.Domain.Routes;
 
 namespace ReferralSystem.Domain.Services.Routes
@@ -19,24 +20,25 @@ namespace ReferralSystem.Domain.Services.Routes
             return await _routeRepository.GetAllAsync();
         }
 
-        public Task DeleteAsync(long id)
+        public async Task DeleteAsync(long id)
         {
-            throw new System.NotImplementedException();
+            await _routeRepository.DeleteAsync(id);
         }
 
-        public Task<Route> GetByIdAsync(long id)
+        public async Task<Route> GetByIdAsync(long id)
         {
-            throw new System.NotImplementedException();
+            return await _routeRepository.GetByIdAsync(id);
         }
 
-        public Task UpdateAsync(Route data)
+        public async Task UpdateAsync(RouteDto route)
         {
-            throw new System.NotImplementedException();
+            await _routeRepository.UpdateAsync(null);
         }
 
-        public Task InsertAsync(Route entity)
+        public async Task InsertAsync(RouteDto data)
         {
-            throw new System.NotImplementedException();
+            var route = data.NewRoute();
+            await _routeRepository.InsertAsync(route);
         }
     }
 }

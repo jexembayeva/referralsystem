@@ -8,6 +8,20 @@ namespace ReferralSystem.Models.Domain.Routes
         {
         }
 
+        public Route(string nameRu, string nameEn, string nameKk, string fullNameRu, string fullNameEn, string fullNameKk, double distance, string comment, string openReason, string closeReason)
+        {
+            NameRu = nameRu;
+            NameEn = nameEn;
+            NameKk = nameKk;
+            FullNameRu = fullNameRu;
+            FullNameEn = fullNameEn;
+            FullNameKk = fullNameKk;
+            Distance = distance;
+            Comment = comment;
+            OpenReason = openReason;
+            CloseReason = closeReason;
+        }
+
         public string NameRu { get; set; }
 
         public string NameEn { get; set; }

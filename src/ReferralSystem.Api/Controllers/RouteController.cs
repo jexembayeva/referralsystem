@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ReferralSystem.Domain.Dtos.Routes;
 using ReferralSystem.Domain.Services.Routes;
 using ReferralSystem.Models.Domain.Routes;
 
@@ -30,14 +31,14 @@ namespace ReferralSystem.Api.Controllers
         }
 
         [HttpPost]
-        public virtual async Task<IActionResult> CreateAsync(Route entity)
+        public virtual async Task<IActionResult> CreateAsync([FromBody] RouteDto entity)
         {
             await _routeService.InsertAsync(entity);
             return Ok();
         }
 
         [HttpPut]
-        public virtual async Task<IActionResult> UpdateAsync(Route data)
+        public virtual async Task<IActionResult> UpdateAsync([FromBody] RouteDto data)
         {
             await _routeService.UpdateAsync(data);
             return Ok();

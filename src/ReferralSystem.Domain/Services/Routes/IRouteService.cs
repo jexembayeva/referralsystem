@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ReferralSystem.Domain.Dtos.Routes;
 using ReferralSystem.Models.Domain.Routes;
 
 namespace ReferralSystem.Domain.Services.Routes
@@ -13,8 +13,8 @@ namespace ReferralSystem.Domain.Services.Routes
 
         Task<Route> GetByIdAsync(long id);
 
-        Task UpdateAsync(Route data);
+        Task UpdateAsync(RouteDto route);
 
-        Task InsertAsync(Route entity);
+        Task InsertAsync(RouteDto route);
     }
 }

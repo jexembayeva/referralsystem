@@ -13,7 +13,7 @@ namespace ReferralSystem.Database.Repositories.Extensions
             insertQuery.Append('(');
 
             var properties = ListOfProperties.GenerateListOfProperties(listOfProperties);
-            properties.ForEach(prop => { insertQuery.Append($"[{prop}],"); });
+            properties.ForEach(prop => { insertQuery.Append($"{prop},"); });
 
             insertQuery
                 .Remove(insertQuery.Length - 1, 1)
