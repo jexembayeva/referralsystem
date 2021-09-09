@@ -1,4 +1,5 @@
-﻿using ReferralSystem.Models.Domain.BaseModels;
+﻿using System;
+using ReferralSystem.Models.Domain.BaseModels;
 
 namespace ReferralSystem.Models.Domain.Routes
 {
@@ -8,7 +9,7 @@ namespace ReferralSystem.Models.Domain.Routes
         {
         }
 
-        public Route(string nameRu, string nameEn, string nameKk, string fullNameRu, string fullNameEn, string fullNameKk, double distance, string comment, string openReason, string closeReason)
+        public Route(string nameRu, string nameEn, string nameKk, string fullNameRu, string fullNameEn, string fullNameKk, double distance, string comment, string openReason, string closeReason, string token)
         {
             NameRu = nameRu;
             NameEn = nameEn;
@@ -20,6 +21,9 @@ namespace ReferralSystem.Models.Domain.Routes
             Comment = comment;
             OpenReason = openReason;
             CloseReason = closeReason;
+            UpdateToken = token;
+            CreatedAt = DateTimeOffset.Now;
+            UpdatedAt = DateTimeOffset.Now;
         }
 
         public string NameRu { get; set; }
