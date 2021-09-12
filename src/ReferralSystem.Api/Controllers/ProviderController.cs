@@ -1,0 +1,78 @@
+﻿using System.Collections.Generic;
+using System.Net.Mime;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using ReferralSystem.Domain.Dtos.Providers;
+using ReferralSystem.Domain.Services.Providers;
+using ReferralSystem.General.Services.Controllers;
+using ReferralSystem.Models.Domain.Devices;
+using ReferralSystem.Models.Domain.Providers;
+using Utils.Helpers;
+
+namespace ReferralSystem.Api.Controllers
+{
+    [Route("[controller]")]
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public class ProviderController : ControllerBase
+    {
+        private readonly IProviderService _providerService;
+
+        public ProviderController(IProviderService providerService)
+        {
+            providerService.ThrowIfNull(nameof(providerService));
+
+            _providerService = providerService;
+        }
+
+        [HttpGet("[action]")]
+        [Produces(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Device>))]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public virtual async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
+        {
+            var basePlatforms = await _providerService.GetAllAsync();
+            return this.List(basePlatforms);
+        }
+
+        [HttpGet("[action]/{id}")]
+        [Produces(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public virtual async Task<Provider> GetByIdAsync([FromRoute] long id)
+        {
+            return await _providerService.GetByIdAsync(id);
+        }
+
+        [HttpPost("[action]")]
+        [Produces(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public virtual async Task<IActionResult> CreateAsync([FromBody] ProviderDto entity, CancellationToken cancellationToken)
+        {
+            await _providerService.InsertAsync(entity, cancellationToken);
+            return Ok();
+        }
+
+        [HttpPut("[action]")]
+        [Produces(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public virtual async Task<IActionResult> UpdateAsync([FromBody] ProviderDto data, CancellationToken cancellationToken)
+        {
+            await _providerService.UpdateAsync(data, cancellationToken);
+            return Ok();
+        }
+
+        [HttpDelete("[action]/{id}")]
+        [Produces(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> DeleteAsync(long id)
+        {
+            await _providerService.DeleteAsync(id);
+            return Ok();
+        }
+    }
+}

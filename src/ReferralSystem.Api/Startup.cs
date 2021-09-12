@@ -9,8 +9,18 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Npgsql;
 using ReferralSystem.Database;
+using ReferralSystem.Database.Repositories.Bases;
+using ReferralSystem.Database.Repositories.Devices;
+using ReferralSystem.Database.Repositories.Providers;
 using ReferralSystem.Database.Repositories.Routes;
+using ReferralSystem.Database.Repositories.Stops;
+using ReferralSystem.Database.Repositories.Vehicles;
+using ReferralSystem.Domain.Services.Bases;
+using ReferralSystem.Domain.Services.Devices;
+using ReferralSystem.Domain.Services.Providers;
 using ReferralSystem.Domain.Services.Routes;
+using ReferralSystem.Domain.Services.Stops;
+using ReferralSystem.Domain.Services.Vehicles;
 using ReferralSystem.General.Services.HealthChecks;
 using ReferralSystem.General.Services.Middlewares;
 
@@ -27,11 +37,11 @@ namespace ReferralSystem.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var optiroConnectionString = GetPostgresConnection("Data.Optiro");
+            var optiroConnectionString = GetPostgresConnection("Data.ReferralSystem");
 
             services
                 .AddHealthChecks()
-                .AddNpgSql(optiroConnectionString, name: "npgsql.optiro");
+                .AddNpgSql(optiroConnectionString, name: "npgsql.ReferralSystem");
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
@@ -43,11 +53,27 @@ namespace ReferralSystem.Api
             services
                 .AddTransient<IRouteService>(options =>
                     new RouteService(
-                        options.GetRequiredService<IRouteRepository>()));
+                        options.GetRequiredService<IRouteRepository>()))
+                .AddTransient<IBaseService>(options =>
+                    new BaseService(options.GetRequiredService<IBaseRepository>()))
+                .AddTransient<IDeviceService>(options =>
+                    new DeviceService(options.GetRequiredService<IDeviceRepository>()))
+                .AddTransient<IProviderService>(options =>
+                    new ProviderService(options.GetRequiredService<IProviderRepository>()))
+                .AddTransient<IStopService>(options =>
+                    new StopService(options.GetRequiredService<IStopRepository>()))
+                .AddTransient<IVehicleService>(options =>
+                    new VehicleService(options.GetRequiredService<IVehicleRepository>()));
 
-            services.AddTransient<IDatabaseConnectionFactory, DapperDbConnectionFactory>();
+            services.AddSingleton(optiroConnectionString);
+            services.AddTransient<IDatabaseConnectionFactory, DatabaseConnectionFactory>();
 
-            services.AddScoped<IRouteRepository, RouteRepository>();
+            services.AddScoped<IRouteRepository, RouteRepository>()
+                .AddScoped<IBaseRepository, BaseRepository>()
+                .AddScoped<IDeviceRepository, DeviceRepository>()
+                .AddScoped<IProviderRepository, ProviderRepository>()
+                .AddScoped<IStopRepository, StopRepository>()
+                .AddScoped<IVehicleRepository, VehicleRepository>();
 
             services.AddControllers().AddJsonOptions(options =>
             {

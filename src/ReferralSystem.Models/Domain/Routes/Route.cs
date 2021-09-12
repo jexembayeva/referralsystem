@@ -1,5 +1,6 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Validators;
 
 namespace ReferralSystem.Models.Domain.Routes
 {
@@ -43,5 +44,18 @@ namespace ReferralSystem.Models.Domain.Routes
         public string OpenReason { get; set; }
 
         public string CloseReason { get; set; }
+
+        public DateTimeOffset ValidFrom { get; set; }
+
+        public DateTimeOffset ValidTo { get; set; }
+
+        public void UpdateOrFail(string nameEn, string nameKk, string nameRu)
+        {
+            NameRu = nameRu;
+            NameKk = nameKk;
+            NameEn = nameEn;
+
+            this.ThrowIfInvalid();
+        }
     }
 }

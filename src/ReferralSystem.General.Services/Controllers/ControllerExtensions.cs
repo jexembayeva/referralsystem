@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,14 +8,14 @@ namespace ReferralSystem.General.Services.Controllers
 {
     public static class ControllerExtensions
     {
-        public static IActionResult List<TItems>(this ControllerBase controller, ICollection<TItems> items)
+        public static IActionResult List<TItems>(this ControllerBase controller, IEnumerable<TItems> items)
         {
             if (controller == null)
             {
                 throw new ArgumentNullException(nameof(controller));
             }
 
-            return items?.Count > 0 ?
+            return items?.Count() > 0 ?
                 controller.Ok(items) as IActionResult :
                 controller.StatusCode(StatusCodes.Status204NoContent);
         }

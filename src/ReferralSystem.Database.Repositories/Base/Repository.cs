@@ -19,8 +19,11 @@ namespace ReferralSystem.Database.Repositories.Base
 
         protected Repository(string tableName, IDatabaseConnectionFactory connection)
         {
+            tableName.ThrowIfNull(nameof(tableName));
+            connection.ThrowIfNull(nameof(connection));
+
             _tableName = tableName;
-            _connection = connection ?? throw new ArgumentNullException(nameof(connection));
+            _connection = connection;
         }
 
         private static IEnumerable<PropertyInfo> GetProperties => typeof(TEntity).GetProperties();
@@ -42,7 +45,7 @@ namespace ReferralSystem.Database.Repositories.Base
             data.ThrowIfNull(nameof(data));
             data.ThrowIfInvalid();
 
-            var updateQuery = UpdateQuery.GenerateUpdateQuery(_tableName, GetProperties);
+            var updateQuery = GetProperties.GenerateUpdateQuery(_tableName);
             await _connection.GetConnection().ExecuteAsync(updateQuery, data);
         }
 
@@ -51,7 +54,7 @@ namespace ReferralSystem.Database.Repositories.Base
             entity.ThrowIfNull(nameof(entity));
             entity.ThrowIfInvalid();
 
-            var insertQuery = InsertQuery.GenerateInsertQuery(_tableName, GetProperties);
+            var insertQuery = GetProperties.GenerateInsertQuery(_tableName);
             await _connection.GetConnection().ExecuteAsync(insertQuery, entity);
         }
 

@@ -1,8 +1,9 @@
-﻿using ReferralSystem.Models.Domain.Routes;
+﻿using System.Threading;
+using ReferralSystem.Models.Domain.Routes;
 
 namespace ReferralSystem.Domain.Dtos.Routes
 {
-    public class RouteDto
+    public class RouteDto : BaseModelDto
     {
         public string NameRu { get; set; }
 
@@ -24,7 +25,7 @@ namespace ReferralSystem.Domain.Dtos.Routes
 
         public string CloseReason { get; set; }
 
-        public Route NewRoute(string token)
+        public Route NewRoute(CancellationToken cancellationToken)
         {
             return new Route(
                 nameRu: NameRu,
@@ -37,7 +38,7 @@ namespace ReferralSystem.Domain.Dtos.Routes
                 comment: Comment,
                 openReason: OpenReason,
                 closeReason: CloseReason,
-                token: token);
+                token: cancellationToken.ToString());
         }
     }
 }

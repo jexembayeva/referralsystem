@@ -6,7 +6,7 @@ namespace ReferralSystem.Database.Repositories.Routes
     public class RouteRepository : Repository<Route>, IRouteRepository
     {
         public RouteRepository(IDatabaseConnectionFactory connection)
-            : base("route", connection)
+            : base(nameof(Route), connection)
         {
         }
     }
