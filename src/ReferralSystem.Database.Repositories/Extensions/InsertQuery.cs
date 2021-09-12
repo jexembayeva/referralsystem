@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
@@ -19,7 +20,10 @@ namespace ReferralSystem.Database.Repositories.Extensions
                 .Remove(insertQuery.Length - 1, 1)
                 .Append(") VALUES (");
 
-            properties.ForEach(prop => { insertQuery.Append($"@{prop},"); });
+            properties.ForEach(property =>
+            {
+                insertQuery.Append($"@{property},");
+            });
 
             insertQuery
                 .Remove(insertQuery.Length - 1, 1)

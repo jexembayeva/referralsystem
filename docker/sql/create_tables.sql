@@ -1,6 +1,6 @@
 -- Creation of route table
 CREATE TABLE IF NOT EXISTS route (
-  Id INT NOT NULL,
+  Id SERIAL,
   NameRu varchar(250) NOT NULL,
   NameEn varchar(250) NOT NULL,
   NameKk varchar(250) NOT NULL,
@@ -11,8 +11,8 @@ CREATE TABLE IF NOT EXISTS route (
   Comment varchar(250) NOT NULL,
   OpenReason varchar(250) NOT NULL,
   CloseReason varchar(250) NOT NULL,
-  CreatedAt TIMESTAMP NOT NULL,
-  UpdatedAt TIMESTAMP NOT NULL,
+  CreatedAt TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  UpdatedAt TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   UpdateToken varchar(250) NOT NULL,
   PRIMARY KEY (Id)
 );

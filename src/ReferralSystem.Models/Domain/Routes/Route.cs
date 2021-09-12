@@ -22,8 +22,6 @@ namespace ReferralSystem.Models.Domain.Routes
             OpenReason = openReason;
             CloseReason = closeReason;
             UpdateToken = token;
-            CreatedAt = DateTimeOffset.Now;
-            UpdatedAt = DateTimeOffset.Now;
         }
 
         public string NameRu { get; set; }

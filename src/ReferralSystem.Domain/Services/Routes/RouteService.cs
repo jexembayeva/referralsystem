@@ -37,7 +37,7 @@ namespace ReferralSystem.Domain.Services.Routes
 
         public async Task InsertAsync(RouteDto data)
         {
-            var route = data.NewRoute();
+            var route = data.NewRoute("token");
             await _routeRepository.InsertAsync(route);
         }
     }

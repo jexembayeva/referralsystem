@@ -11,8 +11,10 @@ namespace ReferralSystem.Models.Domain.BaseModels
 
         public DateTimeOffset? UpdatedAt { get; set; }
 
-        public string UpdateToken { get; set; }
+        public long AuthorId { get; set; }
 
-        public bool IsNew() => Id == default(long);
+        public long EditorId { get; set; }
+
+        public string UpdateToken { get; set; }
     }
 }

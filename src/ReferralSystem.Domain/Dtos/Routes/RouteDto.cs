@@ -24,7 +24,7 @@ namespace ReferralSystem.Domain.Dtos.Routes
 
         public string CloseReason { get; set; }
 
-        public Route NewRoute()
+        public Route NewRoute(string token)
         {
             return new Route(
                 nameRu: NameRu,
@@ -36,7 +36,8 @@ namespace ReferralSystem.Domain.Dtos.Routes
                 distance: Distance,
                 comment: Comment,
                 openReason: OpenReason,
-                closeReason: CloseReason);
+                closeReason: CloseReason,
+                token: token);
         }
     }
 }
