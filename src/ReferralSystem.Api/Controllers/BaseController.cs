@@ -39,9 +39,10 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<BasePlatform> GetByIdAsync([FromRoute] long id)
+        public virtual async Task<IActionResult> GetByIdAsync([FromRoute] long id)
         {
-            return await _baseService.GetByIdAsync(id);
+            var basePlatform = await _baseService.GetByIdAsync(id);
+            return this.Get(basePlatform);
         }
 
         [HttpPost("[action]")]

@@ -31,17 +31,18 @@ namespace ReferralSystem.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public virtual async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
         {
-            var basePlatforms = await _providerService.GetAllAsync();
-            return this.List(basePlatforms);
+            var providers = await _providerService.GetAllAsync();
+            return this.List(providers);
         }
 
         [HttpGet("[action]/{id}")]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<Provider> GetByIdAsync([FromRoute] long id)
+        public virtual async Task<IActionResult> GetByIdAsync([FromRoute] long id)
         {
-            return await _providerService.GetByIdAsync(id);
+            var provider = await _providerService.GetByIdAsync(id);
+            return this.Get(provider);
         }
 
         [HttpPost("[action]")]

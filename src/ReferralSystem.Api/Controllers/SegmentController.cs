@@ -31,17 +31,18 @@ namespace ReferralSystem.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public virtual async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
         {
-            var routes = await _segmentService.GetAllAsync();
-            return this.List(routes);
+            var segments = await _segmentService.GetAllAsync();
+            return this.List(segments);
         }
 
         [HttpGet("[action]/{id}")]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<Segment> GetByIdAsync([FromRoute] long id)
+        public virtual async Task<IActionResult> GetByIdAsync([FromRoute] long id)
         {
-            return await _segmentService.GetByIdAsync(id);
+            var segment = await _segmentService.GetByIdAsync(id);
+            return this.Get(segment);
         }
 
         [HttpPost("[action]")]
