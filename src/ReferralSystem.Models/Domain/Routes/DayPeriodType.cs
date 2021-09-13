@@ -4,10 +4,14 @@ namespace ReferralSystem.Models.Domain.Routes
 {
     public class DayPeriodType : BaseModel
     {
-        public string Name { get; set; }
+        protected DayPeriodType()
+        {
+        }
 
-        public int Direction { get; set; }
+        public string Name { get; protected set; }
 
-        public long AlternativeId { get; set; }
+        public int Direction { get; protected set; }
+
+        public long AlternativeId { get; protected set; }
     }
 }

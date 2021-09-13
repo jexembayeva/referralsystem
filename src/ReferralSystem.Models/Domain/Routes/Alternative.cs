@@ -5,30 +5,34 @@ namespace ReferralSystem.Models.Domain.Routes
 {
     public class Alternative : BaseModel
     {
-        public string NameRu { get; set; }
+        protected Alternative()
+        {
+        }
 
-        public string NameEn { get; set; }
+        public string NameRu { get; protected set; }
 
-        public string NameKk { get; set; }
+        public string NameEn { get; protected set; }
 
-        public string FullNameRu { get; set; }
+        public string NameKk { get; protected set; }
 
-        public string FullNameEn { get; set; }
+        public string FullNameRu { get; protected set; }
 
-        public string FullNameKk { get; set; }
+        public string FullNameEn { get; protected set; }
 
-        public int VehicleCount { get; set; }
+        public string FullNameKk { get; protected set; }
 
-        public int PeakInterval { get; set; }
+        public int VehicleCount { get; protected set; }
 
-        public int OffPeakInterval { get; set; }
+        public int PeakInterval { get; protected set; }
 
-        public long RouteId { get; set; }
+        public int OffPeakInterval { get; protected set; }
 
-        public long VehicleTypeId { get; set; }
+        public long RouteId { get; protected set; }
 
-        public DateTimeOffset ValidFrom { get; set; }
+        public long VehicleTypeId { get; protected set; }
 
-        public DateTimeOffset ValidTo { get; set; }
+        public DateTimeOffset ValidFrom { get; protected set; }
+
+        public DateTimeOffset ValidTo { get; protected set; }
     }
 }

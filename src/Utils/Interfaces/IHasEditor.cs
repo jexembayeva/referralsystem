@@ -2,6 +2,6 @@
 {
     public interface IHasEditor
     {
-        public long EditorId { get; set; }
+        public long EditorId { get; }
     }
 }

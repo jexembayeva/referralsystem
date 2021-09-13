@@ -4,18 +4,22 @@ namespace ReferralSystem.Models.Domain.Routes
 {
     public class Lad : BaseModel
     {
-        public int Direction { get; set; }
+        protected Lad()
+        {
+        }
 
-        public int Length { get; set; }
+        public int Direction { get; protected set; }
 
-        public int Stops { get; set; }
+        public int Length { get; protected set; }
 
-        public string Name { get; set; }
+        public int Stops { get; protected set; }
 
-        public string Comment { get; set; }
+        public string Name { get; protected set; }
 
-        public int TransitTime { get; set; }
+        public string Comment { get; protected set; }
 
-        public long AlternativeId { get; set; }
+        public int TransitTime { get; protected set; }
+
+        public long AlternativeId { get; protected set; }
     }
 }

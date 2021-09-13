@@ -4,14 +4,18 @@ namespace ReferralSystem.Models.Domain.Vehicles
 {
     public class VehicleType : BaseModel
     {
-        public string Name { get; set; }
+        protected VehicleType()
+        {
+        }
 
-        public int CostPerKM { get; set; }
+        public string Name { get; protected set; }
 
-        public int VehiclePrice { get; set; }
+        public int CostPerKM { get; protected set; }
 
-        public long VehicleComfortId { get; set; }
+        public int VehiclePrice { get; protected set; }
 
-        public long VehicleSizeId { get; set; }
+        public long VehicleComfortId { get; protected set; }
+
+        public long VehicleSizeId { get; protected set; }
     }
 }

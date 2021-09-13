@@ -2,6 +2,6 @@
 {
     public interface IHasUpdateToken
     {
-        public string UpdateToken { get; set; }
+        public string UpdateToken { get; }
     }
 }

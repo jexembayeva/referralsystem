@@ -5,16 +5,16 @@ namespace ReferralSystem.Models.Domain.BaseModels
 {
     public class BaseModel : IBaseModel
     {
-        public long Id { get; set; }
+        public long Id { get; protected set; }
 
-        public DateTimeOffset? CreatedAt { get; set; }
+        public DateTimeOffset? CreatedAt { get; protected set; }
 
-        public DateTimeOffset? UpdatedAt { get; set; }
+        public DateTimeOffset? UpdatedAt { get; protected set; }
 
-        public long AuthorId { get; set; }
+        public long AuthorId { get; protected set; }
 
-        public long EditorId { get; set; }
+        public long EditorId { get; protected set; }
 
-        public string UpdateToken { get; set; }
+        public string UpdateToken { get; protected set; }
     }
 }

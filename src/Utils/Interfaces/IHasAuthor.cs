@@ -2,6 +2,6 @@
 {
     public interface IHasAuthor
     {
-        public long AuthorId { get; set; }
+        public long AuthorId { get; }
     }
 }

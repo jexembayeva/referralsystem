@@ -4,8 +4,12 @@ namespace ReferralSystem.Models.Domain.Devices
 {
     public class Stabilizer : BaseModel
     {
-        public string Name { get; set; }
+        protected Stabilizer()
+        {
+        }
 
-        public string Comment { get; set; }
+        public string Name { get; protected set; }
+
+        public string Comment { get; protected set; }
     }
 }

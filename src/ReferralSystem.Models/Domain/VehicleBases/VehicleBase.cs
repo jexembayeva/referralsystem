@@ -23,21 +23,21 @@ namespace ReferralSystem.Models.Domain.Bases
             ValidTo = DateTimeOffset.Now;
         }
 
-        public string NameRu { get; set; }
+        public string NameRu { get; protected set; }
 
-        public string NameEn { get; set; }
+        public string NameEn { get; protected set; }
 
-        public string NameKk { get; set; }
+        public string NameKk { get; protected set; }
 
-        public double Polygon { get; set; }
+        public double Polygon { get; protected set; }
 
-        public long ProviderId { get; set; }
+        public long ProviderId { get; protected set; }
 
-        public string Comment { get; set; }
+        public string Comment { get; protected set; }
 
-        public DateTimeOffset ValidFrom { get; set; }
+        public DateTimeOffset ValidFrom { get; protected set; }
 
-        public DateTimeOffset ValidTo { get; set; }
+        public DateTimeOffset ValidTo { get; protected set; }
 
         public void UpdateOrFail(string nameEn, string nameKk, string nameRu)
         {

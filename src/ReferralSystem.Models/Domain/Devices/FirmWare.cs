@@ -1,14 +1,17 @@
-﻿using System.Reflection.Metadata;
-using ReferralSystem.Models.Domain.BaseModels;
+﻿using ReferralSystem.Models.Domain.BaseModels;
 
 namespace ReferralSystem.Models.Domain.Devices
 {
     public class FirmWare : BaseModel
     {
-        public string Name { get; set; }
+        protected FirmWare()
+        {
+        }
 
-        public string Config { get; set; }
+        public string Name { get; protected set; }
 
-        public string Comment { get; set; }
+        public string Config { get; protected set; }
+
+        public string Comment { get; protected set; }
     }
 }

@@ -4,8 +4,12 @@ namespace ReferralSystem.Models.Domain.Vehicles
 {
     public class Manufacturer : BaseModel
     {
-        public string Name { get; set; }
+        protected Manufacturer()
+        {
+        }
 
-        public string Country { get; set; }
+        public string Name { get; protected set; }
+
+        public string Country { get; protected set; }
     }
 }

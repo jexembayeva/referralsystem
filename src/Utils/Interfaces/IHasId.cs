@@ -2,6 +2,6 @@
 {
     public interface IHasId
     {
-        long Id { get; set; }
+        long Id { get; }
     }
 }

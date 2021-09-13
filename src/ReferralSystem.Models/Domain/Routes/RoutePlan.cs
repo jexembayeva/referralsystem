@@ -5,30 +5,34 @@ namespace ReferralSystem.Models.Domain.Routes
 {
     public class RoutePlan : BaseModel
     {
-        public string Name { get; set; }
+        protected RoutePlan()
+        {
+        }
 
-        public long RouteId { get; set; }
+        public string Name { get; protected set; }
 
-        public int RoundCount { get; set; }
+        public long RouteId { get; protected set; }
 
-        public DateTimeOffset StartTime { get; set; }
+        public int RoundCount { get; protected set; }
 
-        public DateTimeOffset EndTime { get; set; }
+        public DateTimeOffset StartTime { get; protected set; }
 
-        public int Interval { get; set; }
+        public DateTimeOffset EndTime { get; protected set; }
 
-        public string Comment { get; set; }
+        public int Interval { get; protected set; }
 
-        public int DurationAB { get; set; }
+        public string Comment { get; protected set; }
 
-        public int DurationBA { get; set; }
+        public int DurationAB { get; protected set; }
 
-        public int Capacity { get; set; }
+        public int DurationBA { get; protected set; }
 
-        public int MaxStopTime { get; set; }
+        public int Capacity { get; protected set; }
 
-        public DateTimeOffset ValidFrom { get; set; }
+        public int MaxStopTime { get; protected set; }
 
-        public DateTimeOffset ValidTo { get; set; }
+        public DateTimeOffset ValidFrom { get; protected set; }
+
+        public DateTimeOffset ValidTo { get; protected set; }
     }
 }

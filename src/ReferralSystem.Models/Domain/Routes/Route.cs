@@ -25,29 +25,29 @@ namespace ReferralSystem.Models.Domain.Routes
             UpdateToken = token;
         }
 
-        public string NameRu { get; set; }
+        public string NameRu { get; protected set; }
 
-        public string NameEn { get; set; }
+        public string NameEn { get; protected set; }
 
-        public string NameKk { get; set; }
+        public string NameKk { get; protected set; }
 
-        public string FullNameRu { get; set; }
+        public string FullNameRu { get; protected set; }
 
-        public string FullNameEn { get; set; }
+        public string FullNameEn { get; protected set; }
 
-        public string FullNameKk { get; set; }
+        public string FullNameKk { get; protected set; }
 
-        public double Distance { get; set; }
+        public double Distance { get; protected set; }
 
-        public string Comment { get; set; }
+        public string Comment { get; protected set; }
 
-        public string OpenReason { get; set; }
+        public string OpenReason { get; protected set; }
 
-        public string CloseReason { get; set; }
+        public string CloseReason { get; protected set; }
 
-        public DateTimeOffset ValidFrom { get; set; }
+        public DateTimeOffset ValidFrom { get; protected set; }
 
-        public DateTimeOffset ValidTo { get; set; }
+        public DateTimeOffset ValidTo { get; protected set; }
 
         public void UpdateOrFail(string nameEn, string nameKk, string nameRu)
         {

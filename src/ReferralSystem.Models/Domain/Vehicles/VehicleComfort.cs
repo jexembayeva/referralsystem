@@ -4,12 +4,16 @@ namespace ReferralSystem.Models.Domain.Vehicles
 {
     public class VehicleComfort : BaseModel
     {
-        public string Name { get; set; }
+        protected VehicleComfort()
+        {
+        }
 
-        public bool HasAirCon { get; set; }
+        public string Name { get; protected set; }
 
-        public bool HasRampant { get; set; }
+        public bool HasAirCon { get; protected set; }
 
-        public int Doors { get; set; }
+        public bool HasRampant { get; protected set; }
+
+        public int Doors { get; protected set; }
     }
 }

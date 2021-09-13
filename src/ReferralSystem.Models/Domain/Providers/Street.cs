@@ -5,16 +5,20 @@ namespace ReferralSystem.Models.Domain.Providers
 {
     public class Street : BaseModel
     {
-        public string NameRu { get; set; }
+        protected Street()
+        {
+        }
 
-        public string NameEn { get; set; }
+        public string NameRu { get; protected set; }
 
-        public string NameKk { get; set; }
+        public string NameEn { get; protected set; }
 
-        public DateTimeOffset ValidFrom { get; set; }
+        public string NameKk { get; protected set; }
 
-        public DateTimeOffset ValidTo { get; set; }
+        public DateTimeOffset ValidFrom { get; protected set; }
 
-        public string Comment { get; set; }
+        public DateTimeOffset ValidTo { get; protected set; }
+
+        public string Comment { get; protected set; }
     }
 }

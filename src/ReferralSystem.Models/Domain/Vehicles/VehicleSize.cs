@@ -4,12 +4,16 @@ namespace ReferralSystem.Models.Domain.Vehicles
 {
     public class VehicleSize : BaseModel
     {
-        public string Name { get; set; }
+        protected VehicleSize()
+        {
+        }
 
-        public int Seats { get; set; }
+        public string Name { get; protected set; }
 
-        public int Capacity { get; set; }
+        public int Seats { get; protected set; }
 
-        public int Square { get; set; }
+        public int Capacity { get; protected set; }
+
+        public int Square { get; protected set; }
     }
 }

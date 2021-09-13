@@ -22,31 +22,31 @@ namespace ReferralSystem.Models.Domain.Stop
             UpdateToken = token;
         }
 
-        public string NameRu { get; set; }
+        public string NameRu { get; protected set; }
 
-        public string NameEn { get; set; }
+        public string NameEn { get; protected set; }
 
-        public string NameKk { get; set; }
+        public string NameKk { get; protected set; }
 
-        public double? Longitude { get; set; }
+        public double? Longitude { get; protected set; }
 
-        public double? Latitude { get; set; }
+        public double? Latitude { get; protected set; }
 
-        public short? Direction { get; set; }
+        public short? Direction { get; protected set; }
 
-        public string Comment { get; set; }
+        public string Comment { get; protected set; }
 
-        public bool HasStopZone { get; set; }
+        public bool HasStopZone { get; protected set; }
 
-        public bool HasLongStopZone { get; set; }
+        public bool HasLongStopZone { get; protected set; }
 
-        public int? DistrictId { get; set; }
+        public int? DistrictId { get; protected set; }
 
-        public int? SegmentId { get; set; }
+        public int? SegmentId { get; protected set; }
 
-        public DateTimeOffset ValidFrom { get; set; }
+        public DateTimeOffset ValidFrom { get; protected set; }
 
-        public DateTimeOffset ValidTo { get; set; }
+        public DateTimeOffset ValidTo { get; protected set; }
 
         public void UpdateOrFail(string nameEn, string nameKk, string nameRu)
         {

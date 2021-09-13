@@ -4,8 +4,12 @@ namespace ReferralSystem.Models.Domain.Routes
 {
     public class RouteVehicleLink : BaseModel
     {
-        public long RouteId { get; set; }
+        protected RouteVehicleLink()
+        {
+        }
 
-        public long VehicleId { get; set; }
+        public long RouteId { get; protected set; }
+
+        public long VehicleId { get; protected set; }
     }
 }

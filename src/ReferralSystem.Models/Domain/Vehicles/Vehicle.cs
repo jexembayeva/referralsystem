@@ -23,35 +23,35 @@ namespace ReferralSystem.Models.Domain.Vehicles
             UpdateToken = token;
         }
 
-        public string Model { get; set; }
+        public string Model { get; protected set; }
 
-        public int Year { get; set; }
+        public int Year { get; protected set; }
 
-        public long DeviceId { get; set; }
+        public long DeviceId { get; protected set; }
 
-        public long ProviderId { get; set; }
+        public long ProviderId { get; protected set; }
 
-        public bool IsOwned { get; set; }
+        public bool IsOwned { get; protected set; }
 
-        public long ManufacturerId { get; set; }
+        public long ManufacturerId { get; protected set; }
 
-        public long VehicleTypeId { get; set; }
+        public long VehicleTypeId { get; protected set; }
 
-        public string Comment { get; set; }
+        public string Comment { get; protected set; }
 
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber { get; protected set; }
 
-        public string LicencePlate { get; set; }
+        public string LicencePlate { get; protected set; }
 
-        public long BaseId { get; set; }
+        public long BaseId { get; protected set; }
 
-        public int FuelConsumptionRate { get; set; }
+        public int FuelConsumptionRate { get; protected set; }
 
-        public int FuelConsumptionRateWinter { get; set; }
+        public int FuelConsumptionRateWinter { get; protected set; }
 
-        public DateTimeOffset ValidFrom { get; set; }
+        public DateTimeOffset ValidFrom { get; protected set; }
 
-        public DateTimeOffset ValidTo { get; set; }
+        public DateTimeOffset ValidTo { get; protected set; }
 
         public void UpdateOrFail(string licencePlate, string phoneNumber, int fuelConsumptionRate)
         {

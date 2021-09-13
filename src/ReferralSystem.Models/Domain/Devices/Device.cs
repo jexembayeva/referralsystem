@@ -18,21 +18,21 @@ namespace ReferralSystem.Models.Domain.Devices
             UpdateToken = token;
         }
 
-        public long FirmWareId { get; set; }
+        public long FirmWareId { get; protected set; }
 
-        public long StabilizerId { get; set; }
+        public long StabilizerId { get; protected set; }
 
-        public long SimcardId { get; set; }
+        public long SimcardId { get; protected set; }
 
-        public int IMEI { get; set; }
+        public int IMEI { get; protected set; }
 
-        public string SerialNumber { get; set; }
+        public string SerialNumber { get; protected set; }
 
-        public string Comment { get; set; }
+        public string Comment { get; protected set; }
 
-        public DateTimeOffset ValidFrom { get; set; }
+        public DateTimeOffset ValidFrom { get; protected set; }
 
-        public DateTimeOffset ValidTo { get; set; }
+        public DateTimeOffset ValidTo { get; protected set; }
 
         public void UpdateOrFail(string serialNumber, string comment, int imei)
         {
