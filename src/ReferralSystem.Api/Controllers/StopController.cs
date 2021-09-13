@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Net.Mime;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +28,7 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Stop>))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetAllAsync()
         {
             var stops = await _stopService.GetAllAsync();
             return this.List(stops);
@@ -39,7 +38,7 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> GetByIdAsync([FromRoute] long id)
+        public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
         {
             var stop = await _stopService.GetByIdAsync(id);
             return this.Get(stop);
@@ -49,7 +48,7 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> CreateAsync([FromBody] StopDto entity)
+        public async Task<IActionResult> CreateAsync([FromBody] StopDto entity)
         {
             await _stopService.InsertAsync(entity);
             return Ok();
@@ -59,7 +58,7 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> UpdateAsync([FromBody] StopDto data)
+        public async Task<IActionResult> UpdateAsync([FromBody] StopDto data)
         {
             await _stopService.UpdateAsync(data);
             return Ok();

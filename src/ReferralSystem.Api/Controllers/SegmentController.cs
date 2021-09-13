@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Net.Mime;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +28,7 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Segment>))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetAllAsync()
         {
             var segments = await _segmentService.GetAllAsync();
             return this.List(segments);
@@ -39,7 +38,7 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> GetByIdAsync([FromRoute] long id)
+        public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
         {
             var segment = await _segmentService.GetByIdAsync(id);
             return this.Get(segment);
@@ -49,7 +48,7 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> CreateAsync([FromBody] SegmentDto entity)
+        public async Task<IActionResult> CreateAsync([FromBody] SegmentDto entity)
         {
             await _segmentService.InsertAsync(entity);
             return Ok();
@@ -59,7 +58,7 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> UpdateAsync([FromBody] SegmentDto data)
+        public async Task<IActionResult> UpdateAsync([FromBody] SegmentDto data)
         {
             await _segmentService.UpdateAsync(data);
             return Ok();

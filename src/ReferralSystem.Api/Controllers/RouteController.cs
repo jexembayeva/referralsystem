@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Net.Mime;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +28,7 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Route>))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetAllAsync()
         {
             var routes = await _routeService.GetAllAsync();
             return this.List(routes);
@@ -39,7 +38,7 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> GetByIdAsync([FromRoute] long id)
+        public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
         {
             var route = await _routeService.GetByIdAsync(id);
             return this.Get(route);
@@ -49,7 +48,7 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> CreateAsync([FromBody] RouteDto entity)
+        public async Task<IActionResult> CreateAsync([FromBody] RouteDto entity)
         {
             await _routeService.InsertAsync(entity);
             return Ok();
@@ -59,7 +58,7 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> UpdateAsync([FromBody] RouteDto data)
+        public async Task<IActionResult> UpdateAsync([FromBody] RouteDto data)
         {
             await _routeService.UpdateAsync(data);
             return Ok();

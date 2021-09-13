@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Net.Mime;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +28,7 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Vehicle>))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetAllAsync()
         {
             var vehicles = await _vehicleService.GetAllAsync();
             return this.List(vehicles);
@@ -39,7 +38,7 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> GetByIdAsync([FromRoute] long id)
+        public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
         {
             var vehicle = await _vehicleService.GetByIdAsync(id);
             return this.Get(vehicle);
@@ -49,7 +48,7 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> CreateAsync([FromBody] VehicleDto entity)
+        public async Task<IActionResult> CreateAsync([FromBody] VehicleDto entity)
         {
             await _vehicleService.InsertAsync(entity);
             return Ok();
@@ -59,7 +58,7 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> UpdateAsync([FromBody] VehicleDto data)
+        public async Task<IActionResult> UpdateAsync([FromBody] VehicleDto data)
         {
             await _vehicleService.UpdateAsync(data);
             return Ok();
