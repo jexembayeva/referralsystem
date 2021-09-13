@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -13,12 +12,14 @@ using ReferralSystem.Database.Repositories.Bases;
 using ReferralSystem.Database.Repositories.Devices;
 using ReferralSystem.Database.Repositories.Providers;
 using ReferralSystem.Database.Repositories.Routes;
+using ReferralSystem.Database.Repositories.Segments;
 using ReferralSystem.Database.Repositories.Stops;
 using ReferralSystem.Database.Repositories.Vehicles;
 using ReferralSystem.Domain.Services.Bases;
 using ReferralSystem.Domain.Services.Devices;
 using ReferralSystem.Domain.Services.Providers;
 using ReferralSystem.Domain.Services.Routes;
+using ReferralSystem.Domain.Services.Segments;
 using ReferralSystem.Domain.Services.Stops;
 using ReferralSystem.Domain.Services.Vehicles;
 using ReferralSystem.General.Services.HealthChecks;
@@ -62,6 +63,8 @@ namespace ReferralSystem.Api
                     new ProviderService(options.GetRequiredService<IProviderRepository>()))
                 .AddTransient<IStopService>(options =>
                     new StopService(options.GetRequiredService<IStopRepository>()))
+                .AddTransient<ISegmentService>(options =>
+                    new SegmentService(options.GetRequiredService<ISegmentRepository>()))
                 .AddTransient<IVehicleService>(options =>
                     new VehicleService(options.GetRequiredService<IVehicleRepository>()));
 
@@ -73,6 +76,7 @@ namespace ReferralSystem.Api
                 .AddScoped<IDeviceRepository, DeviceRepository>()
                 .AddScoped<IProviderRepository, ProviderRepository>()
                 .AddScoped<IStopRepository, StopRepository>()
+                .AddScoped<ISegmentRepository, SegmentRepository>()
                 .AddScoped<IVehicleRepository, VehicleRepository>();
 
             services.AddControllers().AddJsonOptions(options =>

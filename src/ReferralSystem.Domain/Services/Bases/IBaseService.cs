@@ -2,9 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using ReferralSystem.Domain.Dtos.Bases;
-using ReferralSystem.Domain.Dtos.Stops;
 using ReferralSystem.Models.Domain.Bases;
-using ReferralSystem.Models.Domain.Stop;
 
 namespace ReferralSystem.Domain.Services.Bases
 {

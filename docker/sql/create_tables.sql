@@ -128,3 +128,33 @@ CREATE TABLE IF NOT EXISTS vehicle (
   UpdateToken varchar(250) NOT NULL,
   PRIMARY KEY (Id)
 );
+
+CREATE TABLE IF NOT EXISTS segment (
+  Id SERIAL,
+  Length int NOT NULL,
+  LineCount INT,
+  ParkingAllowed boolean NOT NULL,
+  MaxSpeed INT,
+  OneWay boolean NOT NULL,
+  Direction INT,
+  RailCrossing boolean NOT NULL,
+  DedicatedLaneId INT,
+  DirectDirectionLaneCount INT,
+  ReverseDirectionLaneCount INT,
+  DirectDirectionDedicatedLaneCount INT,
+  ReverseDirectionDedicatedLaneCount INT,
+  HasPublicTransport boolean NOT NULL,
+  TurnRestrictions varchar(250) NOT NULL,
+  Geometry  DECIMAL(20,3),
+  Comment varchar(250) NOT NULL,
+  DistrictId INT,
+  StreetId INT,
+  ValidFrom TIMESTAMPTZ,
+  ValidTo TIMESTAMPTZ,
+  AuthorId INT NOT NULL,
+  EditorId INT NOT NULL,
+  CreatedAt TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  UpdatedAt TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  UpdateToken varchar(250) NOT NULL,
+  PRIMARY KEY (Id)
+);

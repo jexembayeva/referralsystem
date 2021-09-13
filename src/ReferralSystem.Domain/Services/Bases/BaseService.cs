@@ -2,13 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using ReferralSystem.Database.Repositories.Bases;
-using ReferralSystem.Database.Repositories.Routes;
-using ReferralSystem.Database.Repositories.Stops;
 using ReferralSystem.Domain.Dtos.Bases;
-using ReferralSystem.Domain.Dtos.Routes;
-using ReferralSystem.Domain.Dtos.Stops;
 using ReferralSystem.Models.Domain.Bases;
-using ReferralSystem.Models.Domain.Stop;
 
 namespace ReferralSystem.Domain.Services.Bases
 {

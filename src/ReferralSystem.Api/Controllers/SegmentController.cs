@@ -4,53 +4,53 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ReferralSystem.Domain.Dtos.Providers;
-using ReferralSystem.Domain.Services.Providers;
+using ReferralSystem.Domain.Dtos.Segments;
+using ReferralSystem.Domain.Services.Segments;
 using ReferralSystem.General.Services.Controllers;
-using ReferralSystem.Models.Domain.Providers;
+using ReferralSystem.Models.Domain.Segments;
 using Utils.Helpers;
 
 namespace ReferralSystem.Api.Controllers
 {
     [Route("[controller]")]
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public class ProviderController : ControllerBase
+    public class SegmentController : ControllerBase
     {
-        private readonly IProviderService _providerService;
+        private readonly ISegmentService _segmentService;
 
-        public ProviderController(IProviderService providerService)
+        public SegmentController(ISegmentService segmentService)
         {
-            providerService.ThrowIfNull(nameof(providerService));
+            segmentService.ThrowIfNull(nameof(segmentService));
 
-            _providerService = providerService;
+            _segmentService = segmentService;
         }
 
         [HttpGet("[action]")]
         [Produces(MediaTypeNames.Application.Json)]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Provider>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Segment>))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public virtual async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
         {
-            var basePlatforms = await _providerService.GetAllAsync();
-            return this.List(basePlatforms);
+            var routes = await _segmentService.GetAllAsync();
+            return this.List(routes);
         }
 
         [HttpGet("[action]/{id}")]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<Provider> GetByIdAsync([FromRoute] long id)
+        public virtual async Task<Segment> GetByIdAsync([FromRoute] long id)
         {
-            return await _providerService.GetByIdAsync(id);
+            return await _segmentService.GetByIdAsync(id);
         }
 
         [HttpPost("[action]")]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> CreateAsync([FromBody] ProviderDto entity, CancellationToken cancellationToken)
+        public virtual async Task<IActionResult> CreateAsync([FromBody] SegmentDto entity, CancellationToken cancellationToken)
         {
-            await _providerService.InsertAsync(entity, cancellationToken);
+            await _segmentService.InsertAsync(entity, cancellationToken);
             return Ok();
         }
 
@@ -58,9 +58,9 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> UpdateAsync([FromBody] ProviderDto data, CancellationToken cancellationToken)
+        public virtual async Task<IActionResult> UpdateAsync([FromBody] SegmentDto data, CancellationToken cancellationToken)
         {
-            await _providerService.UpdateAsync(data, cancellationToken);
+            await _segmentService.UpdateAsync(data, cancellationToken);
             return Ok();
         }
 
@@ -70,7 +70,7 @@ namespace ReferralSystem.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DeleteAsync(long id)
         {
-            await _providerService.DeleteAsync(id);
+            await _segmentService.DeleteAsync(id);
             return Ok();
         }
     }

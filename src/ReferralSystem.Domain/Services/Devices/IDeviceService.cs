@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using ReferralSystem.Domain.Dtos.Devices;
 using ReferralSystem.Models.Domain.Devices;
-using ReferralSystem.Models.Domain.Stop;
 
 namespace ReferralSystem.Domain.Services.Devices
 {
