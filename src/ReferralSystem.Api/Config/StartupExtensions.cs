@@ -23,8 +23,10 @@ namespace ReferralSystem.Api.Config
         {
             services.AddSingleton(optiroConnectionString);
 
-            services.AddTransient<IRouteService>(options => new RouteService(
-                options.GetRequiredService<IRouteRepository>()))
+            services.AddTransient<IDatabaseConnectionFactory, DatabaseConnectionFactory>();
+
+            services.AddTransient<IRouteService>(options =>
+                        new RouteService(options.GetRequiredService<IRouteRepository>()))
                     .AddTransient<IVehicleBaseService>(options =>
                         new VehicleBaseService(options.GetRequiredService<IVehicleBaseRepository>()))
                     .AddTransient<IDeviceService>(options =>
@@ -37,8 +39,6 @@ namespace ReferralSystem.Api.Config
                         new SegmentService(options.GetRequiredService<ISegmentRepository>()))
                     .AddTransient<IVehicleService>(options =>
                         new VehicleService(options.GetRequiredService<IVehicleRepository>()));
-
-            services.AddTransient<IDatabaseConnectionFactory, DatabaseConnectionFactory>();
 
             services.AddScoped<IRouteRepository, RouteRepository>()
                     .AddScoped<IVehicleBaseRepository, VehicleBaseRepository>()
