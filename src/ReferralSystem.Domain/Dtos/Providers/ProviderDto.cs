@@ -33,7 +33,7 @@ namespace ReferralSystem.Domain.Dtos.Providers
 
         public long RegionId { get; set; }
 
-        public Provider NewProvider(CancellationToken cancellationToken)
+        public Provider NewProvider()
         {
             return new Provider(
                 nameEn: NameEn,
@@ -48,8 +48,7 @@ namespace ReferralSystem.Domain.Dtos.Providers
                 bik: BIK,
                 dispatcherPhoneNumber: DispatcherPhoneNumber,
                 techServicePhoneNumber: TechServicePhoneNumber,
-                comment: Comment,
-                token: cancellationToken.ToString());
+                comment: Comment);
         }
     }
 }

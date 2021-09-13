@@ -17,15 +17,14 @@ namespace ReferralSystem.Domain.Dtos.Bases
 
         public string Comment { get; set; }
 
-        public VehicleBase NewBasePlatform(CancellationToken cancellationToken)
+        public VehicleBase NewBasePlatform()
         {
             return new VehicleBase(
                 nameEn: NameEn,
                 nameRu: NameRu,
                 nameKk: NameKk,
                 polygon: Polygon,
-                comment: Comment,
-                token: cancellationToken.ToString());
+                comment: Comment);
         }
     }
 }

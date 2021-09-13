@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using ReferralSystem.Database.Repositories.Devices;
 using ReferralSystem.Domain.Dtos.Devices;
@@ -31,7 +30,7 @@ namespace ReferralSystem.Domain.Services.Devices
             return await _deviceRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(DeviceDto data, CancellationToken cancellationToken)
+        public async Task UpdateAsync(DeviceDto data)
         {
             var device = await _deviceRepository.GetByIdAsync(data.Id);
 
@@ -39,9 +38,9 @@ namespace ReferralSystem.Domain.Services.Devices
             await _deviceRepository.UpdateAsync(device);
         }
 
-        public async Task InsertAsync(DeviceDto data, CancellationToken cancellationToken)
+        public async Task InsertAsync(DeviceDto data)
         {
-            var device = data.NewDevice(cancellationToken);
+            var device = data.NewDevice();
             await _deviceRepository.InsertAsync(device);
         }
     }

@@ -25,7 +25,7 @@ namespace ReferralSystem.Domain.Dtos.Routes
 
         public string CloseReason { get; set; }
 
-        public Route NewRoute(CancellationToken cancellationToken)
+        public Route NewRoute()
         {
             return new Route(
                 nameRu: NameRu,
@@ -37,8 +37,7 @@ namespace ReferralSystem.Domain.Dtos.Routes
                 distance: Distance,
                 comment: Comment,
                 openReason: OpenReason,
-                closeReason: CloseReason,
-                token: cancellationToken.ToString());
+                closeReason: CloseReason);
         }
     }
 }

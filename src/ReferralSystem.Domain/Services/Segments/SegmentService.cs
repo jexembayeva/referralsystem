@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using ReferralSystem.Database.Repositories.Segments;
 using ReferralSystem.Domain.Dtos.Segments;
@@ -31,7 +30,7 @@ namespace ReferralSystem.Domain.Services.Segments
             return await _segmentRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(SegmentDto data, CancellationToken cancellationToken)
+        public async Task UpdateAsync(SegmentDto data)
         {
             var segment = await _segmentRepository.GetByIdAsync(data.Id);
 
@@ -39,9 +38,9 @@ namespace ReferralSystem.Domain.Services.Segments
             await _segmentRepository.UpdateAsync(segment);
         }
 
-        public async Task InsertAsync(SegmentDto data, CancellationToken cancellationToken)
+        public async Task InsertAsync(SegmentDto data)
         {
-            var segment = data.NewSegment(cancellationToken);
+            var segment = data.NewSegment();
             await _segmentRepository.InsertAsync(segment);
         }
     }

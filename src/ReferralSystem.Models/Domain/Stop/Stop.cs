@@ -10,7 +10,7 @@ namespace ReferralSystem.Models.Domain.Stop
         {
         }
 
-        public Stop(string nameRu, string nameEn, string nameKk, double? longitude, double? latitude, short? direction, string comment, string token)
+        public Stop(string nameRu, string nameEn, string nameKk, double? longitude, double? latitude, short? direction, string comment)
         {
             NameEn = nameEn;
             NameRu = nameRu;
@@ -19,7 +19,6 @@ namespace ReferralSystem.Models.Domain.Stop
             Latitude = latitude;
             Direction = direction;
             Comment = comment;
-            UpdateToken = token;
         }
 
         public string NameRu { get; protected set; }

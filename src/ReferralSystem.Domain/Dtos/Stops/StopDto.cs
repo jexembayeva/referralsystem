@@ -32,7 +32,7 @@ namespace ReferralSystem.Domain.Dtos.Stops
 
         public DateTimeOffset ValidTo { get; set; }
 
-        public Stop NewStop(CancellationToken cancellationToken)
+        public Stop NewStop()
         {
             return new Stop(
                 nameEn: NameEn,
@@ -41,8 +41,7 @@ namespace ReferralSystem.Domain.Dtos.Stops
                 longitude: Longitude,
                 latitude: Latitude,
                 direction: Direction,
-                comment: Comment,
-                token: cancellationToken.ToString());
+                comment: Comment);
         }
     }
 }

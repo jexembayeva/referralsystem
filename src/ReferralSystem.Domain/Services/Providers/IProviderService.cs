@@ -14,8 +14,8 @@ namespace ReferralSystem.Domain.Services.Providers
 
         Task<Provider> GetByIdAsync(long id);
 
-        Task UpdateAsync(ProviderDto provider, CancellationToken cancellationToken);
+        Task UpdateAsync(ProviderDto provider);
 
-        Task InsertAsync(ProviderDto provider, CancellationToken cancellationToken);
+        Task InsertAsync(ProviderDto provider);
     }
 }

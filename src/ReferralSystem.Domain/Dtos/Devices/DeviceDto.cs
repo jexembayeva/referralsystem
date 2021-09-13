@@ -17,13 +17,12 @@ namespace ReferralSystem.Domain.Dtos.Devices
 
         public string Comment { get; set; }
 
-        public Device NewDevice(CancellationToken cancellationToken)
+        public Device NewDevice()
         {
             return new Device(
                 imei: IMEI,
                 serialNumber: SerialNumber,
-                comment: Comment,
-                token: cancellationToken.ToString());
+                comment: Comment);
         }
     }
 }

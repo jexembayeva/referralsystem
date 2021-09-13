@@ -49,9 +49,9 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> CreateAsync([FromBody] ProviderDto entity, CancellationToken cancellationToken)
+        public virtual async Task<IActionResult> CreateAsync([FromBody] ProviderDto entity)
         {
-            await _providerService.InsertAsync(entity, cancellationToken);
+            await _providerService.InsertAsync(entity);
             return Ok();
         }
 
@@ -59,9 +59,9 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> UpdateAsync([FromBody] ProviderDto data, CancellationToken cancellationToken)
+        public virtual async Task<IActionResult> UpdateAsync([FromBody] ProviderDto data)
         {
-            await _providerService.UpdateAsync(data, cancellationToken);
+            await _providerService.UpdateAsync(data);
             return Ok();
         }
 

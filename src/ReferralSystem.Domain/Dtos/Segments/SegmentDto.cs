@@ -42,7 +42,7 @@ namespace ReferralSystem.Domain.Dtos.Segments
 
         public long StreetId { get; set; }
 
-        public Segment NewSegment(CancellationToken cancellationToken)
+        public Segment NewSegment()
         {
             return new Segment(
                             length: Length,
@@ -61,8 +61,7 @@ namespace ReferralSystem.Domain.Dtos.Segments
                             geometry: Geometry,
                             comment: Comment,
                             districtId: DistrictId,
-                            streetId: StreetId,
-                            token: cancellationToken.ToString());
+                            streetId: StreetId);
         }
     }
 }

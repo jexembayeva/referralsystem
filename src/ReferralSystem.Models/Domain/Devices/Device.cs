@@ -10,12 +10,11 @@ namespace ReferralSystem.Models.Domain.Devices
         {
         }
 
-        public Device(int imei, string serialNumber, string comment, string token)
+        public Device(int imei, string serialNumber, string comment)
         {
             IMEI = imei;
             SerialNumber = serialNumber;
             Comment = comment;
-            UpdateToken = token;
         }
 
         public long FirmWareId { get; protected set; }

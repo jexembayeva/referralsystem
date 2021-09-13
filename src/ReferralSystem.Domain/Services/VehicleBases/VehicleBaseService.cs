@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using ReferralSystem.Database.Repositories.Bases;
 using ReferralSystem.Domain.Dtos.Bases;
@@ -31,7 +30,7 @@ namespace ReferralSystem.Domain.Services.Bases
             return await _vehicleBaseRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(VehicleBaseDto data, CancellationToken cancellationToken)
+        public async Task UpdateAsync(VehicleBaseDto data)
         {
             var basePlatform = await _vehicleBaseRepository.GetByIdAsync(data.Id);
 
@@ -39,9 +38,9 @@ namespace ReferralSystem.Domain.Services.Bases
             await _vehicleBaseRepository.UpdateAsync(basePlatform);
         }
 
-        public async Task InsertAsync(VehicleBaseDto data, CancellationToken cancellationToken)
+        public async Task InsertAsync(VehicleBaseDto data)
         {
-            var basePlatform = data.NewBasePlatform(cancellationToken);
+            var basePlatform = data.NewBasePlatform();
             await _vehicleBaseRepository.InsertAsync(basePlatform);
         }
     }

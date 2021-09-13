@@ -14,7 +14,5 @@ namespace ReferralSystem.Models.Domain.BaseModels
         public long AuthorId { get; protected set; }
 
         public long EditorId { get; protected set; }
-
-        public string UpdateToken { get; protected set; }
     }
 }

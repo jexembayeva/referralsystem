@@ -14,8 +14,8 @@ namespace ReferralSystem.Domain.Services.Devices
 
         Task<Device> GetByIdAsync(long id);
 
-        Task UpdateAsync(DeviceDto device, CancellationToken cancellationToken);
+        Task UpdateAsync(DeviceDto device);
 
-        Task InsertAsync(DeviceDto device, CancellationToken cancellationToken);
+        Task InsertAsync(DeviceDto device);
     }
 }

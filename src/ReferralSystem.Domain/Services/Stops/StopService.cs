@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using ReferralSystem.Database.Repositories.Stops;
 using ReferralSystem.Domain.Dtos.Stops;
@@ -31,7 +30,7 @@ namespace ReferralSystem.Domain.Services.Stops
             return await _stopRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(StopDto data, CancellationToken cancellationToken)
+        public async Task UpdateAsync(StopDto data)
         {
             var stop = await _stopRepository.GetByIdAsync(data.Id);
 
@@ -39,9 +38,9 @@ namespace ReferralSystem.Domain.Services.Stops
             await _stopRepository.UpdateAsync(stop);
         }
 
-        public async Task InsertAsync(StopDto data, CancellationToken cancellationToken)
+        public async Task InsertAsync(StopDto data)
         {
-            var stop = data.NewStop(cancellationToken);
+            var stop = data.NewStop();
             await _stopRepository.InsertAsync(stop);
         }
     }

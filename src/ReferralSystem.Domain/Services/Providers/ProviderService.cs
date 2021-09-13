@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using ReferralSystem.Database.Repositories.Providers;
 using ReferralSystem.Domain.Dtos.Providers;
@@ -31,7 +30,7 @@ namespace ReferralSystem.Domain.Services.Providers
             return await _providerRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(ProviderDto data, CancellationToken cancellationToken)
+        public async Task UpdateAsync(ProviderDto data)
         {
             var provider = await _providerRepository.GetByIdAsync(data.Id);
 
@@ -39,9 +38,9 @@ namespace ReferralSystem.Domain.Services.Providers
             await _providerRepository.UpdateAsync(provider);
         }
 
-        public async Task InsertAsync(ProviderDto data, CancellationToken cancellationToken)
+        public async Task InsertAsync(ProviderDto data)
         {
-            var provider = data.NewProvider(cancellationToken);
+            var provider = data.NewProvider();
             await _providerRepository.InsertAsync(provider);
         }
     }

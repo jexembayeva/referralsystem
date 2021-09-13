@@ -49,9 +49,9 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> CreateAsync([FromBody] VehicleBaseDto entity, CancellationToken cancellationToken)
+        public virtual async Task<IActionResult> CreateAsync([FromBody] VehicleBaseDto entity)
         {
-            await _vehicleBaseService.InsertAsync(entity, cancellationToken);
+            await _vehicleBaseService.InsertAsync(entity);
             return Ok();
         }
 
@@ -59,9 +59,9 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> UpdateAsync([FromBody] VehicleBaseDto data, CancellationToken cancellationToken)
+        public virtual async Task<IActionResult> UpdateAsync([FromBody] VehicleBaseDto data)
         {
-            await _vehicleBaseService.UpdateAsync(data, cancellationToken);
+            await _vehicleBaseService.UpdateAsync(data);
             return Ok();
         }
 

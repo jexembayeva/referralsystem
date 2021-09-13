@@ -31,7 +31,7 @@ namespace ReferralSystem.Domain.Dtos.Vehicles
 
         public int FuelConsumptionRateWinter { get; set; }
 
-        public Vehicle NewVehicle(CancellationToken cancellationToken)
+        public Vehicle NewVehicle()
         {
             return new Vehicle(
                 model: Model,
@@ -41,8 +41,7 @@ namespace ReferralSystem.Domain.Dtos.Vehicles
                 phoneNumber: PhoneNumber,
                 licencePlate: LicencePlate,
                 fuelConsumptionRate: FuelConsumptionRate,
-                fuelConsumptionRateWinter: FuelConsumptionRateWinter,
-                token: cancellationToken.ToString());
+                fuelConsumptionRateWinter: FuelConsumptionRateWinter);
         }
     }
 }

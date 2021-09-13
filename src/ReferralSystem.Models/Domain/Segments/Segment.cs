@@ -27,8 +27,7 @@ namespace ReferralSystem.Models.Domain.Segments
             double geometry,
             string comment,
             long districtId,
-            long streetId,
-            string token)
+            long streetId)
         {
             Length = length;
             LineCount = lineCount;
@@ -47,7 +46,6 @@ namespace ReferralSystem.Models.Domain.Segments
             Comment = comment;
             DistrictId = districtId;
             StreetId = streetId;
-            UpdateToken = token;
         }
 
         public int Length { get; protected set; }

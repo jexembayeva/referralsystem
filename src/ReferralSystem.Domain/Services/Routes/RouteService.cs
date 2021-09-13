@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using ReferralSystem.Database.Repositories.Routes;
 using ReferralSystem.Domain.Dtos.Routes;
@@ -31,7 +30,7 @@ namespace ReferralSystem.Domain.Services.Routes
             return await _routeRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(RouteDto data, CancellationToken cancellationToken)
+        public async Task UpdateAsync(RouteDto data)
         {
             var route = await _routeRepository.GetByIdAsync(data.Id);
 
@@ -39,9 +38,9 @@ namespace ReferralSystem.Domain.Services.Routes
             await _routeRepository.UpdateAsync(route);
         }
 
-        public async Task InsertAsync(RouteDto data, CancellationToken cancellationToken)
+        public async Task InsertAsync(RouteDto data)
         {
-            var route = data.NewRoute(cancellationToken);
+            var route = data.NewRoute();
             await _routeRepository.InsertAsync(route);
         }
     }

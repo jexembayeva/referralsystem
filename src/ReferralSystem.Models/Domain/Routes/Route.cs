@@ -10,7 +10,7 @@ namespace ReferralSystem.Models.Domain.Routes
         {
         }
 
-        public Route(string nameRu, string nameEn, string nameKk, string fullNameRu, string fullNameEn, string fullNameKk, double distance, string comment, string openReason, string closeReason, string token)
+        public Route(string nameRu, string nameEn, string nameKk, string fullNameRu, string fullNameEn, string fullNameKk, double distance, string comment, string openReason, string closeReason)
         {
             NameRu = nameRu;
             NameEn = nameEn;
@@ -22,7 +22,6 @@ namespace ReferralSystem.Models.Domain.Routes
             Comment = comment;
             OpenReason = openReason;
             CloseReason = closeReason;
-            UpdateToken = token;
         }
 
         public string NameRu { get; protected set; }

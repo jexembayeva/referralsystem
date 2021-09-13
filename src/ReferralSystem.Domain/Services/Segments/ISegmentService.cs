@@ -14,8 +14,8 @@ namespace ReferralSystem.Domain.Services.Segments
 
         Task<Segment> GetByIdAsync(long id);
 
-        Task UpdateAsync(SegmentDto stop, CancellationToken cancellationToken);
+        Task UpdateAsync(SegmentDto stop);
 
-        Task InsertAsync(SegmentDto stop, CancellationToken cancellationToken);
+        Task InsertAsync(SegmentDto stop);
     }
 }

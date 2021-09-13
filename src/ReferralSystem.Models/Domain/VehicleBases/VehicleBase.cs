@@ -11,14 +11,13 @@ namespace ReferralSystem.Models.Domain.Bases
         {
         }
 
-        public VehicleBase(string nameRu, string nameEn, string nameKk, double polygon, string comment, string token)
+        public VehicleBase(string nameRu, string nameEn, string nameKk, double polygon, string comment)
         {
             NameRu = nameRu;
             NameEn = nameEn;
             NameKk = nameKk;
             Polygon = polygon;
             Comment = comment;
-            UpdateToken = token;
             ValidFrom = DateTimeOffset.Now;
             ValidTo = DateTimeOffset.Now;
         }

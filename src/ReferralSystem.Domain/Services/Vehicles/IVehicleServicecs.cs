@@ -14,8 +14,8 @@ namespace ReferralSystem.Domain.Services.Vehicles
 
         Task<Vehicle> GetByIdAsync(long id);
 
-        Task UpdateAsync(VehicleDto vehicle, CancellationToken cancellationToken);
+        Task UpdateAsync(VehicleDto vehicle);
 
-        Task InsertAsync(VehicleDto vehicle, CancellationToken cancellationToken);
+        Task InsertAsync(VehicleDto vehicle);
     }
 }

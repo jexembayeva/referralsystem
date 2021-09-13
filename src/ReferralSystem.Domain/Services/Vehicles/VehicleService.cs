@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using ReferralSystem.Database.Repositories.Vehicles;
 using ReferralSystem.Domain.Dtos.Vehicles;
@@ -31,7 +30,7 @@ namespace ReferralSystem.Domain.Services.Vehicles
             return await _vehicleRepository.GetByIdAsync(id);
         }
 
-        public async Task UpdateAsync(VehicleDto data, CancellationToken cancellationToken)
+        public async Task UpdateAsync(VehicleDto data)
         {
             var vehicle = await _vehicleRepository.GetByIdAsync(data.Id);
 
@@ -39,9 +38,9 @@ namespace ReferralSystem.Domain.Services.Vehicles
             await _vehicleRepository.UpdateAsync(vehicle);
         }
 
-        public async Task InsertAsync(VehicleDto data, CancellationToken cancellationToken)
+        public async Task InsertAsync(VehicleDto data)
         {
-            var vehicle = data.NewVehicle(cancellationToken);
+            var vehicle = data.NewVehicle();
             await _vehicleRepository.InsertAsync(vehicle);
         }
     }

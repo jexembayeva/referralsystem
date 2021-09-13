@@ -10,7 +10,7 @@ namespace ReferralSystem.Models.Domain.Vehicles
         {
         }
 
-        public Vehicle(string model, int year, bool isOwned, string comment, string phoneNumber, string licencePlate, int fuelConsumptionRate, int fuelConsumptionRateWinter, string token)
+        public Vehicle(string model, int year, bool isOwned, string comment, string phoneNumber, string licencePlate, int fuelConsumptionRate, int fuelConsumptionRateWinter)
         {
             Model = model;
             Year = year;
@@ -20,7 +20,6 @@ namespace ReferralSystem.Models.Domain.Vehicles
             LicencePlate = licencePlate;
             FuelConsumptionRate = fuelConsumptionRate;
             FuelConsumptionRateWinter = fuelConsumptionRateWinter;
-            UpdateToken = token;
         }
 
         public string Model { get; protected set; }
