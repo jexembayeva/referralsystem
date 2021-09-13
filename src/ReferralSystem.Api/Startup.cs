@@ -55,8 +55,8 @@ namespace ReferralSystem.Api
                 .AddTransient<IRouteService>(options =>
                     new RouteService(
                         options.GetRequiredService<IRouteRepository>()))
-                .AddTransient<IBaseService>(options =>
-                    new BaseService(options.GetRequiredService<IBaseRepository>()))
+                .AddTransient<IVehicleBaseService>(options =>
+                    new VehicleBaseService(options.GetRequiredService<IVehicleBaseRepository>()))
                 .AddTransient<IDeviceService>(options =>
                     new DeviceService(options.GetRequiredService<IDeviceRepository>()))
                 .AddTransient<IProviderService>(options =>
@@ -72,7 +72,7 @@ namespace ReferralSystem.Api
             services.AddTransient<IDatabaseConnectionFactory, DatabaseConnectionFactory>();
 
             services.AddScoped<IRouteRepository, RouteRepository>()
-                .AddScoped<IBaseRepository, BaseRepository>()
+                .AddScoped<IVehicleBaseRepository, VehicleBaseRepository>()
                 .AddScoped<IDeviceRepository, DeviceRepository>()
                 .AddScoped<IProviderRepository, ProviderRepository>()
                 .AddScoped<IStopRepository, StopRepository>()

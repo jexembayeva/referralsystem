@@ -14,24 +14,24 @@ namespace ReferralSystem.Api.Controllers
 {
     [Route("[controller]")]
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public class BaseController : ControllerBase
+    public class VehicleBaseController : ControllerBase
     {
-        private readonly IBaseService _baseService;
+        private readonly IVehicleBaseService _vehicleBaseService;
 
-        public BaseController(IBaseService baseService)
+        public VehicleBaseController(IVehicleBaseService vehicleBaseService)
         {
-            baseService.ThrowIfNull(nameof(baseService));
+            vehicleBaseService.ThrowIfNull(nameof(vehicleBaseService));
 
-            _baseService = baseService;
+            _vehicleBaseService = vehicleBaseService;
         }
 
         [HttpGet("[action]")]
         [Produces(MediaTypeNames.Application.Json)]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<BasePlatform>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<VehicleBase>))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public virtual async Task<IActionResult> GetAllAsync(CancellationToken cancellationToken)
         {
-            var basePlatforms = await _baseService.GetAllAsync();
+            var basePlatforms = await _vehicleBaseService.GetAllAsync();
             return this.List(basePlatforms);
         }
 
@@ -41,7 +41,7 @@ namespace ReferralSystem.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public virtual async Task<IActionResult> GetByIdAsync([FromRoute] long id)
         {
-            var basePlatform = await _baseService.GetByIdAsync(id);
+            var basePlatform = await _vehicleBaseService.GetByIdAsync(id);
             return this.Get(basePlatform);
         }
 
@@ -49,9 +49,9 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> CreateAsync([FromBody] BasePlatformDto entity, CancellationToken cancellationToken)
+        public virtual async Task<IActionResult> CreateAsync([FromBody] VehicleBaseDto entity, CancellationToken cancellationToken)
         {
-            await _baseService.InsertAsync(entity, cancellationToken);
+            await _vehicleBaseService.InsertAsync(entity, cancellationToken);
             return Ok();
         }
 
@@ -59,9 +59,9 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public virtual async Task<IActionResult> UpdateAsync([FromBody] BasePlatformDto data, CancellationToken cancellationToken)
+        public virtual async Task<IActionResult> UpdateAsync([FromBody] VehicleBaseDto data, CancellationToken cancellationToken)
         {
-            await _baseService.UpdateAsync(data, cancellationToken);
+            await _vehicleBaseService.UpdateAsync(data, cancellationToken);
             return Ok();
         }
 
@@ -71,7 +71,7 @@ namespace ReferralSystem.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DeleteAsync(long id)
         {
-            await _baseService.DeleteAsync(id);
+            await _vehicleBaseService.DeleteAsync(id);
             return Ok();
         }
     }

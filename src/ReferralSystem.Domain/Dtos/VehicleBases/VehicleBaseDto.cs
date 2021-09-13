@@ -3,7 +3,7 @@ using ReferralSystem.Models.Domain.Bases;
 
 namespace ReferralSystem.Domain.Dtos.Bases
 {
-    public class BasePlatformDto : BaseModelDto
+    public class VehicleBaseDto : BaseModelDto
     {
         public string NameRu { get; set; }
 
@@ -17,9 +17,9 @@ namespace ReferralSystem.Domain.Dtos.Bases
 
         public string Comment { get; set; }
 
-        public BasePlatform NewBasePlatform(CancellationToken cancellationToken)
+        public VehicleBase NewBasePlatform(CancellationToken cancellationToken)
         {
-            return new BasePlatform(
+            return new VehicleBase(
                 nameEn: NameEn,
                 nameRu: NameRu,
                 nameKk: NameKk,

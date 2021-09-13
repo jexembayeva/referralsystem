@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS route (
   PRIMARY KEY (Id)
 );
 
-CREATE TABLE IF NOT EXISTS baseplatform (
+CREATE TABLE IF NOT EXISTS vehicleBase (
   Id SERIAL,
   NameRu varchar(250) NOT NULL,
   NameEn varchar(250) NOT NULL,

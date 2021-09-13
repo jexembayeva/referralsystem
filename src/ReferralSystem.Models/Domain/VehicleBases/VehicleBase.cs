@@ -5,13 +5,13 @@ using Utils.Validators;
 
 namespace ReferralSystem.Models.Domain.Bases
 {
-    public class BasePlatform : BaseModel
+    public class VehicleBase : BaseModel
     {
-        protected BasePlatform()
+        protected VehicleBase()
         {
         }
 
-        public BasePlatform(string nameRu, string nameEn, string nameKk, double polygon, string comment, string token)
+        public VehicleBase(string nameRu, string nameEn, string nameKk, double polygon, string comment, string token)
         {
             NameRu = nameRu;
             NameEn = nameEn;

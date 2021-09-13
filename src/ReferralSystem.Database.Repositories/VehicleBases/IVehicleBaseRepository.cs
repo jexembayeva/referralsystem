@@ -3,7 +3,7 @@ using ReferralSystem.Models.Domain.Bases;
 
 namespace ReferralSystem.Database.Repositories.Bases
 {
-    public interface IBaseRepository : IRepository<BasePlatform>
+    public interface IVehicleBaseRepository : IRepository<VehicleBase>
     {
     }
 }
