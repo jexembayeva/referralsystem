@@ -11,10 +11,8 @@ namespace ReferralSystem.Domain.Dtos
 
         public long EditorId { get; set; }
 
-        public string UpdateToken { get; set; }
+        public DateTimeOffset CreatedAt { get; set; }
 
-        public DateTimeOffset? CreatedAt { get; set; }
-
-        public DateTimeOffset? UpdatedAt { get; set; }
+        public DateTimeOffset UpdatedAt { get; set; }
     }
 }

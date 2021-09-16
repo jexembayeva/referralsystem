@@ -4,8 +4,8 @@ namespace Utils.Interfaces
 {
     public interface IHasDates
     {
-        DateTimeOffset? CreatedAt { get; }
+        DateTimeOffset CreatedAt { get; }
 
-        DateTimeOffset? UpdatedAt { get; }
+        DateTimeOffset UpdatedAt { get; }
     }
 }

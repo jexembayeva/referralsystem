@@ -1,13 +1,20 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using ServiceStack.OrmLite;
-using ServiceStack.OrmLite.Sqlite;
+using TestUtils.Converters;
 
 namespace TestUtils
 {
     public class InMemoryDatabase
     {
-        private readonly OrmLiteConnectionFactory _dbFactory =
-            new (":memory:", SqliteOrmLiteDialectProvider.Instance);
+        private readonly OrmLiteConnectionFactory _dbFactory;
+
+        public InMemoryDatabase()
+        {
+            var dialectProvider = SqliteDialect.Provider;
+            dialectProvider.RegisterConverter<DateTimeOffset>(new DateTimeOffsetConverter());
+            _dbFactory = new OrmLiteConnectionFactory(":memory:", dialectProvider);
+        }
 
         public IDbConnection OpenConnection() => _dbFactory.OpenDbConnection();
 
