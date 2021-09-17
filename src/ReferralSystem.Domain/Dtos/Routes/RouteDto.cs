@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using ReferralSystem.Models.Domain.Routes;
+using Utils.Dates;
 
 namespace ReferralSystem.Domain.Dtos.Routes
 {
@@ -38,6 +39,12 @@ namespace ReferralSystem.Domain.Dtos.Routes
                 comment: Comment,
                 openReason: OpenReason,
                 closeReason: CloseReason);
+        }
+
+        public void CorrectDates()
+        {
+            ValidFrom = this.Since().StartOfTheDay();
+            ValidTo = this.ToAsDateOrNull()?.EndOfTheDay();
         }
     }
 }

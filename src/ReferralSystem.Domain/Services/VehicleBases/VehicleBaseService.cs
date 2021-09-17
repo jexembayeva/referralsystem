@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ReferralSystem.Database.Repositories.Bases;
-using ReferralSystem.Domain.Dtos.Bases;
-using ReferralSystem.Models.Domain.Bases;
+using ReferralSystem.Database.Repositories.VehicleBases;
+using ReferralSystem.Domain.Dtos.VehicleBases;
+using ReferralSystem.Models.Domain.VehicleBases;
 
-namespace ReferralSystem.Domain.Services.Bases
+namespace ReferralSystem.Domain.Services.VehicleBases
 {
     public class VehicleBaseService : IVehicleBaseService
     {

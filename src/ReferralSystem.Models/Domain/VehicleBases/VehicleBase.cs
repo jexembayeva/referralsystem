@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading;
 using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Interfaces;
 using Utils.Validators;
 
-namespace ReferralSystem.Models.Domain.Bases
+namespace ReferralSystem.Models.Domain.VehicleBases
 {
-    public class VehicleBase : BaseModel
+    public class VehicleBase : BaseModel, IHasFromToDates
     {
         protected VehicleBase()
         {
@@ -18,8 +19,6 @@ namespace ReferralSystem.Models.Domain.Bases
             NameKk = nameKk;
             Polygon = polygon;
             Comment = comment;
-            ValidFrom = DateTimeOffset.Now;
-            ValidTo = DateTimeOffset.Now;
         }
 
         public string NameRu { get; protected set; }
@@ -36,7 +35,7 @@ namespace ReferralSystem.Models.Domain.Bases
 
         public DateTimeOffset ValidFrom { get; protected set; }
 
-        public DateTimeOffset ValidTo { get; protected set; }
+        public DateTimeOffset? ValidTo { get; protected set; }
 
         public void UpdateOrFail(string nameEn, string nameKk, string nameRu)
         {

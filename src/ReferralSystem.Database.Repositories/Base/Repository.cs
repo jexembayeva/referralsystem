@@ -33,14 +33,14 @@ namespace ReferralSystem.Database.Repositories.Base
             return await _connection.GetConnection().QueryAsync<TEntity>($"SELECT * FROM {_tableName}");
         }
 
-        public async Task<TEntity> GetByIdAsync(long id)
+        public virtual async Task<TEntity> GetByIdAsync(long id)
         {
             return await _connection.GetConnection()
                        .QuerySingleOrDefaultAsync<TEntity>($"SELECT * FROM {_tableName} WHERE Id=@Id", new { Id = id })
                    ?? throw ResourceNotFoundException.CreateFromEntity<TEntity>(id);
         }
 
-        public async Task UpdateAsync(TEntity data)
+        public virtual async Task UpdateAsync(TEntity data)
         {
             data.ThrowIfNull(nameof(data));
             data.ThrowIfInvalid();
@@ -49,7 +49,7 @@ namespace ReferralSystem.Database.Repositories.Base
             await _connection.GetConnection().ExecuteAsync(updateQuery, data);
         }
 
-        public async Task InsertAsync(TEntity entity)
+        public virtual async Task InsertAsync(TEntity entity)
         {
             entity.ThrowIfNull(nameof(entity));
             entity.ThrowIfInvalid();
@@ -58,7 +58,7 @@ namespace ReferralSystem.Database.Repositories.Base
             await _connection.GetConnection().ExecuteAsync(insertQuery, entity);
         }
 
-        public async Task DeleteAsync(long id)
+        public virtual async Task DeleteAsync(long id)
         {
             await _connection.GetConnection().ExecuteAsync($"DELETE FROM {_tableName} WHERE Id=@Id", new { Id = id });
         }

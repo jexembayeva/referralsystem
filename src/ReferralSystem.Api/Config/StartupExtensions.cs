@@ -1,18 +1,18 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ReferralSystem.Database;
-using ReferralSystem.Database.Repositories.Bases;
 using ReferralSystem.Database.Repositories.Devices;
 using ReferralSystem.Database.Repositories.Providers;
 using ReferralSystem.Database.Repositories.Routes;
 using ReferralSystem.Database.Repositories.Segments;
 using ReferralSystem.Database.Repositories.Stops;
+using ReferralSystem.Database.Repositories.VehicleBases;
 using ReferralSystem.Database.Repositories.Vehicles;
-using ReferralSystem.Domain.Services.Bases;
 using ReferralSystem.Domain.Services.Devices;
 using ReferralSystem.Domain.Services.Providers;
 using ReferralSystem.Domain.Services.Routes;
 using ReferralSystem.Domain.Services.Segments;
 using ReferralSystem.Domain.Services.Stops;
+using ReferralSystem.Domain.Services.VehicleBases;
 using ReferralSystem.Domain.Services.Vehicles;
 
 namespace ReferralSystem.Api.Config

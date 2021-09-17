@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Threading;
 using ReferralSystem.Models.Domain.Stop;
+using Utils.Interfaces;
 
 namespace ReferralSystem.Domain.Dtos.Stops
 {
-    public class StopDto : BaseModelDto
+    public class StopDto : BaseModelDto, IHasFromToDates
     {
         public string NameRu { get; set; }
 
@@ -27,10 +28,6 @@ namespace ReferralSystem.Domain.Dtos.Stops
         public int? DistrictId { get; set; }
 
         public int? SegmentId { get; set; }
-
-        public DateTimeOffset ValidFrom { get; set; }
-
-        public DateTimeOffset ValidTo { get; set; }
 
         public Stop NewStop()
         {

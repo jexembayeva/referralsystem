@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS route (
   CloseReason varchar(250) NOT NULL,
   ValidFrom TIMESTAMPTZ,
   ValidTo TIMESTAMPTZ,
+  Status INT NOT NULL,
   AuthorId INT NOT NULL,
   EditorId INT NOT NULL,
   CreatedAt TIMESTAMPTZ NOT NULL DEFAULT NOW(),

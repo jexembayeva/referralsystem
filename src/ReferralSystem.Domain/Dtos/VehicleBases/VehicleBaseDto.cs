@@ -1,7 +1,6 @@
-﻿using System.Threading;
-using ReferralSystem.Models.Domain.Bases;
+﻿using ReferralSystem.Models.Domain.VehicleBases;
 
-namespace ReferralSystem.Domain.Dtos.Bases
+namespace ReferralSystem.Domain.Dtos.VehicleBases
 {
     public class VehicleBaseDto : BaseModelDto
     {

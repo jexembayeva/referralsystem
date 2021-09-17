@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Utils.Helpers
 {
@@ -26,6 +28,31 @@ namespace Utils.Helpers
         private static bool NullOrEmpty(this string @string)
         {
             return string.IsNullOrEmpty(@string?.Trim());
+        }
+
+        public static void ThrowIfNullOrEmpty<T>(this IReadOnlyCollection<T> collection, string paramName)
+            where T : class
+        {
+            paramName.ThrowIfNullOrEmpty(nameof(paramName));
+            collection.ThrowIfNull(paramName);
+
+            if (!collection.Any())
+            {
+                throw new InvalidOperationException($"You should not pass empty collection: {paramName}");
+            }
+        }
+
+        public static void ThrowIfNullOrEmpty(this string @string, string paramName)
+        {
+            if (paramName.NullOrEmpty())
+            {
+                throw new InvalidOperationException("You should not pass null or empty string a paramName");
+            }
+
+            if (@string.NullOrEmpty())
+            {
+                throw new ArgumentNullException(paramName: paramName);
+            }
         }
     }
 }

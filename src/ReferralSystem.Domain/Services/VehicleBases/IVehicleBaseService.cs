@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ReferralSystem.Domain.Dtos.Bases;
-using ReferralSystem.Models.Domain.Bases;
+using ReferralSystem.Domain.Dtos.VehicleBases;
+using ReferralSystem.Models.Domain.VehicleBases;
 
-namespace ReferralSystem.Domain.Services.Bases
+namespace ReferralSystem.Domain.Services.VehicleBases
 {
     public interface IVehicleBaseService
     {

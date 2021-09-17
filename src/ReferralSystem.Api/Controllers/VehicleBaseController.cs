@@ -3,10 +3,10 @@ using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ReferralSystem.Domain.Dtos.Bases;
-using ReferralSystem.Domain.Services.Bases;
+using ReferralSystem.Domain.Dtos.VehicleBases;
+using ReferralSystem.Domain.Services.VehicleBases;
 using ReferralSystem.General.Services.Controllers;
-using ReferralSystem.Models.Domain.Bases;
+using ReferralSystem.Models.Domain.VehicleBases;
 using Utils.Helpers;
 
 namespace ReferralSystem.Api.Controllers

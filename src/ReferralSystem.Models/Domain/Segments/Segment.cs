@@ -1,10 +1,11 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Interfaces;
 using Utils.Validators;
 
 namespace ReferralSystem.Models.Domain.Segments
 {
-    public class Segment : BaseModel
+    public class Segment : BaseModel, IHasFromToDates
     {
         protected Segment()
         {
@@ -86,7 +87,7 @@ namespace ReferralSystem.Models.Domain.Segments
 
         public DateTimeOffset ValidFrom { get; protected set; }
 
-        public DateTimeOffset ValidTo { get; protected set; }
+        public DateTimeOffset? ValidTo { get; protected set; }
 
         public void UpdateOrFail(string comment, int maxSpeed, string turnRestrictions)
         {

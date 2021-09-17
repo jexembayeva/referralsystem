@@ -34,7 +34,9 @@ namespace ReferralSystem.Domain.Services.Routes
         {
             var route = await _routeRepository.GetByIdAsync(data.Id);
 
+            data.CorrectDates();
             route.UpdateOrFail(data.NameEn, data.NameKk, data.NameRu);
+
             await _routeRepository.UpdateAsync(route);
         }
 

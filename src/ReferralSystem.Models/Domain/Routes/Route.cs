@@ -1,10 +1,13 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Enums;
+using Utils.Exceptions;
+using Utils.Interfaces;
 using Utils.Validators;
 
 namespace ReferralSystem.Models.Domain.Routes
 {
-    public class Route : BaseModel
+    public class Route : BaseModel, IHasFromToDates
     {
         protected Route()
         {
@@ -46,7 +49,9 @@ namespace ReferralSystem.Models.Domain.Routes
 
         public DateTimeOffset ValidFrom { get; protected set; }
 
-        public DateTimeOffset ValidTo { get; protected set; }
+        public DateTimeOffset? ValidTo { get; protected set; }
+
+        public Status Status { get; protected set; }
 
         public void UpdateOrFail(string nameEn, string nameKk, string nameRu)
         {
@@ -54,6 +59,8 @@ namespace ReferralSystem.Models.Domain.Routes
             NameKk = nameKk;
             NameEn = nameEn;
 
+            this.ThrowIfDateRangeIsNotValid(false);
+            this.ThrowIfDateRangeIsOutOfAllowedLimits();
             this.ThrowIfInvalid();
         }
     }

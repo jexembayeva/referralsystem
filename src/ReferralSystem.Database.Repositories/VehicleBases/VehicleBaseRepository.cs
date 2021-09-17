@@ -1,7 +1,7 @@
 ﻿using ReferralSystem.Database.Repositories.Base;
-using ReferralSystem.Models.Domain.Bases;
+using ReferralSystem.Models.Domain.VehicleBases;
 
-namespace ReferralSystem.Database.Repositories.Bases
+namespace ReferralSystem.Database.Repositories.VehicleBases
 {
     public class VehicleBaseRepository : Repository<VehicleBase>, IVehicleBaseRepository
     {
