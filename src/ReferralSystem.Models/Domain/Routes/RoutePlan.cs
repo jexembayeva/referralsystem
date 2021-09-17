@@ -1,9 +1,10 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Interfaces;
 
 namespace ReferralSystem.Models.Domain.Routes
 {
-    public class RoutePlan : BaseModel
+    public class RoutePlan : BaseModel, IHasFromToDates
     {
         protected RoutePlan()
         {
@@ -33,6 +34,6 @@ namespace ReferralSystem.Models.Domain.Routes
 
         public DateTimeOffset ValidFrom { get; protected set; }
 
-        public DateTimeOffset ValidTo { get; protected set; }
+        public DateTimeOffset? ValidTo { get; protected set; }
     }
 }

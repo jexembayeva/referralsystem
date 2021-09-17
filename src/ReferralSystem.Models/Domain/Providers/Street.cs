@@ -1,9 +1,10 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Interfaces;
 
 namespace ReferralSystem.Models.Domain.Providers
 {
-    public class Street : BaseModel
+    public class Street : BaseModel, IHasFromToDates
     {
         protected Street()
         {
@@ -17,7 +18,7 @@ namespace ReferralSystem.Models.Domain.Providers
 
         public DateTimeOffset ValidFrom { get; protected set; }
 
-        public DateTimeOffset ValidTo { get; protected set; }
+        public DateTimeOffset? ValidTo { get; protected set; }
 
         public string Comment { get; protected set; }
     }

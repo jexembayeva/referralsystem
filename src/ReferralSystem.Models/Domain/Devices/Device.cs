@@ -1,10 +1,11 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Interfaces;
 using Utils.Validators;
 
 namespace ReferralSystem.Models.Domain.Devices
 {
-    public class Device : BaseModel
+    public class Device : BaseModel, IHasFromToDates
     {
         protected Device()
         {
@@ -31,7 +32,7 @@ namespace ReferralSystem.Models.Domain.Devices
 
         public DateTimeOffset ValidFrom { get; protected set; }
 
-        public DateTimeOffset ValidTo { get; protected set; }
+        public DateTimeOffset? ValidTo { get; protected set; }
 
         public void UpdateOrFail(string serialNumber, string comment, int imei)
         {

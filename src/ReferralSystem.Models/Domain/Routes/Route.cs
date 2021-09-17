@@ -1,7 +1,6 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.BaseModels;
 using Utils.Enums;
-using Utils.Exceptions;
 using Utils.Interfaces;
 using Utils.Validators;
 

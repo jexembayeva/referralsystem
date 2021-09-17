@@ -1,10 +1,11 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Interfaces;
 using Utils.Validators;
 
 namespace ReferralSystem.Models.Domain.Vehicles
 {
-    public class Vehicle : BaseModel
+    public class Vehicle : BaseModel, IHasFromToDates
     {
         protected Vehicle()
         {
@@ -50,7 +51,7 @@ namespace ReferralSystem.Models.Domain.Vehicles
 
         public DateTimeOffset ValidFrom { get; protected set; }
 
-        public DateTimeOffset ValidTo { get; protected set; }
+        public DateTimeOffset? ValidTo { get; protected set; }
 
         public void UpdateOrFail(string licencePlate, string phoneNumber, int fuelConsumptionRate)
         {

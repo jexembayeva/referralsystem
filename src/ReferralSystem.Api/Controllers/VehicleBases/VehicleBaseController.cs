@@ -9,7 +9,7 @@ using ReferralSystem.General.Services.Controllers;
 using ReferralSystem.Models.Domain.VehicleBases;
 using Utils.Helpers;
 
-namespace ReferralSystem.Api.Controllers
+namespace ReferralSystem.Api.Controllers.VehicleBases
 {
     [Route("[controller]")]
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

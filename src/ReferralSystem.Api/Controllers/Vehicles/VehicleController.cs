@@ -3,35 +3,35 @@ using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ReferralSystem.Domain.Dtos.Segments;
-using ReferralSystem.Domain.Services.Segments;
+using ReferralSystem.Domain.Dtos.Vehicles;
+using ReferralSystem.Domain.Services.Vehicles;
 using ReferralSystem.General.Services.Controllers;
-using ReferralSystem.Models.Domain.Segments;
+using ReferralSystem.Models.Domain.Vehicles;
 using Utils.Helpers;
 
-namespace ReferralSystem.Api.Controllers
+namespace ReferralSystem.Api.Controllers.Vehicles
 {
     [Route("[controller]")]
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public class SegmentController : ControllerBase
+    public class VehicleController : ControllerBase
     {
-        private readonly ISegmentService _segmentService;
+        private readonly IVehicleService _vehicleService;
 
-        public SegmentController(ISegmentService segmentService)
+        public VehicleController(IVehicleService vehicleService)
         {
-            segmentService.ThrowIfNull(nameof(segmentService));
+            vehicleService.ThrowIfNull(nameof(vehicleService));
 
-            _segmentService = segmentService;
+            _vehicleService = vehicleService;
         }
 
         [HttpGet("[action]")]
         [Produces(MediaTypeNames.Application.Json)]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Segment>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Vehicle>))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetAllAsync()
         {
-            var segments = await _segmentService.GetAllAsync();
-            return this.List(segments);
+            var vehicles = await _vehicleService.GetAllAsync();
+            return this.List(vehicles);
         }
 
         [HttpGet("[action]/{id}")]
@@ -40,17 +40,17 @@ namespace ReferralSystem.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
         {
-            var segment = await _segmentService.GetByIdAsync(id);
-            return this.Get(segment);
+            var vehicle = await _vehicleService.GetByIdAsync(id);
+            return this.Get(vehicle);
         }
 
         [HttpPost("[action]")]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> CreateAsync([FromBody] SegmentDto entity)
+        public async Task<IActionResult> CreateAsync([FromBody] VehicleDto entity)
         {
-            await _segmentService.InsertAsync(entity);
+            await _vehicleService.InsertAsync(entity);
             return Ok();
         }
 
@@ -58,9 +58,9 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> UpdateAsync([FromBody] SegmentDto data)
+        public async Task<IActionResult> UpdateAsync([FromBody] VehicleDto data)
         {
-            await _segmentService.UpdateAsync(data);
+            await _vehicleService.UpdateAsync(data);
             return Ok();
         }
 
@@ -70,7 +70,7 @@ namespace ReferralSystem.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DeleteAsync(long id)
         {
-            await _segmentService.DeleteAsync(id);
+            await _vehicleService.DeleteAsync(id);
             return Ok();
         }
     }

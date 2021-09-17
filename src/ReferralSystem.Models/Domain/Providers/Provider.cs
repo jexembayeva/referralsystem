@@ -1,10 +1,11 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Interfaces;
 using Utils.Validators;
 
 namespace ReferralSystem.Models.Domain.Providers
 {
-    public class Provider : BaseModel
+    public class Provider : BaseModel, IHasFromToDates
     {
         protected Provider()
         {
@@ -57,7 +58,7 @@ namespace ReferralSystem.Models.Domain.Providers
 
         public DateTimeOffset ValidFrom { get; protected set; }
 
-        public DateTimeOffset ValidTo { get; protected set; }
+        public DateTimeOffset? ValidTo { get; protected set; }
 
         public void UpdateOrFail(string nameEn, string nameKk, string nameRu)
         {

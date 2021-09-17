@@ -1,10 +1,11 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Interfaces;
 using Utils.Validators;
 
 namespace ReferralSystem.Models.Domain.Stop
 {
-    public class Stop : BaseModel
+    public class Stop : BaseModel, IHasFromToDates
     {
         protected Stop()
         {
@@ -45,7 +46,7 @@ namespace ReferralSystem.Models.Domain.Stop
 
         public DateTimeOffset ValidFrom { get; protected set; }
 
-        public DateTimeOffset ValidTo { get; protected set; }
+        public DateTimeOffset? ValidTo { get; protected set; }
 
         public void UpdateOrFail(string nameEn, string nameKk, string nameRu)
         {

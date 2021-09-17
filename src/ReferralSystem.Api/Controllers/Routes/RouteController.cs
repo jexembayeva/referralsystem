@@ -3,35 +3,35 @@ using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ReferralSystem.Domain.Dtos.Devices;
-using ReferralSystem.Domain.Services.Devices;
+using ReferralSystem.Domain.Dtos.Routes;
+using ReferralSystem.Domain.Services.Routes;
 using ReferralSystem.General.Services.Controllers;
-using ReferralSystem.Models.Domain.Devices;
+using ReferralSystem.Models.Domain.Routes;
 using Utils.Helpers;
 
-namespace ReferralSystem.Api.Controllers
+namespace ReferralSystem.Api.Controllers.Routes
 {
     [Route("[controller]")]
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public class DeviceController : ControllerBase
+    public class RouteController : ControllerBase
     {
-        private readonly IDeviceService _deviceService;
+        private readonly IRouteService _routeService;
 
-        public DeviceController(IDeviceService deviceService)
+        public RouteController(IRouteService routeService)
         {
-            deviceService.ThrowIfNull(nameof(deviceService));
+            routeService.ThrowIfNull(nameof(routeService));
 
-            _deviceService = deviceService;
+            _routeService = routeService;
         }
 
         [HttpGet("[action]")]
         [Produces(MediaTypeNames.Application.Json)]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Device>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Route>))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetAllAsync()
         {
-            var devices = await _deviceService.GetAllAsync();
-            return this.List(devices);
+            var routes = await _routeService.GetAllAsync();
+            return this.List(routes);
         }
 
         [HttpGet("[action]/{id}")]
@@ -40,17 +40,17 @@ namespace ReferralSystem.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
         {
-            var device = await _deviceService.GetByIdAsync(id);
-            return this.Get(device);
+            var route = await _routeService.GetByIdAsync(id);
+            return this.Get(route);
         }
 
         [HttpPost("[action]")]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> CreateAsync([FromBody] DeviceDto entity)
+        public async Task<IActionResult> CreateAsync([FromBody] RouteDto entity)
         {
-            await _deviceService.InsertAsync(entity);
+            await _routeService.InsertAsync(entity);
             return Ok();
         }
 
@@ -58,9 +58,9 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> UpdateAsync([FromBody] DeviceDto data)
+        public async Task<IActionResult> UpdateAsync([FromBody] RouteDto data)
         {
-            await _deviceService.UpdateAsync(data);
+            await _routeService.UpdateAsync(data);
             return Ok();
         }
 
@@ -70,7 +70,7 @@ namespace ReferralSystem.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DeleteAsync(long id)
         {
-            await _deviceService.DeleteAsync(id);
+            await _routeService.DeleteAsync(id);
             return Ok();
         }
     }

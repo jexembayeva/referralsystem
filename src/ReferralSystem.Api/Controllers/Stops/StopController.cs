@@ -3,35 +3,35 @@ using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ReferralSystem.Domain.Dtos.Providers;
-using ReferralSystem.Domain.Services.Providers;
+using ReferralSystem.Domain.Dtos.Stops;
+using ReferralSystem.Domain.Services.Stops;
 using ReferralSystem.General.Services.Controllers;
-using ReferralSystem.Models.Domain.Providers;
+using ReferralSystem.Models.Domain.Stop;
 using Utils.Helpers;
 
-namespace ReferralSystem.Api.Controllers
+namespace ReferralSystem.Api.Controllers.Stops
 {
     [Route("[controller]")]
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public class ProviderController : ControllerBase
+    public class StopController : ControllerBase
     {
-        private readonly IProviderService _providerService;
+        private readonly IStopService _stopService;
 
-        public ProviderController(IProviderService providerService)
+        public StopController(IStopService stopService)
         {
-            providerService.ThrowIfNull(nameof(providerService));
+            stopService.ThrowIfNull(nameof(stopService));
 
-            _providerService = providerService;
+            _stopService = stopService;
         }
 
         [HttpGet("[action]")]
         [Produces(MediaTypeNames.Application.Json)]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Provider>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Stop>))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetAllAsync()
         {
-            var providers = await _providerService.GetAllAsync();
-            return this.List(providers);
+            var stops = await _stopService.GetAllAsync();
+            return this.List(stops);
         }
 
         [HttpGet("[action]/{id}")]
@@ -40,17 +40,17 @@ namespace ReferralSystem.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
         {
-            var provider = await _providerService.GetByIdAsync(id);
-            return this.Get(provider);
+            var stop = await _stopService.GetByIdAsync(id);
+            return this.Get(stop);
         }
 
         [HttpPost("[action]")]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> CreateAsync([FromBody] ProviderDto entity)
+        public async Task<IActionResult> CreateAsync([FromBody] StopDto entity)
         {
-            await _providerService.InsertAsync(entity);
+            await _stopService.InsertAsync(entity);
             return Ok();
         }
 
@@ -58,9 +58,9 @@ namespace ReferralSystem.Api.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> UpdateAsync([FromBody] ProviderDto data)
+        public async Task<IActionResult> UpdateAsync([FromBody] StopDto data)
         {
-            await _providerService.UpdateAsync(data);
+            await _stopService.UpdateAsync(data);
             return Ok();
         }
 
@@ -70,7 +70,7 @@ namespace ReferralSystem.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> DeleteAsync(long id)
         {
-            await _providerService.DeleteAsync(id);
+            await _stopService.DeleteAsync(id);
             return Ok();
         }
     }
