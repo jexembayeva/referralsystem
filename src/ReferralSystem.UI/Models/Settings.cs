@@ -1,4 +1,4 @@
-namespace ReferralSystem.UI.Models
+﻿namespace ReferralSystem.UI.Models
 {
     public class Settings
     {
