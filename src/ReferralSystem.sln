@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferralSystem.General.Serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferralSystem.Domain", "ReferralSystem.Domain\ReferralSystem.Domain.csproj", "{3A6A1CC4-5596-4432-BD61-0972576F5BA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferralSystem.UI", "ReferralSystem.UI\ReferralSystem.UI.csproj", "{7A5D48CA-E134-462B-91F7-E7CEB2998136}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{3A6A1CC4-5596-4432-BD61-0972576F5BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A6A1CC4-5596-4432-BD61-0972576F5BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A6A1CC4-5596-4432-BD61-0972576F5BA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A5D48CA-E134-462B-91F7-E7CEB2998136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A5D48CA-E134-462B-91F7-E7CEB2998136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A5D48CA-E134-462B-91F7-E7CEB2998136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A5D48CA-E134-462B-91F7-E7CEB2998136}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +93,7 @@ Global
 		{7CCCDEFE-2EF6-414E-8F55-4B45D9D8C98E} = {68BE4E0F-C758-47C8-AE4E-5966A168A3F2}
 		{FAE7CF5C-11D5-40D3-A4A7-5E6685E9E2F6} = {FED8C72A-FAB9-415E-9981-269C86FECE54}
 		{3A6A1CC4-5596-4432-BD61-0972576F5BA3} = {F63F4559-3ED8-4C85-AF82-FF6A1E2F2FAC}
+		{7A5D48CA-E134-462B-91F7-E7CEB2998136} = {9AF377D0-620C-444A-B4A5-074B31414918}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {186B47B2-F462-4425-A2C1-E3C91BEC1649}
