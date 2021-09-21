@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Dapper;
-using Dapper.Contrib.Extensions;
 using ReferralSystem.Database.Repositories.Extensions;
 using Utils.Exceptions;
 using Utils.Helpers;
@@ -28,20 +27,8 @@ namespace ReferralSystem.Database.Repositories.Base
             _connection = connection;
         }
 
-        private static bool IsWriteable(PropertyInfo pi)
-        {
-            var attributes = pi.GetCustomAttributes(typeof(WriteAttribute), false).AsList();
-            if (attributes.Count != 1)
-            {
-                return true;
-            }
-
-            var writeAttribute = (WriteAttribute)attributes[0];
-            return writeAttribute.Write;
-        }
-
         private static IEnumerable<PropertyInfo> GetProperties =>
-            typeof(TEntity).GetProperties().Where(IsWriteable).ToArray();
+            typeof(TEntity).GetProperties().Where(QueryExtensions.IsWriteable).ToArray();
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {

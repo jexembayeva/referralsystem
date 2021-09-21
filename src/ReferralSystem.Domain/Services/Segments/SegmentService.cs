@@ -4,6 +4,7 @@ using ReferralSystem.Database.Repositories.Routes;
 using ReferralSystem.Database.Repositories.Segments;
 using ReferralSystem.Domain.Dtos.Segments;
 using ReferralSystem.Models.Domain.Segments;
+using Utils.Dates;
 using Utils.Validators;
 
 namespace ReferralSystem.Domain.Services.Segments
@@ -55,7 +56,8 @@ namespace ReferralSystem.Domain.Services.Segments
             segmentToInsert.ThrowIfDateRangeIsNotValid(false);
             segmentToInsert.ThrowIfDateRangeIsOutOfAllowedLimits();
 
-            segmentToMakeOutdated?.UpdateToMakeOutdatedOrFail(data.ValidFrom);
+            var validTo = new Date(data.ValidFrom).EndOfTheDay();
+            segmentToMakeOutdated?.UpdateToMakeOutdatedOrFail(validTo);
 
             await _segmentRepository.InsertAsync(segmentToInsert, segmentToMakeOutdated);
         }

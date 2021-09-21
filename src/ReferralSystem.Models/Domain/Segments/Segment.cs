@@ -33,6 +33,8 @@ namespace ReferralSystem.Models.Domain.Segments
             long districtId,
             long streetId,
             long routeId,
+            DateTimeOffset validFrom,
+            DateTimeOffset? validTo,
             Status status)
         {
             Length = length;
@@ -53,6 +55,8 @@ namespace ReferralSystem.Models.Domain.Segments
             DistrictId = districtId;
             StreetId = streetId;
             RouteId = routeId;
+            ValidFrom = validFrom;
+            ValidTo = validTo;
             Status = status;
         }
 

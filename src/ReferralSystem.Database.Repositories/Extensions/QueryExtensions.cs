@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Dapper;
+using Dapper.Contrib.Extensions;
 
 namespace ReferralSystem.Database.Repositories.Extensions
 {
@@ -50,6 +52,18 @@ namespace ReferralSystem.Database.Repositories.Extensions
             updateQuery.Append(" WHERE Id=@Id");
 
             return updateQuery.ToString();
+        }
+
+        public static bool IsWriteable(this PropertyInfo propertyInfo)
+        {
+            var attributes = propertyInfo.GetCustomAttributes(typeof(WriteAttribute), false).AsList();
+            if (attributes.Count != 1)
+            {
+                return true;
+            }
+
+            var writeAttribute = (WriteAttribute)attributes[0];
+            return writeAttribute.Write;
         }
 
         private static List<string> GenerateListOfProperties(this IEnumerable<PropertyInfo> listOfProperties)

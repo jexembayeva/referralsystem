@@ -65,6 +65,8 @@ namespace ReferralSystem.Domain.Dtos.Segments
                             districtId: DistrictId,
                             streetId: StreetId,
                             routeId: RouteId,
+                            validFrom: ValidFrom,
+                            validTo: ValidTo,
                             status: Status.Active);
         }
 

@@ -42,6 +42,7 @@ namespace ReferralSystem.Domain.Services.Routes
 
         public async Task InsertAsync(RouteDto data)
         {
+            data.CorrectDates();
             var route = data.NewRoute();
             await _routeRepository.InsertAsync(route);
         }
