@@ -32,7 +32,6 @@ namespace ReferralSystem.Models.Domain.Segments
             string comment,
             long districtId,
             long streetId,
-            long routeId,
             DateTimeOffset validFrom,
             DateTimeOffset? validTo,
             Status status)
@@ -54,7 +53,6 @@ namespace ReferralSystem.Models.Domain.Segments
             Comment = comment;
             DistrictId = districtId;
             StreetId = streetId;
-            RouteId = routeId;
             ValidFrom = validFrom;
             ValidTo = validTo;
             Status = status;
@@ -96,8 +94,6 @@ namespace ReferralSystem.Models.Domain.Segments
 
         public long StreetId { get; protected set; }
 
-        public long RouteId { get; protected set; }
-
         public DateTimeOffset ValidFrom { get; protected set; }
 
         public DateTimeOffset? ValidTo { get; protected set; }
@@ -123,8 +119,7 @@ namespace ReferralSystem.Models.Domain.Segments
 
             if (this.RangeReversed(true))
             {
-                // "Previous salary becomes invalid due to this operation"
-                throw new BadRequestException();
+                throw new BadRequestException("Previous segment becomes invalid due to this operation");
             }
 
             this.ThrowIfDateRangeIsNotValid(true);

@@ -6,6 +6,6 @@ namespace ReferralSystem.Database.Repositories.Routes
 {
     public interface IRouteRepository : IRepository<Route>
     {
-        Task<Route> GetRouteWithSegmentsAsync(long id);
+        Task<Route> GetRouteAsync(long id);
     }
 }

@@ -45,9 +45,9 @@ namespace ReferralSystem.Domain.Services.Segments
 
         public async Task InsertAsync(SegmentDto data)
         {
-            var route = await _routeRepository.GetRouteWithSegmentsAsync(data.RouteId);
+            var district = await _routeRepository.GetRouteAsync(data.DistrictId);
 
-            var segmentToMakeOutdated = route.ActiveSegmentOrNull();
+            var segmentToMakeOutdated = district.ActiveSegmentOrNull();
 
             data.CorrectDates();
 
@@ -58,8 +58,6 @@ namespace ReferralSystem.Domain.Services.Segments
 
             var validTo = new Date(data.ValidFrom).EndOfTheDay();
             segmentToMakeOutdated?.UpdateToMakeOutdatedOrFail(validTo);
-
-            await _segmentRepository.InsertAsync(segmentToInsert, segmentToMakeOutdated);
         }
     }
 }

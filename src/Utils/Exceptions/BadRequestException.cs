@@ -9,7 +9,7 @@ namespace Utils.Exceptions
         {
         }
 
-        protected BadRequestException(string message)
+        public BadRequestException(string message)
             : base(message)
         {
         }

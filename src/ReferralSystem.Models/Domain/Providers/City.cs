@@ -3,13 +3,13 @@ using Utils.Validators;
 
 namespace ReferralSystem.Models.Domain.Providers
 {
-    public class Region : BaseModel
+    public class City : BaseModel
     {
-        protected Region()
+        protected City()
         {
         }
 
-        public Region(string nameRu, string nameKk, string nameEn)
+        public City(string nameRu, string nameKk, string nameEn)
         {
             NameRu = nameRu;
             NameKk = nameKk;
@@ -21,6 +21,8 @@ namespace ReferralSystem.Models.Domain.Providers
         public string NameEn { get; protected set; }
 
         public string NameKk { get; protected set; }
+
+        public long RegionId { get; protected set; }
 
         public string Comment { get; protected set; }
 

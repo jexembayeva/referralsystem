@@ -29,6 +29,10 @@ namespace ReferralSystem.Domain.Dtos.Stops
 
         public int? SegmentId { get; set; }
 
+        public DateTimeOffset ValidFrom { get; }
+
+        public DateTimeOffset? ValidTo { get; }
+
         public Stop NewStop()
         {
             return new Stop(

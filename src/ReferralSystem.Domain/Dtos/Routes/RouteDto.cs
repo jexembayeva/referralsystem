@@ -1,10 +1,11 @@
-﻿using System.Threading;
+﻿using System;
 using ReferralSystem.Models.Domain.Routes;
 using Utils.Dates;
+using Utils.Interfaces;
 
 namespace ReferralSystem.Domain.Dtos.Routes
 {
-    public class RouteDto : BaseModelDto
+    public class RouteDto : BaseModelDto, IHasFromToDates
     {
         public string NameRu { get; set; }
 
@@ -25,6 +26,10 @@ namespace ReferralSystem.Domain.Dtos.Routes
         public string OpenReason { get; set; }
 
         public string CloseReason { get; set; }
+
+        public DateTimeOffset ValidFrom { get; set; }
+
+        public DateTimeOffset? ValidTo { get; set; }
 
         public Route NewRoute()
         {

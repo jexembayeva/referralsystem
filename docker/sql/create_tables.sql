@@ -19,6 +19,29 @@ CREATE TABLE IF NOT EXISTS route (
   PRIMARY KEY (Id)
 );
 
+CREATE TABLE IF NOT EXISTS alternative (
+  Id SERIAL,
+  NameRu varchar(250) NOT NULL,
+  NameEn varchar(250) NOT NULL,
+  NameKk varchar(250) NOT NULL,
+  FullNameRu varchar(250) NOT NULL,
+  FullNameEn varchar(250) NOT NULL,
+  FullNameKk varchar(250) NOT NULL,
+  VehicleCount INT NOT NULL,
+  PeakInterval INT NOT NULL,
+  OffPeakInterval INT NOT NULL,
+  RouteId INT NOT NULL,
+  VehicleTypeId INT NOT NULL,
+  ValidFrom TIMESTAMPTZ,
+  ValidTo TIMESTAMPTZ,
+  Status INT NOT NULL,
+  AuthorId INT NOT NULL,
+  EditorId INT NOT NULL,
+  CreatedAt TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  UpdatedAt TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (Id)
+);
+
 CREATE TABLE IF NOT EXISTS vehicleBase (
   Id SERIAL,
   NameRu varchar(250) NOT NULL,
@@ -52,6 +75,7 @@ CREATE TABLE IF NOT EXISTS device (
   UpdatedAt TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   PRIMARY KEY (Id)
 );
+
 CREATE TABLE IF NOT EXISTS provider (
   Id SERIAL,
   NameRu varchar(250) NOT NULL,

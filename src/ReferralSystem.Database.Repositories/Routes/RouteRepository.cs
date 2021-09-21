@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Dapper;
 using ReferralSystem.Database.Repositories.Base;
 using ReferralSystem.Models.Domain.Routes;
-using ReferralSystem.Models.Domain.Segments;
-using Utils.Exceptions;
 using Utils.Helpers;
 
 namespace ReferralSystem.Database.Repositories.Routes
@@ -20,15 +17,11 @@ namespace ReferralSystem.Database.Repositories.Routes
             _connection = connection;
         }
 
-        public async Task<Route> GetRouteWithSegmentsAsync(long id)
+        public async Task<Route> GetRouteAsync(long id)
         {
-            var route = await this.GetByIdAsync(id);
-            var segments = await _connection.GetConnection().QueryAsync<Segment>($"SELECT * FROM segment");
-            return ToRoute(route, segments);
-        }
+            var route = await GetByIdAsync(id);
+            var alternatives = await _connection.GetConnection().QueryAsync<Alternative>($"SELECT * FROM {nameof(Alternative)} WHERE RouteId=@RouteId", new { RouteId = id });
 
-        private Route ToRoute(Route route, IEnumerable<Segment> segments)
-        {
             return new Route(
                 nameRu: route.NameRu,
                 nameEn: route.NameEn,
@@ -40,7 +33,7 @@ namespace ReferralSystem.Database.Repositories.Routes
                 comment: route.Comment,
                 openReason: route.OpenReason,
                 closeReason: route.CloseReason,
-                segments: segments);
+                alternatives: alternatives);
         }
     }
 }

@@ -1,10 +1,12 @@
-﻿using ReferralSystem.Models.Domain.Segments;
+﻿using System;
+using ReferralSystem.Models.Domain.Segments;
 using Utils.Dates;
 using Utils.Enums;
+using Utils.Interfaces;
 
 namespace ReferralSystem.Domain.Dtos.Segments
 {
-    public class SegmentDto : BaseModelDto
+    public class SegmentDto : BaseModelDto, IHasFromToDates
     {
         public int Length { get; set; }
 
@@ -42,7 +44,9 @@ namespace ReferralSystem.Domain.Dtos.Segments
 
         public long StreetId { get; set; }
 
-        public long RouteId { get; set; }
+        public DateTimeOffset ValidFrom { get; set; }
+
+        public DateTimeOffset? ValidTo { get; set; }
 
         public Segment NewSegment()
         {
@@ -64,7 +68,6 @@ namespace ReferralSystem.Domain.Dtos.Segments
                             comment: Comment,
                             districtId: DistrictId,
                             streetId: StreetId,
-                            routeId: RouteId,
                             validFrom: ValidFrom,
                             validTo: ValidTo,
                             status: Status.Active);

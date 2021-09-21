@@ -9,5 +9,4 @@
       <ProjectReference Include="..\ReferralSystem.General.Services\ReferralSystem.General.Services.csproj" />
       <ProjectReference Include="..\ReferralSystem.Models\ReferralSystem.Models.csproj" />
     </ItemGroup>
-
 </Project>

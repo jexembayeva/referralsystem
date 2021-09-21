@@ -3,7 +3,7 @@ using Utils.Interfaces;
 
 namespace ReferralSystem.Domain.Dtos
 {
-    public abstract class BaseModelDto : IBaseModel, IHasFromToDates
+    public abstract class BaseModelDto : IBaseModel
     {
         public long Id { get; set; }
 
@@ -14,9 +14,5 @@ namespace ReferralSystem.Domain.Dtos
         public DateTimeOffset CreatedAt { get; set; }
 
         public DateTimeOffset UpdatedAt { get; set; }
-
-        public DateTimeOffset ValidFrom { get; set; }
-
-        public DateTimeOffset? ValidTo { get; set; }
     }
 }

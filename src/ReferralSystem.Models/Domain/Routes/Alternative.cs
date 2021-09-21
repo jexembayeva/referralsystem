@@ -1,6 +1,10 @@
 ﻿using System;
+using Dapper.Contrib.Extensions;
 using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Enums;
+using Utils.Exceptions;
 using Utils.Interfaces;
+using Utils.Validators;
 
 namespace ReferralSystem.Models.Domain.Routes
 {
@@ -8,6 +12,38 @@ namespace ReferralSystem.Models.Domain.Routes
     {
         protected Alternative()
         {
+        }
+
+        public Alternative(
+            string nameRu,
+            string nameEn,
+            string nameKk,
+            string fullNameRu,
+            string fullNameEn,
+            string fullNameKk,
+            int vehicleCount,
+            int peakInterval,
+            int offPeakInterval,
+            long routeId,
+            long vehicleTypeId,
+            DateTimeOffset validFrom,
+            DateTimeOffset? validTo,
+            Status status)
+        {
+            NameRu = nameRu;
+            NameEn = nameEn;
+            NameKk = nameKk;
+            FullNameRu = fullNameRu;
+            FullNameEn = fullNameEn;
+            FullNameKk = fullNameKk;
+            VehicleCount = vehicleCount;
+            PeakInterval = peakInterval;
+            OffPeakInterval = offPeakInterval;
+            RouteId = routeId;
+            VehicleTypeId = vehicleTypeId;
+            ValidFrom = validFrom;
+            ValidTo = validTo;
+            Status = status;
         }
 
         public string NameRu { get; protected set; }
@@ -35,5 +71,34 @@ namespace ReferralSystem.Models.Domain.Routes
         public DateTimeOffset ValidFrom { get; protected set; }
 
         public DateTimeOffset? ValidTo { get; protected set; }
+
+        public Status Status { get; protected set; }
+
+        [Write(false)]
+        public bool Active => Status == Status.Active;
+
+        public void UpdateOrFail(string nameRu, string nameEn, string nameKk)
+        {
+            NameRu = nameRu;
+            NameEn = nameEn;
+            NameKk = nameKk;
+
+            this.ThrowIfInvalid();
+        }
+
+        public void UpdateToMakeOutdatedOrFail(DateTimeOffset validTo)
+        {
+            ValidTo = validTo;
+            Status = Status.Outdated;
+
+            if (this.RangeReversed(true))
+            {
+                throw new BadRequestException("Previous segment becomes invalid due to this operation");
+            }
+
+            this.ThrowIfDateRangeIsNotValid(true);
+            this.ThrowIfDateRangeIsOutOfAllowedLimits();
+            this.ThrowIfInvalid();
+        }
     }
 }

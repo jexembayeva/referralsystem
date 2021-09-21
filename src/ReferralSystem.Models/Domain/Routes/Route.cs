@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Dapper.Contrib.Extensions;
 using ReferralSystem.Models.Domain.BaseModels;
-using ReferralSystem.Models.Domain.Segments;
-using Utils.Enums;
 using Utils.Interfaces;
 using Utils.Validators;
 
@@ -31,7 +28,7 @@ namespace ReferralSystem.Models.Domain.Routes
             CloseReason = closeReason;
         }
 
-        public Route(string nameRu, string nameEn, string nameKk, string fullNameRu, string fullNameEn, string fullNameKk, double distance, string comment, string openReason, string closeReason, IEnumerable<Segment> segments)
+        public Route(string nameRu, string nameEn, string nameKk, string fullNameRu, string fullNameEn, string fullNameKk, double distance, string comment, string openReason, string closeReason, IEnumerable<Alternative> alternatives)
         {
             NameRu = nameRu;
             NameEn = nameEn;
@@ -43,7 +40,7 @@ namespace ReferralSystem.Models.Domain.Routes
             Comment = comment;
             OpenReason = openReason;
             CloseReason = closeReason;
-            Segments = segments;
+            Alternatives = alternatives;
         }
 
         public string NameRu { get; protected set; }
@@ -71,11 +68,11 @@ namespace ReferralSystem.Models.Domain.Routes
         public DateTimeOffset? ValidTo { get; protected set; }
 
         [Write(false)]
-        public IEnumerable<Segment> Segments { get; protected set; }
+        public IEnumerable<Alternative> Alternatives { get; protected set; }
 
-        public Segment ActiveSegmentOrNull()
+        public Alternative ActiveSegmentOrNull()
         {
-            return Segments.FirstOrDefault(x => x.Active);
+            return Alternatives.FirstOrDefault(x => x.Active);
         }
 
         public void UpdateOrFail(string nameEn, string nameKk, string nameRu)

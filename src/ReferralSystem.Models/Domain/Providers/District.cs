@@ -1,9 +1,31 @@
-﻿namespace ReferralSystem.Models.Domain.Providers
+﻿using System.Collections.Generic;
+using Dapper.Contrib.Extensions;
+using ReferralSystem.Models.Domain.BaseModels;
+using ReferralSystem.Models.Domain.Routes;
+using ReferralSystem.Models.Domain.Segments;
+using Utils.Validators;
+
+namespace ReferralSystem.Models.Domain.Providers
 {
-    public class District
+    public class District : BaseModel
     {
         protected District()
         {
+        }
+
+        public District(string nameRu, string nameKk, string nameEn)
+        {
+            NameRu = nameRu;
+            NameKk = nameKk;
+            NameEn = nameEn;
+        }
+
+        public District(string nameRu, string nameKk, string nameEn,  IEnumerable<Segment> segments)
+        {
+            NameRu = nameRu;
+            NameKk = nameKk;
+            NameEn = nameEn;
+            Segments = segments;
         }
 
         public string NameRu { get; protected set; }
@@ -17,5 +39,17 @@
         public string Color { get; protected set; }
 
         public long RegionId { get; protected set; }
+
+        [Write(false)]
+        public IEnumerable<Segment> Segments { get; protected set; }
+
+        public void UpdateOrFail(string nameRu, string nameKk, string nameEn)
+        {
+            NameRu = nameRu;
+            NameKk = nameKk;
+            NameEn = nameEn;
+
+            this.ThrowIfInvalid();
+        }
     }
 }
