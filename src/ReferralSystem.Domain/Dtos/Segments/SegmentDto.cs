@@ -1,6 +1,5 @@
-﻿using System;
-using System.Threading;
-using ReferralSystem.Models.Domain.Segments;
+﻿using ReferralSystem.Models.Domain.Segments;
+using Utils.Dates;
 using Utils.Enums;
 
 namespace ReferralSystem.Domain.Dtos.Segments
@@ -67,6 +66,12 @@ namespace ReferralSystem.Domain.Dtos.Segments
                             streetId: StreetId,
                             routeId: RouteId,
                             status: Status.Active);
+        }
+
+        public void CorrectDates()
+        {
+            ValidFrom = this.Since().StartOfTheDay();
+            ValidTo = this.ToAsDateOrNull()?.EndOfTheDay();
         }
     }
 }

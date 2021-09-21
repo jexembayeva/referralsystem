@@ -16,5 +16,7 @@ namespace ReferralSystem.Database.Repositories.Base
         Task UpdateAsync(TEntity data);
 
         Task InsertAsync(TEntity entity);
+
+        Task InsertAsync(TEntity entityToInsert, TEntity entityToMakeOutdated);
     }
 }

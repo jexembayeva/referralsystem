@@ -1,8 +1,8 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
 using Dapper.Contrib.Extensions;
 using ReferralSystem.Models.Domain.BaseModels;
 using Utils.Enums;
+using Utils.Exceptions;
 using Utils.Interfaces;
 using Utils.Validators;
 
@@ -117,6 +117,14 @@ namespace ReferralSystem.Models.Domain.Segments
             ValidTo = validTo;
             Status = Status.Outdated;
 
+            if (this.RangeReversed(true))
+            {
+                // "Previous salary becomes invalid due to this operation"
+                throw new BadRequestException();
+            }
+
+            this.ThrowIfDateRangeIsNotValid(true);
+            this.ThrowIfDateRangeIsOutOfAllowedLimits();
             this.ThrowIfInvalid();
         }
     }

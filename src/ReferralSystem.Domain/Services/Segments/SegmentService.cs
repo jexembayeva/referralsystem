@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Transactions;
 using ReferralSystem.Database.Repositories.Routes;
 using ReferralSystem.Database.Repositories.Segments;
 using ReferralSystem.Domain.Dtos.Segments;
 using ReferralSystem.Models.Domain.Segments;
-using Utils.Enums;
+using Utils.Validators;
 
 namespace ReferralSystem.Domain.Services.Segments
 {
@@ -49,12 +48,14 @@ namespace ReferralSystem.Domain.Services.Segments
 
             var segmentToMakeOutdated = route.ActiveSegmentOrNull();
 
+            data.CorrectDates();
+
             var segmentToInsert = data.NewSegment();
 
-            if (segmentToMakeOutdated != null)
-            {
-                segmentToMakeOutdated.UpdateToMakeOutdatedOrFail(data.ValidFrom);
-            }
+            segmentToInsert.ThrowIfDateRangeIsNotValid(false);
+            segmentToInsert.ThrowIfDateRangeIsOutOfAllowedLimits();
+
+            segmentToMakeOutdated?.UpdateToMakeOutdatedOrFail(data.ValidFrom);
 
             await _segmentRepository.InsertAsync(segmentToInsert, segmentToMakeOutdated);
         }

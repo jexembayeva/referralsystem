@@ -73,6 +73,21 @@ namespace ReferralSystem.Database.Repositories.Base
             await _connection.GetConnection().ExecuteAsync(insertQuery, entity);
         }
 
+        public async Task InsertAsync(TEntity entityToInsert, TEntity entityToMakeOutdated)
+        {
+            await DoWithinTransactionAsync(
+                action: async () =>
+                {
+                    if (entityToMakeOutdated != null)
+                    {
+                        await UpdateAsync(entityToMakeOutdated);
+                    }
+
+                    await InsertAsync(entityToInsert);
+                    return true;
+                });
+        }
+
         public virtual async Task DeleteAsync(long id)
         {
             await _connection.GetConnection().ExecuteAsync($"DELETE FROM {_tableName} WHERE Id=@Id", new { Id = id });
