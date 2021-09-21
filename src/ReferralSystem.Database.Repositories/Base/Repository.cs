@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Dapper;
+using Dapper.Contrib.Extensions;
 using ReferralSystem.Database.Repositories.Extensions;
 using Utils.Exceptions;
 using Utils.Helpers;
@@ -26,7 +28,20 @@ namespace ReferralSystem.Database.Repositories.Base
             _connection = connection;
         }
 
-        private static IEnumerable<PropertyInfo> GetProperties => typeof(TEntity).GetProperties();
+        private static bool IsWriteable(PropertyInfo pi)
+        {
+            var attributes = pi.GetCustomAttributes(typeof(WriteAttribute), false).AsList();
+            if (attributes.Count != 1)
+            {
+                return true;
+            }
+
+            var writeAttribute = (WriteAttribute)attributes[0];
+            return writeAttribute.Write;
+        }
+
+        private static IEnumerable<PropertyInfo> GetProperties =>
+            typeof(TEntity).GetProperties().Where(IsWriteable).ToArray();
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
@@ -61,6 +76,34 @@ namespace ReferralSystem.Database.Repositories.Base
         public virtual async Task DeleteAsync(long id)
         {
             await _connection.GetConnection().ExecuteAsync($"DELETE FROM {_tableName} WHERE Id=@Id", new { Id = id });
+        }
+
+        public async Task<TResult> DoWithinTransactionAsync<TResult>(
+            Func<Task<TResult>> action,
+            string errorMessage = null)
+        {
+            action.ThrowIfNull(nameof(action));
+            using (var connection = _connection.GetConnection())
+            {
+                connection.Open();
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        TResult result = await action();
+
+                        transaction.Commit();
+
+                        return result;
+                    }
+                    catch (Exception exception)
+                    {
+                        transaction.Rollback();
+                        const string defaultError = "Cannot execute transaction due to database error";
+                        throw new InvalidOperationException(errorMessage ?? defaultError, exception);
+                    }
+                }
+            }
         }
     }
 }

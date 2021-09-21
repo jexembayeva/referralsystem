@@ -1,5 +1,8 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using Dapper.Contrib.Extensions;
 using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Enums;
 using Utils.Interfaces;
 using Utils.Validators;
 
@@ -28,7 +31,9 @@ namespace ReferralSystem.Models.Domain.Segments
             double geometry,
             string comment,
             long districtId,
-            long streetId)
+            long streetId,
+            long routeId,
+            Status status)
         {
             Length = length;
             LineCount = lineCount;
@@ -47,6 +52,8 @@ namespace ReferralSystem.Models.Domain.Segments
             Comment = comment;
             DistrictId = districtId;
             StreetId = streetId;
+            RouteId = routeId;
+            Status = status;
         }
 
         public int Length { get; protected set; }
@@ -85,15 +92,30 @@ namespace ReferralSystem.Models.Domain.Segments
 
         public long StreetId { get; protected set; }
 
+        public long RouteId { get; protected set; }
+
         public DateTimeOffset ValidFrom { get; protected set; }
 
         public DateTimeOffset? ValidTo { get; protected set; }
+
+        public Status Status { get; protected set; }
+
+        [Write(false)]
+        public bool Active => Status == Status.Active;
 
         public void UpdateOrFail(string comment, int maxSpeed, string turnRestrictions)
         {
             Comment = comment;
             MaxSpeed = maxSpeed;
             TurnRestrictions = turnRestrictions;
+
+            this.ThrowIfInvalid();
+        }
+
+        public void UpdateToMakeOutdatedOrFail(DateTimeOffset validTo)
+        {
+            ValidTo = validTo;
+            Status = Status.Outdated;
 
             this.ThrowIfInvalid();
         }

@@ -1,18 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Transactions;
+using ReferralSystem.Database.Repositories.Routes;
 using ReferralSystem.Database.Repositories.Segments;
 using ReferralSystem.Domain.Dtos.Segments;
 using ReferralSystem.Models.Domain.Segments;
+using Utils.Enums;
 
 namespace ReferralSystem.Domain.Services.Segments
 {
     public class SegmentService : ISegmentService
     {
         private readonly ISegmentRepository _segmentRepository;
+        private readonly IRouteRepository _routeRepository;
 
-        public SegmentService(ISegmentRepository segmentRepository)
+        public SegmentService(ISegmentRepository segmentRepository, IRouteRepository routeRepository)
         {
             _segmentRepository = segmentRepository;
+            _routeRepository = routeRepository;
         }
 
         public async Task<IEnumerable<Segment>> GetAllAsync()
@@ -40,8 +45,18 @@ namespace ReferralSystem.Domain.Services.Segments
 
         public async Task InsertAsync(SegmentDto data)
         {
-            var segment = data.NewSegment();
-            await _segmentRepository.InsertAsync(segment);
+            var route = await _routeRepository.GetRouteWithSegmentsAsync(data.RouteId);
+
+            var segmentToMakeOutdated = route.ActiveSegmentOrNull();
+
+            var segmentToInsert = data.NewSegment();
+
+            if (segmentToMakeOutdated != null)
+            {
+                segmentToMakeOutdated.UpdateToMakeOutdatedOrFail(data.ValidFrom);
+            }
+
+            await _segmentRepository.InsertAsync(segmentToInsert, segmentToMakeOutdated);
         }
     }
 }

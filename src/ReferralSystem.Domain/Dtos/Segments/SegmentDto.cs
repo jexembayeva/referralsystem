@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using ReferralSystem.Models.Domain.Segments;
+using Utils.Enums;
 
 namespace ReferralSystem.Domain.Dtos.Segments
 {
@@ -42,6 +43,8 @@ namespace ReferralSystem.Domain.Dtos.Segments
 
         public long StreetId { get; set; }
 
+        public long RouteId { get; set; }
+
         public Segment NewSegment()
         {
             return new Segment(
@@ -61,7 +64,9 @@ namespace ReferralSystem.Domain.Dtos.Segments
                             geometry: Geometry,
                             comment: Comment,
                             districtId: DistrictId,
-                            streetId: StreetId);
+                            streetId: StreetId,
+                            routeId: RouteId,
+                            status: Status.Active);
         }
     }
 }

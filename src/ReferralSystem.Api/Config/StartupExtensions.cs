@@ -36,7 +36,7 @@ namespace ReferralSystem.Api.Config
                     .AddTransient<IStopService>(options =>
                         new StopService(options.GetRequiredService<IStopRepository>()))
                     .AddTransient<ISegmentService>(options =>
-                        new SegmentService(options.GetRequiredService<ISegmentRepository>()))
+                        new SegmentService(options.GetRequiredService<ISegmentRepository>(), options.GetRequiredService<IRouteRepository>()))
                     .AddTransient<IVehicleService>(options =>
                         new VehicleService(options.GetRequiredService<IVehicleRepository>()));
 
