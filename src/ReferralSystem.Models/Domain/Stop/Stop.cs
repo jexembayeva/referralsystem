@@ -11,7 +11,14 @@ namespace ReferralSystem.Models.Domain.Stop
         {
         }
 
-        public Stop(string nameRu, string nameEn, string nameKk, double? longitude, double? latitude, short? direction, string comment)
+        public Stop(
+            string nameRu,
+            string nameEn,
+            string nameKk,
+            double? longitude,
+            double? latitude,
+            short? direction,
+            string comment)
         {
             NameEn = nameEn;
             NameRu = nameRu;

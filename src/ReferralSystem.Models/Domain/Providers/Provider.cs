@@ -11,7 +11,20 @@ namespace ReferralSystem.Models.Domain.Providers
         {
         }
 
-        public Provider(string nameRu, string nameEn, string nameKk, string address, string head, string phoneNumber, string email, string bank, string bin, string bik, string dispatcherPhoneNumber, string techServicePhoneNumber, string comment)
+        public Provider(
+            string nameRu,
+            string nameEn,
+            string nameKk,
+            string address,
+            string head,
+            string phoneNumber,
+            string email,
+            string bank,
+            string bin,
+            string bik,
+            string dispatcherPhoneNumber,
+            string techServicePhoneNumber,
+            string comment)
         {
             NameEn = nameEn;
             NameRu = nameRu;

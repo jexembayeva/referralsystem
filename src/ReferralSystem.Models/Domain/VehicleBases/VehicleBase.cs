@@ -12,7 +12,12 @@ namespace ReferralSystem.Models.Domain.VehicleBases
         {
         }
 
-        public VehicleBase(string nameRu, string nameEn, string nameKk, double polygon, string comment)
+        public VehicleBase(
+            string nameRu,
+            string nameEn,
+            string nameKk,
+            double polygon,
+            string comment)
         {
             NameRu = nameRu;
             NameEn = nameEn;

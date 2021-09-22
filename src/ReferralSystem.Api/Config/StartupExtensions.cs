@@ -2,6 +2,7 @@
 using ReferralSystem.Database;
 using ReferralSystem.Database.Repositories.Devices;
 using ReferralSystem.Database.Repositories.Providers;
+using ReferralSystem.Database.Repositories.Providers.Districts;
 using ReferralSystem.Database.Repositories.Routes;
 using ReferralSystem.Database.Repositories.Segments;
 using ReferralSystem.Database.Repositories.Stops;
@@ -36,7 +37,7 @@ namespace ReferralSystem.Api.Config
                     .AddTransient<IStopService>(options =>
                         new StopService(options.GetRequiredService<IStopRepository>()))
                     .AddTransient<ISegmentService>(options =>
-                        new SegmentService(options.GetRequiredService<ISegmentRepository>(), options.GetRequiredService<IRouteRepository>()))
+                        new SegmentService(options.GetRequiredService<ISegmentRepository>(), options.GetRequiredService<IDistrictRepository>()))
                     .AddTransient<IVehicleService>(options =>
                         new VehicleService(options.GetRequiredService<IVehicleRepository>()));
 
@@ -46,7 +47,8 @@ namespace ReferralSystem.Api.Config
                     .AddScoped<IProviderRepository, ProviderRepository>()
                     .AddScoped<IStopRepository, StopRepository>()
                     .AddScoped<ISegmentRepository, SegmentRepository>()
-                    .AddScoped<IVehicleRepository, VehicleRepository>();
+                    .AddScoped<IVehicleRepository, VehicleRepository>()
+                    .AddScoped<IDistrictRepository, DistrictRepository>();
 
             return services;
         }

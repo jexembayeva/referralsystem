@@ -11,7 +11,15 @@ namespace ReferralSystem.Models.Domain.Vehicles
         {
         }
 
-        public Vehicle(string model, int year, bool isOwned, string comment, string phoneNumber, string licencePlate, int fuelConsumptionRate, int fuelConsumptionRateWinter)
+        public Vehicle(
+            string model,
+            int year,
+            bool isOwned,
+            string comment,
+            string phoneNumber,
+            string licencePlate,
+            int fuelConsumptionRate,
+            int fuelConsumptionRateWinter)
         {
             Model = model;
             Year = year;

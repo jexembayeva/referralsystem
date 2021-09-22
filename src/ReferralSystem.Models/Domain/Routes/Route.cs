@@ -42,7 +42,18 @@ namespace ReferralSystem.Models.Domain.Routes
             ValidTo = validTo;
         }
 
-        public Route(string nameRu, string nameEn, string nameKk, string fullNameRu, string fullNameEn, string fullNameKk, double distance, string comment, string openReason, string closeReason, IEnumerable<Alternative> alternatives)
+        public Route(
+            string nameRu,
+            string nameEn,
+            string nameKk,
+            string fullNameRu,
+            string fullNameEn,
+            string fullNameKk,
+            double distance,
+            string comment,
+            string openReason,
+            string closeReason,
+            IEnumerable<Alternative> alternatives)
         {
             NameRu = nameRu;
             NameEn = nameEn;
