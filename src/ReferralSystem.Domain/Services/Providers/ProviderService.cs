@@ -4,7 +4,7 @@ using ReferralSystem.Database.Repositories.Providers;
 using ReferralSystem.Domain.Dtos.Providers;
 using ReferralSystem.Models.Domain.Providers;
 
-namespace ReferralSystem.Domain.Services.Providers
+namespace ReferralSystem.Domain.Services.Providers.Segments
 {
     public class ProviderService : IProviderService
     {

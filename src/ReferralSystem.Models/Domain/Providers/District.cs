@@ -2,7 +2,6 @@
 using System.Linq;
 using Dapper.Contrib.Extensions;
 using ReferralSystem.Models.Domain.BaseModels;
-using ReferralSystem.Models.Domain.Segments;
 using Utils.Validators;
 
 namespace ReferralSystem.Models.Domain.Providers

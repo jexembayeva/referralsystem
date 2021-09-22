@@ -1,4 +1,5 @@
 ﻿using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Validators;
 
 namespace ReferralSystem.Models.Domain.Routes
 {
@@ -6,6 +7,13 @@ namespace ReferralSystem.Models.Domain.Routes
     {
         protected LadStop()
         {
+        }
+
+        public LadStop(int stopOrder, int distance, int passCount)
+        {
+            StopOrder = stopOrder;
+            Distance = distance;
+            PassCount = passCount;
         }
 
         public int StopOrder { get; protected set; }
@@ -20,12 +28,21 @@ namespace ReferralSystem.Models.Domain.Routes
 
         public bool HasLunch { get; protected set; }
 
-        public bool AlternativeId { get; protected set; }
+        public long AlternativeId { get; protected set; }
 
-        public bool LadId { get; protected set; }
+        public long LadId { get; protected set; }
 
         public int Direction { get; protected set; }
 
         public long StopId { get; protected set; }
+
+        public void UpdateOrFail(int stopOrder, int distance, int passCount)
+        {
+            StopOrder = stopOrder;
+            Distance = distance;
+            PassCount = passCount;
+
+            this.ThrowIfInvalid();
+        }
     }
 }

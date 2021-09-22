@@ -1,6 +1,7 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.BaseModels;
 using Utils.Interfaces;
+using Utils.Validators;
 
 namespace ReferralSystem.Models.Domain.Providers
 {
@@ -8,6 +9,13 @@ namespace ReferralSystem.Models.Domain.Providers
     {
         protected Street()
         {
+        }
+
+        public Street(string nameRu, string nameKk, string nameEn)
+        {
+            NameRu = nameRu;
+            NameKk = nameKk;
+            NameEn = nameEn;
         }
 
         public string NameRu { get; protected set; }
@@ -21,5 +29,14 @@ namespace ReferralSystem.Models.Domain.Providers
         public DateTimeOffset? ValidTo { get; protected set; }
 
         public string Comment { get; protected set; }
+
+        public void UpdateOrFail(string nameRu, string nameKk, string nameEn)
+        {
+            NameRu = nameRu;
+            NameKk = nameKk;
+            NameEn = nameEn;
+
+            this.ThrowIfInvalid();
+        }
     }
 }

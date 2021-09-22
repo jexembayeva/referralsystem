@@ -3,9 +3,9 @@ using ReferralSystem.Models.Domain.Vehicles;
 
 namespace ReferralSystem.Database.Repositories.Vehicles.VehicleTypes
 {
-    public class VehicleSizeRepository : Repository<VehicleType>, IVehicleTypeRepository
+    public class VehicleTypeRepository : Repository<VehicleType>, IVehicleTypeRepository
     {
-        public VehicleSizeRepository(IDatabaseConnectionFactory connection)
+        public VehicleTypeRepository(IDatabaseConnectionFactory connection)
             : base(nameof(VehicleType), connection)
         {
         }

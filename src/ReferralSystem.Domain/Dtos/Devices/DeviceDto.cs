@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using ReferralSystem.Models.Domain.Devices;
+﻿using ReferralSystem.Models.Domain.Devices;
 
 namespace ReferralSystem.Domain.Dtos.Devices
 {

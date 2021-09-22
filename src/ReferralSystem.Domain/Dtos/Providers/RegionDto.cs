@@ -8,13 +8,13 @@ namespace ReferralSystem.Domain.Dtos.Providers
         {
         }
 
-        public string NameRu { get; protected set; }
+        public string NameRu { get; set; }
 
-        public string NameEn { get; protected set; }
+        public string NameEn { get; set; }
 
-        public string NameKk { get; protected set; }
+        public string NameKk { get; set; }
 
-        public string Comment { get; protected set; }
+        public string Comment { get; set; }
 
         public Region NewRegion()
         {

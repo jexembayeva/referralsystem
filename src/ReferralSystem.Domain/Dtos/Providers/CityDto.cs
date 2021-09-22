@@ -4,15 +4,15 @@ namespace ReferralSystem.Domain.Dtos.Providers
 {
     public class CityDto : BaseModelDto
     {
-        public string NameRu { get; protected set; }
+        public string NameRu { get; set; }
 
-        public string NameEn { get; protected set; }
+        public string NameEn { get; set; }
 
-        public string NameKk { get; protected set; }
+        public string NameKk { get; set; }
 
-        public long RegionId { get; protected set; }
+        public long RegionId { get; set; }
 
-        public string Comment { get; protected set; }
+        public string Comment { get; set; }
 
         public City NewCity()
         {

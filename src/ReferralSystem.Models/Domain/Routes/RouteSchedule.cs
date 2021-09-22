@@ -1,6 +1,7 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.BaseModels;
 using Utils.Interfaces;
+using Utils.Validators;
 
 namespace ReferralSystem.Models.Domain.Routes
 {
@@ -8,6 +9,13 @@ namespace ReferralSystem.Models.Domain.Routes
     {
         protected RouteSchedule()
         {
+        }
+
+        public RouteSchedule(string name, string comment, int timeLineCount)
+        {
+            Name = name;
+            Comment = comment;
+            TimeLineCount = timeLineCount;
         }
 
         public string Name { get; protected set; }
@@ -27,5 +35,14 @@ namespace ReferralSystem.Models.Domain.Routes
         public DateTimeOffset ValidFrom { get; protected set; }
 
         public DateTimeOffset? ValidTo { get; protected set; }
+
+        public void UpdateOrFail(string name, string comment, int timeLineCount)
+        {
+            Name = name;
+            Comment = comment;
+            TimeLineCount = timeLineCount;
+
+            this.ThrowIfInvalid();
+        }
     }
 }

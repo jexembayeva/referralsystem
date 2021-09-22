@@ -1,4 +1,5 @@
 ﻿using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Validators;
 
 namespace ReferralSystem.Models.Domain.Routes
 {
@@ -6,6 +7,13 @@ namespace ReferralSystem.Models.Domain.Routes
     {
         protected Lad()
         {
+        }
+
+        public Lad(string name, int direction, string comment)
+        {
+            Name = name;
+            Direction = direction;
+            Comment = comment;
         }
 
         public int Direction { get; protected set; }
@@ -21,5 +29,14 @@ namespace ReferralSystem.Models.Domain.Routes
         public int TransitTime { get; protected set; }
 
         public long AlternativeId { get; protected set; }
+
+        public void UpdateOrFail(string name, int direction, string comment)
+        {
+            Name = name;
+            Direction = direction;
+            Comment = comment;
+
+            this.ThrowIfInvalid();
+        }
     }
 }

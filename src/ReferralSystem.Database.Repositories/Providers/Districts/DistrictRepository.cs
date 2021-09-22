@@ -2,7 +2,6 @@
 using Dapper;
 using ReferralSystem.Database.Repositories.Base;
 using ReferralSystem.Models.Domain.Providers;
-using ReferralSystem.Models.Domain.Segments;
 using Utils.Helpers;
 
 namespace ReferralSystem.Database.Repositories.Providers.Districts
