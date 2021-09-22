@@ -14,7 +14,19 @@ namespace ReferralSystem.Models.Domain.Routes
         {
         }
 
-        public Route(string nameRu, string nameEn, string nameKk, string fullNameRu, string fullNameEn, string fullNameKk, double distance, string comment, string openReason, string closeReason)
+        public Route(
+            string nameRu,
+            string nameEn,
+            string nameKk,
+            string fullNameRu,
+            string fullNameEn,
+            string fullNameKk,
+            double distance,
+            string comment,
+            string openReason,
+            string closeReason,
+            DateTimeOffset validFrom,
+            DateTimeOffset? validTo)
         {
             NameRu = nameRu;
             NameEn = nameEn;
@@ -26,6 +38,8 @@ namespace ReferralSystem.Models.Domain.Routes
             Comment = comment;
             OpenReason = openReason;
             CloseReason = closeReason;
+            ValidFrom = validFrom;
+            ValidTo = validTo;
         }
 
         public Route(string nameRu, string nameEn, string nameKk, string fullNameRu, string fullNameEn, string fullNameKk, double distance, string comment, string openReason, string closeReason, IEnumerable<Alternative> alternatives)
@@ -70,7 +84,7 @@ namespace ReferralSystem.Models.Domain.Routes
         [Write(false)]
         public IEnumerable<Alternative> Alternatives { get; protected set; }
 
-        public Alternative ActiveSegmentOrNull()
+        public Alternative ActiveAlternativeOrNull()
         {
             return Alternatives.FirstOrDefault(x => x.Active);
         }

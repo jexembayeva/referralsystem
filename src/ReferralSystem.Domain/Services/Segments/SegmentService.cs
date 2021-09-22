@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ReferralSystem.Database.Repositories.Providers.Districts;
 using ReferralSystem.Database.Repositories.Routes;
 using ReferralSystem.Database.Repositories.Segments;
 using ReferralSystem.Domain.Dtos.Segments;
@@ -12,12 +13,12 @@ namespace ReferralSystem.Domain.Services.Segments
     public class SegmentService : ISegmentService
     {
         private readonly ISegmentRepository _segmentRepository;
-        private readonly IRouteRepository _routeRepository;
+        private readonly IDistrictRepository _districtRepository;
 
-        public SegmentService(ISegmentRepository segmentRepository, IRouteRepository routeRepository)
+        public SegmentService(ISegmentRepository segmentRepository, IDistrictRepository districtRepository)
         {
             _segmentRepository = segmentRepository;
-            _routeRepository = routeRepository;
+            _districtRepository = districtRepository;
         }
 
         public async Task<IEnumerable<Segment>> GetAllAsync()
@@ -45,7 +46,7 @@ namespace ReferralSystem.Domain.Services.Segments
 
         public async Task InsertAsync(SegmentDto data)
         {
-            var district = await _routeRepository.GetRouteAsync(data.DistrictId);
+            var district = await _districtRepository.GetRouteAsync(data.DistrictId);
 
             var segmentToMakeOutdated = district.ActiveSegmentOrNull();
 

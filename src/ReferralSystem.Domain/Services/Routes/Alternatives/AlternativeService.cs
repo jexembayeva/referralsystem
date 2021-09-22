@@ -47,7 +47,7 @@ namespace ReferralSystem.Domain.Services.Routes.Alternatives
         {
             var route = await _routeRepository.GetRouteAsync(data.RouteId);
 
-            var alternativeToMakeOutdated = route.ActiveSegmentOrNull();
+            var alternativeToMakeOutdated = route.ActiveAlternativeOrNull();
 
             data.CorrectDates();
 

@@ -43,7 +43,9 @@ namespace ReferralSystem.Domain.Dtos.Routes
                 distance: Distance,
                 comment: Comment,
                 openReason: OpenReason,
-                closeReason: CloseReason);
+                closeReason: CloseReason,
+                validFrom: ValidFrom,
+                validTo: ValidTo);
         }
 
         public void CorrectDates()

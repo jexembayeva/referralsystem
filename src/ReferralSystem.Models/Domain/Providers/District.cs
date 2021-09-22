@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Dapper.Contrib.Extensions;
 using ReferralSystem.Models.Domain.BaseModels;
 using ReferralSystem.Models.Domain.Routes;
@@ -42,6 +43,11 @@ namespace ReferralSystem.Models.Domain.Providers
 
         [Write(false)]
         public IEnumerable<Segment> Segments { get; protected set; }
+
+        public Segment ActiveSegmentOrNull()
+        {
+            return Segments.FirstOrDefault(x => x.Active);
+        }
 
         public void UpdateOrFail(string nameRu, string nameKk, string nameEn)
         {
