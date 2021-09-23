@@ -1,6 +1,6 @@
 ﻿namespace Utils.Enums
 {
-    public enum Status
+    public enum Status : long
     {
         Undefined = 0,
 

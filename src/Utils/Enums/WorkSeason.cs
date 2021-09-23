@@ -1,8 +1,10 @@
 ﻿namespace Utils.Enums
 {
-    public enum WorkSeason
+    public enum WorkSeason : long
     {
-        Regular = 0,
+        Undefined = 0,
+
+        Regular,
 
         Temp
     }

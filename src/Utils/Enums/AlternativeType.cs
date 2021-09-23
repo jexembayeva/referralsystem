@@ -1,8 +1,10 @@
 ﻿namespace Utils.Enums
 {
-    public enum AlternativeType
+    public enum AlternativeType : long
     {
-        Base = 0,
+        Undefined = 0,
+
+        Base,
 
         Shortened,
 

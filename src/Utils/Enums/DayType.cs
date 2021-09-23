@@ -1,6 +1,6 @@
 ﻿namespace Utils.Enums
 {
-    public enum DayType
+    public enum DayType : long
     {
         Undefined = 0,
 

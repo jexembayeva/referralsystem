@@ -1,8 +1,9 @@
 ﻿namespace Utils.Enums
 {
-    public enum FloorType
+    public enum FloorType : long
     {
-        Low = 0,
+        Undefined = 0,
+        Low,
         SemiLow,
         Medium,
         High,

@@ -1,8 +1,9 @@
 ﻿namespace Utils.Enums
 {
-    public enum TransportMode
+    public enum TransportMode : long
     {
-        Bus = 0,
+        Undefined = 0,
+        Bus,
         Trolleybus,
         Tram,
         Metro,

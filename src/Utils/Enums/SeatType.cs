@@ -1,8 +1,9 @@
 ﻿namespace Utils.Enums
 {
-    public enum SeatType
+    public enum SeatType : long
     {
-        Soft = 0,
+        Undefined = 0,
+        Soft,
         SemiSoft,
         Hard
     }

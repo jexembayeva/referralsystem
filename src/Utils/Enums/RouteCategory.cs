@@ -1,8 +1,10 @@
 ﻿namespace Utils.Enums
 {
-    public enum RouteCategory
+    public enum RouteCategory : long
     {
-        City = 0,
+        Undefined = 0,
+
+        City,
 
         Suburb
     }

@@ -1,8 +1,10 @@
 ﻿namespace Utils.Enums
 {
-    public enum RouteType
+    public enum RouteType : long
     {
-        Straight = 0,
+        Undefined = 0,
+
+        Straight,
 
         CircularOneWay,
 
