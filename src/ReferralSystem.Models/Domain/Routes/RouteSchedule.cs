@@ -28,7 +28,7 @@ namespace ReferralSystem.Models.Domain.Routes
 
         public DateTimeOffset EndTime { get; protected set; }
 
-        public DateTime Interval { get; protected set; }
+        public DateTimeOffset Interval { get; protected set; }
 
         public int TimeLineCount { get; protected set; }
 
