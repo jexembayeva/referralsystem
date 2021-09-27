@@ -1,6 +1,8 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.Routes;
+using Utils.Attributes;
 using Utils.Dates;
+using Utils.Enums;
 using Utils.Interfaces;
 
 namespace ReferralSystem.Domain.Dtos.Routes
@@ -27,6 +29,15 @@ namespace ReferralSystem.Domain.Dtos.Routes
 
         public string CloseReason { get; set; }
 
+        [NotDefaultValue]
+        public WorkSeason WorkSeason { get;  set; }
+
+        [NotDefaultValue]
+        public RouteCategory RouteCategory { get; set; }
+
+        [NotDefaultValue]
+        public RouteType RouteType { get; set; }
+
         public DateTimeOffset ValidFrom { get; set; }
 
         public DateTimeOffset? ValidTo { get; set; }
@@ -44,6 +55,9 @@ namespace ReferralSystem.Domain.Dtos.Routes
                 comment: Comment,
                 openReason: OpenReason,
                 closeReason: CloseReason,
+                workSeason: WorkSeason,
+                routeCategory: RouteCategory,
+                routeType: RouteType,
                 validFrom: ValidFrom,
                 validTo: ValidTo);
         }

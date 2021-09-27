@@ -1,5 +1,7 @@
 ﻿using System.Threading;
 using ReferralSystem.Models.Domain.Vehicles;
+using Utils.Attributes;
+using Utils.Enums;
 
 namespace ReferralSystem.Domain.Dtos.Vehicles
 {
@@ -18,6 +20,9 @@ namespace ReferralSystem.Domain.Dtos.Vehicles
         public bool ManufacturerId { get; set; }
 
         public bool VehicleTypeId { get; set; }
+
+        [NotDefaultValue]
+        public TransportMode TransportMode { get; set; }
 
         public string Comment { get; set; }
 

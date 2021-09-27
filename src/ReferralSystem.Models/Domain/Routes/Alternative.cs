@@ -1,6 +1,7 @@
 ﻿using System;
 using Dapper.Contrib.Extensions;
 using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Attributes;
 using Utils.Enums;
 using Utils.Exceptions;
 using Utils.Interfaces;
@@ -25,6 +26,7 @@ namespace ReferralSystem.Models.Domain.Routes
             int peakInterval,
             int offPeakInterval,
             long routeId,
+            AlternativeType alternativeType,
             long vehicleTypeId,
             DateTimeOffset validFrom,
             DateTimeOffset? validTo,
@@ -40,6 +42,7 @@ namespace ReferralSystem.Models.Domain.Routes
             PeakInterval = peakInterval;
             OffPeakInterval = offPeakInterval;
             RouteId = routeId;
+            AlternativeType = alternativeType;
             VehicleTypeId = vehicleTypeId;
             ValidFrom = validFrom;
             ValidTo = validTo;
@@ -66,12 +69,16 @@ namespace ReferralSystem.Models.Domain.Routes
 
         public long RouteId { get; protected set; }
 
+        [NotDefaultValue]
+        public AlternativeType AlternativeType { get; protected set; }
+
         public long VehicleTypeId { get; protected set; }
 
         public DateTimeOffset ValidFrom { get; protected set; }
 
         public DateTimeOffset? ValidTo { get; protected set; }
 
+        [NotDefaultValue]
         public Status Status { get; protected set; }
 
         [Write(false)]

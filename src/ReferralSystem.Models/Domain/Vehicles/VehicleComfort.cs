@@ -1,4 +1,6 @@
 ﻿using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Attributes;
+using Utils.Enums;
 
 namespace ReferralSystem.Models.Domain.Vehicles
 {
@@ -15,5 +17,11 @@ namespace ReferralSystem.Models.Domain.Vehicles
         public bool HasRampant { get; protected set; }
 
         public int Doors { get; protected set; }
+
+        [NotDefaultValue]
+        public FloorType FloorType { get; protected set; }
+
+        [NotDefaultValue]
+        public SeatType SeatType { get; protected set; }
     }
 }

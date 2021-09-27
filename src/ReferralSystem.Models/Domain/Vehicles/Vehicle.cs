@@ -1,5 +1,7 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Attributes;
+using Utils.Enums;
 using Utils.Interfaces;
 using Utils.Validators;
 
@@ -44,6 +46,9 @@ namespace ReferralSystem.Models.Domain.Vehicles
         public long ManufacturerId { get; protected set; }
 
         public long VehicleTypeId { get; protected set; }
+
+        [NotDefaultValue]
+        public TransportMode TransportMode { get; protected set; }
 
         public string Comment { get; protected set; }
 

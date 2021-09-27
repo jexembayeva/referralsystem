@@ -1,5 +1,7 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Attributes;
+using Utils.Enums;
 using Utils.Interfaces;
 using Utils.Validators;
 
@@ -31,6 +33,9 @@ namespace ReferralSystem.Models.Domain.Routes
         public DateTimeOffset Interval { get; protected set; }
 
         public int TimeLineCount { get; protected set; }
+
+        [NotDefaultValue]
+        public DayType DayType { get; protected set; }
 
         public DateTimeOffset ValidFrom { get; protected set; }
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Dapper.Contrib.Extensions;
 using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Attributes;
+using Utils.Enums;
 using Utils.Interfaces;
 using Utils.Validators;
 
@@ -25,6 +27,9 @@ namespace ReferralSystem.Models.Domain.Routes
             string comment,
             string openReason,
             string closeReason,
+            WorkSeason workSeason,
+            RouteCategory routeCategory,
+            RouteType routeType,
             DateTimeOffset validFrom,
             DateTimeOffset? validTo)
         {
@@ -38,6 +43,9 @@ namespace ReferralSystem.Models.Domain.Routes
             Comment = comment;
             OpenReason = openReason;
             CloseReason = closeReason;
+            WorkSeason = workSeason;
+            RouteCategory = routeCategory;
+            RouteType = routeType;
             ValidFrom = validFrom;
             ValidTo = validTo;
         }
@@ -53,6 +61,9 @@ namespace ReferralSystem.Models.Domain.Routes
             string comment,
             string openReason,
             string closeReason,
+            WorkSeason workSeason,
+            RouteCategory routeCategory,
+            RouteType routeType,
             IEnumerable<Alternative> alternatives)
         {
             NameRu = nameRu;
@@ -65,6 +76,9 @@ namespace ReferralSystem.Models.Domain.Routes
             Comment = comment;
             OpenReason = openReason;
             CloseReason = closeReason;
+            WorkSeason = workSeason;
+            RouteCategory = routeCategory;
+            RouteType = routeType;
             Alternatives = alternatives;
         }
 
@@ -87,6 +101,15 @@ namespace ReferralSystem.Models.Domain.Routes
         public string OpenReason { get; protected set; }
 
         public string CloseReason { get; protected set; }
+
+        [NotDefaultValue]
+        public WorkSeason WorkSeason { get; protected set; }
+
+        [NotDefaultValue]
+        public RouteCategory RouteCategory { get; protected set; }
+
+        [NotDefaultValue]
+        public RouteType RouteType { get; protected set; }
 
         public DateTimeOffset ValidFrom { get; protected set; }
 

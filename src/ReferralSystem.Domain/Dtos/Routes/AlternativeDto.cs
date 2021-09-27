@@ -1,5 +1,6 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.Routes;
+using Utils.Attributes;
 using Utils.Dates;
 using Utils.Enums;
 using Utils.Interfaces;
@@ -28,6 +29,9 @@ namespace ReferralSystem.Domain.Dtos.Routes
 
         public long RouteId { get; set; }
 
+        [NotDefaultValue]
+        public AlternativeType AlternativeType { get; set; }
+
         public long VehicleTypeId { get; set; }
 
         public DateTimeOffset ValidFrom { get; set; }
@@ -47,6 +51,7 @@ namespace ReferralSystem.Domain.Dtos.Routes
                 peakInterval: PeakInterval,
                 offPeakInterval: OffPeakInterval,
                 routeId: RouteId,
+                alternativeType: AlternativeType,
                 vehicleTypeId: VehicleTypeId,
                 validFrom: ValidFrom,
                 validTo: ValidTo,
