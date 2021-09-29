@@ -8,7 +8,6 @@
 *  Открыть pgAdmin (localhost:5050)
 *  Залогиниться в систему через
 
-
       - PGADMIN_DEFAULT_EMAIL=rs@aspnetrun.com
       - PGADMIN_DEFAULT_PASSWORD=Str0ngPass!
 
