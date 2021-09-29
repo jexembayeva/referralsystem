@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Dapper.Contrib.Extensions;
 using ReferralSystem.Models.Domain.BaseModels;
 using Utils.Attributes;
@@ -49,6 +51,42 @@ namespace ReferralSystem.Models.Domain.Routes
             Status = status;
         }
 
+        public Alternative(
+            string nameRu,
+            string nameEn,
+            string nameKk,
+            string fullNameRu,
+            string fullNameEn,
+            string fullNameKk,
+            int vehicleCount,
+            int peakInterval,
+            int offPeakInterval,
+            long routeId,
+            AlternativeType alternativeType,
+            long vehicleTypeId,
+            DateTimeOffset validFrom,
+            DateTimeOffset? validTo,
+            Status status,
+            IEnumerable<Lad> lads)
+        {
+            NameRu = nameRu;
+            NameEn = nameEn;
+            NameKk = nameKk;
+            FullNameRu = fullNameRu;
+            FullNameEn = fullNameEn;
+            FullNameKk = fullNameKk;
+            VehicleCount = vehicleCount;
+            PeakInterval = peakInterval;
+            OffPeakInterval = offPeakInterval;
+            RouteId = routeId;
+            AlternativeType = alternativeType;
+            VehicleTypeId = vehicleTypeId;
+            ValidFrom = validFrom;
+            ValidTo = validTo;
+            Status = status;
+            Lads = lads;
+        }
+
         public string NameRu { get; protected set; }
 
         public string NameEn { get; protected set; }
@@ -78,11 +116,19 @@ namespace ReferralSystem.Models.Domain.Routes
 
         public DateTimeOffset? ValidTo { get; protected set; }
 
+        [Write(false)]
+        public IEnumerable<Lad> Lads { get; protected set; }
+
         [NotDefaultValue]
         public Status Status { get; protected set; }
 
         [Write(false)]
         public bool Active => Status == Status.Active;
+
+        public Lad ActiveLadOrNull(int direction)
+        {
+            return Lads.FirstOrDefault(x => x.Active && x.Direction == direction);
+        }
 
         public void UpdateOrFail(string nameRu, string nameEn, string nameKk)
         {
@@ -100,7 +146,7 @@ namespace ReferralSystem.Models.Domain.Routes
 
             if (this.RangeReversed(true))
             {
-                throw new BadRequestException("Previous segment becomes invalid due to this operation");
+                throw new BadRequestException($"Previous {nameof(Alternative)} becomes invalid due to this operation");
             }
 
             this.ThrowIfDateRangeIsNotValid(true);

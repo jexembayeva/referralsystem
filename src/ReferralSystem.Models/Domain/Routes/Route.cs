@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Dapper.Contrib.Extensions;
 using ReferralSystem.Models.Domain.BaseModels;
@@ -31,7 +32,8 @@ namespace ReferralSystem.Models.Domain.Routes
             RouteCategory routeCategory,
             RouteType routeType,
             DateTimeOffset validFrom,
-            DateTimeOffset? validTo)
+            DateTimeOffset? validTo,
+            Status status)
         {
             NameRu = nameRu;
             NameEn = nameEn;
@@ -48,6 +50,7 @@ namespace ReferralSystem.Models.Domain.Routes
             RouteType = routeType;
             ValidFrom = validFrom;
             ValidTo = validTo;
+            Status = status;
         }
 
         public Route(
@@ -86,16 +89,28 @@ namespace ReferralSystem.Models.Domain.Routes
             Alternatives = alternatives;
         }
 
+        [Required]
+        [StringLength(200, MinimumLength = 1)]
         public string NameRu { get; protected set; }
 
+        [Required]
+        [StringLength(200, MinimumLength = 1)]
         public string NameEn { get; protected set; }
 
+        [Required]
+        [StringLength(200, MinimumLength = 1)]
         public string NameKk { get; protected set; }
 
+        [Required]
+        [StringLength(200, MinimumLength = 1)]
         public string FullNameRu { get; protected set; }
 
+        [Required]
+        [StringLength(200, MinimumLength = 1)]
         public string FullNameEn { get; protected set; }
 
+        [Required]
+        [StringLength(200, MinimumLength = 1)]
         public string FullNameKk { get; protected set; }
 
         public double Distance { get; protected set; }
@@ -118,6 +133,12 @@ namespace ReferralSystem.Models.Domain.Routes
         public DateTimeOffset ValidFrom { get; protected set; }
 
         public DateTimeOffset? ValidTo { get; protected set; }
+
+        [NotDefaultValue]
+        public Status Status { get; protected set; }
+
+        [Write(false)]
+        public bool Active => Status == Status.Active;
 
         [Write(false)]
         public IEnumerable<Alternative> Alternatives { get; protected set; }

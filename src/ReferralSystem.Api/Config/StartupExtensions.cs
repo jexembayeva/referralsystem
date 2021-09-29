@@ -60,7 +60,7 @@ namespace ReferralSystem.Api.Config
                      .AddTransient<IDedicatedLaneService>(options =>
                         new DedicatedLaneService(options.GetRequiredService<IDedicatedLaneRepository>()))
                      .AddTransient<ILadService>(options =>
-                        new LadService(options.GetRequiredService<ILadRepository>()))
+                        new LadService(options.GetRequiredService<ILadRepository>(), options.GetRequiredService<IAlternativeRepository>()))
                      .AddTransient<ILadStopService>(options =>
                         new LadStopService(options.GetRequiredService<ILadStopRepository>()))
                      .AddTransient<IRoutePlanService>(options =>

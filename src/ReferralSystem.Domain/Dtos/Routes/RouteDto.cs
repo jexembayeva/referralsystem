@@ -59,7 +59,8 @@ namespace ReferralSystem.Domain.Dtos.Routes
                 routeCategory: RouteCategory,
                 routeType: RouteType,
                 validFrom: ValidFrom,
-                validTo: ValidTo);
+                validTo: ValidTo,
+                status: Status.Active);
         }
 
         public void CorrectDates()

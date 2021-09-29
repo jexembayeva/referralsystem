@@ -1,4 +1,6 @@
-﻿using ReferralSystem.Models.Domain.Devices;
+﻿using System.ComponentModel.DataAnnotations;
+using ReferralSystem.Models.Domain.Devices;
+using Utils.Attributes;
 
 namespace ReferralSystem.Domain.Dtos.Devices
 {
@@ -6,6 +8,8 @@ namespace ReferralSystem.Domain.Dtos.Devices
     {
         public string SerialNumber { get; set; }
 
+        [Required]
+        [PhoneNumber]
         public string PhoneNumber { get; set; }
 
         public string PIN1 { get; set; }
