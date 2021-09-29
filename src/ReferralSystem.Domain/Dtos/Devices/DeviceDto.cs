@@ -1,8 +1,10 @@
-﻿using ReferralSystem.Models.Domain.Devices;
+﻿using System;
+using ReferralSystem.Models.Domain.Devices;
+using Utils.Interfaces;
 
 namespace ReferralSystem.Domain.Dtos.Devices
 {
-    public class DeviceDto : BaseModelDto
+    public class DeviceDto : BaseModelDto, IHasFromToDates
     {
         public long FirmWareId { get; set; }
 
@@ -16,12 +18,21 @@ namespace ReferralSystem.Domain.Dtos.Devices
 
         public string Comment { get; set; }
 
+        public DateTimeOffset ValidFrom { get; set; }
+
+        public DateTimeOffset? ValidTo { get; set; }
+
         public Device NewDevice()
         {
             return new Device(
+                firmWareId: FirmWareId,
+                stabilizerId: StabilizerId,
+                simcardId: SimcardId,
                 imei: IMEI,
                 serialNumber: SerialNumber,
-                comment: Comment);
+                comment: Comment,
+                validFrom: ValidFrom,
+                validTo: ValidTo);
         }
     }
 }

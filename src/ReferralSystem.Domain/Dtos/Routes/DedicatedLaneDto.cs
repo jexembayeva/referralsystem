@@ -20,7 +20,9 @@ namespace ReferralSystem.Domain.Dtos.Routes
             return new DedicatedLane(
                 name: Name,
                 peakSpeed: PeakSpeed,
-                offPeakSpeed: OffPeakSpeed);
+                offPeakSpeed: OffPeakSpeed,
+                validFrom: ValidFrom,
+                validTo: ValidTo);
         }
     }
 }

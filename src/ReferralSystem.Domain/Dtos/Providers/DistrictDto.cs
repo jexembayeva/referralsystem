@@ -21,7 +21,10 @@ namespace ReferralSystem.Domain.Dtos.Providers
             return new District(
                 nameRu: NameRu,
                 nameEn: NameEn,
-                nameKk: NameKk);
+                nameKk: NameKk,
+                polygon: Polygon,
+                color: Color,
+                regionId: RegionId);
         }
     }
 }

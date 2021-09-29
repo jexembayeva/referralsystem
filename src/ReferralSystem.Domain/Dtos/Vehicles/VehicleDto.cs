@@ -1,11 +1,12 @@
-﻿using System.Threading;
+﻿using System;
 using ReferralSystem.Models.Domain.Vehicles;
 using Utils.Attributes;
 using Utils.Enums;
+using Utils.Interfaces;
 
 namespace ReferralSystem.Domain.Dtos.Vehicles
 {
-    public class VehicleDto : BaseModelDto
+    public class VehicleDto : BaseModelDto, IHasFromToDates
     {
         public string Model { get; set; }
 
@@ -17,9 +18,9 @@ namespace ReferralSystem.Domain.Dtos.Vehicles
 
         public bool IsOwned { get; set; }
 
-        public bool ManufacturerId { get; set; }
+        public long ManufacturerId { get; set; }
 
-        public bool VehicleTypeId { get; set; }
+        public long VehicleTypeId { get; set; }
 
         [NotDefaultValue]
         public TransportMode TransportMode { get; set; }
@@ -36,17 +37,29 @@ namespace ReferralSystem.Domain.Dtos.Vehicles
 
         public int FuelConsumptionRateWinter { get; set; }
 
+        public DateTimeOffset ValidFrom { get; set; }
+
+        public DateTimeOffset? ValidTo { get; set; }
+
         public Vehicle NewVehicle()
         {
             return new Vehicle(
                 model: Model,
                 year: Year,
+                deviceId: DeviceId,
                 isOwned: IsOwned,
+                manufacturerId: ManufacturerId,
                 comment: Comment,
                 phoneNumber: PhoneNumber,
                 licencePlate: LicencePlate,
+                baseId: BaseId,
                 fuelConsumptionRate: FuelConsumptionRate,
-                fuelConsumptionRateWinter: FuelConsumptionRateWinter);
+                fuelConsumptionRateWinter: FuelConsumptionRateWinter,
+                validFrom: ValidFrom,
+                validTo: ValidTo,
+                providerId: ProviderId,
+                vehicleTypeId: VehicleTypeId,
+                transportMode: TransportMode);
         }
     }
 }

@@ -20,7 +20,10 @@ namespace ReferralSystem.Database.Repositories.Routes
         public async Task<Route> GetRouteAsync(long id)
         {
             var route = await GetByIdAsync(id);
+
             var alternatives = await _connection.GetConnection().QueryAsync<Alternative>($"SELECT * FROM {nameof(Alternative)} WHERE RouteId=@RouteId", new { RouteId = id });
+
+            var routePlans = await _connection.GetConnection().QueryAsync<RoutePlan>($"SELECT * FROM {nameof(RoutePlan)} WHERE RouteId=@RouteId", new { RouteId = id });
 
             return new Route(
                 nameRu: route.NameRu,
@@ -38,7 +41,8 @@ namespace ReferralSystem.Database.Repositories.Routes
                 routeType: route.RouteType,
                 validFrom: route.ValidFrom,
                 validTo: route.ValidTo,
-                alternatives: alternatives);
+                alternatives: alternatives,
+                routePlans: routePlans);
         }
     }
 }

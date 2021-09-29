@@ -24,7 +24,10 @@ namespace ReferralSystem.Models.Domain.Providers
             string bik,
             string dispatcherPhoneNumber,
             string techServicePhoneNumber,
-            string comment)
+            string comment,
+            long regionId,
+            DateTimeOffset validFrom,
+            DateTimeOffset? validTo)
         {
             NameEn = nameEn;
             NameRu = nameRu;
@@ -39,6 +42,9 @@ namespace ReferralSystem.Models.Domain.Providers
             DispatcherPhoneNumber = dispatcherPhoneNumber;
             TechServicePhoneNumber = techServicePhoneNumber;
             Comment = comment;
+            RegionId = regionId;
+            ValidFrom = validFrom;
+            ValidTo = validTo;
         }
 
         public string NameRu { get; protected set; }
@@ -73,11 +79,38 @@ namespace ReferralSystem.Models.Domain.Providers
 
         public DateTimeOffset? ValidTo { get; protected set; }
 
-        public void UpdateOrFail(string nameEn, string nameKk, string nameRu)
+        public void UpdateOrFail(
+            string nameRu,
+            string nameEn,
+            string nameKk,
+            string address,
+            string head,
+            string phoneNumber,
+            string email,
+            string bank,
+            string bin,
+            string bik,
+            string dispatcherPhoneNumber,
+            string techServicePhoneNumber,
+            string comment,
+            long regionId,
+            DateTimeOffset? validTo)
         {
             NameRu = nameRu;
             NameKk = nameKk;
             NameEn = nameEn;
+            Address = address;
+            Head = head;
+            PhoneNumber = phoneNumber;
+            Email = email;
+            Bank = bank;
+            BIN = bin;
+            BIK = bik;
+            DispatcherPhoneNumber = dispatcherPhoneNumber;
+            TechServicePhoneNumber = techServicePhoneNumber;
+            Comment = comment;
+            RegionId = regionId;
+            ValidTo = validTo;
 
             this.ThrowIfInvalid();
         }

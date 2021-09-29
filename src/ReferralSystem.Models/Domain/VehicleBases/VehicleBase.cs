@@ -17,13 +17,19 @@ namespace ReferralSystem.Models.Domain.VehicleBases
             string nameEn,
             string nameKk,
             double polygon,
-            string comment)
+            long providerId,
+            string comment,
+            DateTimeOffset validFrom,
+            DateTimeOffset? validTo)
         {
             NameRu = nameRu;
             NameEn = nameEn;
             NameKk = nameKk;
             Polygon = polygon;
+            ProviderId = providerId;
             Comment = comment;
+            ValidFrom = validFrom;
+            ValidTo = validTo;
         }
 
         public string NameRu { get; protected set; }
@@ -42,11 +48,22 @@ namespace ReferralSystem.Models.Domain.VehicleBases
 
         public DateTimeOffset? ValidTo { get; protected set; }
 
-        public void UpdateOrFail(string nameEn, string nameKk, string nameRu)
+        public void UpdateOrFail(
+            string nameRu,
+            string nameEn,
+            string nameKk,
+            double polygon,
+            long providerId,
+            string comment,
+            DateTimeOffset? validTo)
         {
             NameRu = nameRu;
-            NameKk = nameKk;
             NameEn = nameEn;
+            NameKk = nameKk;
+            Polygon = polygon;
+            ProviderId = providerId;
+            Comment = comment;
+            ValidTo = validTo;
 
             this.ThrowIfInvalid();
         }

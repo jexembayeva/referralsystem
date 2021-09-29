@@ -11,11 +11,24 @@ namespace ReferralSystem.Models.Domain.Devices
         {
         }
 
-        public Device(int imei, string serialNumber, string comment)
+        public Device(
+            long firmWareId,
+            long stabilizerId,
+            long simcardId,
+            int imei,
+            string serialNumber,
+            string comment,
+            DateTimeOffset validFrom,
+            DateTimeOffset? validTo)
         {
+            FirmWareId = firmWareId;
+            StabilizerId = stabilizerId;
+            SimcardId = simcardId;
             IMEI = imei;
             SerialNumber = serialNumber;
             Comment = comment;
+            ValidFrom = validFrom;
+            ValidTo = validTo;
         }
 
         public long FirmWareId { get; protected set; }
@@ -34,12 +47,25 @@ namespace ReferralSystem.Models.Domain.Devices
 
         public DateTimeOffset? ValidTo { get; protected set; }
 
-        public void UpdateOrFail(string serialNumber, string comment, int imei)
+        public void UpdateOrFail(
+            long firmWareId,
+            long stabilizerId,
+            long simcardId,
+            int imei,
+            string serialNumber,
+            string comment,
+            DateTimeOffset? validTo)
         {
+            FirmWareId = firmWareId;
+            StabilizerId = stabilizerId;
+            SimcardId = simcardId;
             IMEI = imei;
             SerialNumber = serialNumber;
             Comment = comment;
+            ValidTo = validTo;
 
+            this.ThrowIfDateRangeIsNotValid(false);
+            this.ThrowIfDateRangeIsOutOfAllowedLimits();
             this.ThrowIfInvalid();
         }
     }

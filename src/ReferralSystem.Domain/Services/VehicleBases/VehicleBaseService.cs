@@ -34,7 +34,15 @@ namespace ReferralSystem.Domain.Services.VehicleBases
         {
             var basePlatform = await _vehicleBaseRepository.GetByIdAsync(data.Id);
 
-            basePlatform.UpdateOrFail(data.NameEn, data.NameKk, data.NameRu);
+            basePlatform.UpdateOrFail(
+                data.NameRu,
+                data.NameKk,
+                data.NameEn,
+                data.Polygon,
+                data.ProviderId,
+                data.Comment,
+                data.ValidTo);
+
             await _vehicleBaseRepository.UpdateAsync(basePlatform);
         }
 

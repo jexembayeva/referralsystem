@@ -34,7 +34,13 @@ namespace ReferralSystem.Domain.Services.Providers.Cities
         {
             var city = await _cityRepository.GetByIdAsync(data.Id);
 
-            city.UpdateOrFail(data.NameEn, data.NameKk, data.NameRu);
+            city.UpdateOrFail(
+                data.NameEn,
+                data.NameKk,
+                data.NameRu,
+                data.RegionId,
+                data.Comment);
+
             await _cityRepository.UpdateAsync(city);
         }
 

@@ -1,8 +1,10 @@
-﻿using ReferralSystem.Models.Domain.VehicleBases;
+﻿using System;
+using ReferralSystem.Models.Domain.VehicleBases;
+using Utils.Interfaces;
 
 namespace ReferralSystem.Domain.Dtos.VehicleBases
 {
-    public class VehicleBaseDto : BaseModelDto
+    public class VehicleBaseDto : BaseModelDto, IHasFromToDates
     {
         public string NameRu { get; set; }
 
@@ -16,6 +18,10 @@ namespace ReferralSystem.Domain.Dtos.VehicleBases
 
         public string Comment { get; set; }
 
+        public DateTimeOffset ValidFrom { get; set; }
+
+        public DateTimeOffset? ValidTo { get; set; }
+
         public VehicleBase NewBasePlatform()
         {
             return new VehicleBase(
@@ -23,7 +29,10 @@ namespace ReferralSystem.Domain.Dtos.VehicleBases
                 nameRu: NameRu,
                 nameKk: NameKk,
                 polygon: Polygon,
-                comment: Comment);
+                providerId: ProviderId,
+                comment: Comment,
+                validFrom: ValidFrom,
+                validTo: ValidTo);
         }
     }
 }

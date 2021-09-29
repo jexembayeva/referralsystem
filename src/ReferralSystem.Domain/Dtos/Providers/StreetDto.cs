@@ -22,7 +22,10 @@ namespace ReferralSystem.Domain.Dtos.Providers
             return new Street(
                 nameEn: NameEn,
                 nameKk: NameKk,
-                nameRu: NameRu);
+                nameRu: NameRu,
+                comment: Comment,
+                validFrom: ValidFrom,
+                validTo: ValidTo);
         }
     }
 }

@@ -6,9 +6,9 @@ namespace ReferralSystem.Domain.Dtos.Devices
 {
     public class SimCardDto : BaseModelDto
     {
+        [Required]
         public string SerialNumber { get; set; }
 
-        [Required]
         [PhoneNumber]
         public string PhoneNumber { get; set; }
 
@@ -26,8 +26,12 @@ namespace ReferralSystem.Domain.Dtos.Devices
         {
             return new SimCard(
                 serialNumber: SerialNumber,
-                comment: Comment,
-                phoneNumber: PhoneNumber);
+                phoneNumber: PhoneNumber,
+                pin1: PIN1,
+                pin2: PIN2,
+                puk1: PUK1,
+                puk2: PUK2,
+                comment: Comment);
         }
     }
 }

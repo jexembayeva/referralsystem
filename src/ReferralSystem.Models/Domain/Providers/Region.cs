@@ -9,11 +9,16 @@ namespace ReferralSystem.Models.Domain.Providers
         {
         }
 
-        public Region(string nameRu, string nameKk, string nameEn)
+        public Region(
+            string nameRu,
+            string nameKk,
+            string nameEn,
+            string comment)
         {
             NameRu = nameRu;
             NameKk = nameKk;
             NameEn = nameEn;
+            Comment = comment;
         }
 
         public string NameRu { get; protected set; }
@@ -24,11 +29,16 @@ namespace ReferralSystem.Models.Domain.Providers
 
         public string Comment { get; protected set; }
 
-        public void UpdateOrFail(string nameRu, string nameKk, string nameEn)
+        public void UpdateOrFail(
+            string nameRu,
+            string nameKk,
+            string nameEn,
+            string comment)
         {
             NameRu = nameRu;
             NameKk = nameKk;
             NameEn = nameEn;
+            Comment = comment;
 
             this.ThrowIfInvalid();
         }

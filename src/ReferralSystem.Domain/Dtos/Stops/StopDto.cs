@@ -42,7 +42,13 @@ namespace ReferralSystem.Domain.Dtos.Stops
                 longitude: Longitude,
                 latitude: Latitude,
                 direction: Direction,
-                comment: Comment);
+                comment: Comment,
+                hasLongStopZone: HasLongStopZone,
+                hasStopZone: HasStopZone,
+                districtId: DistrictId,
+                segmentId: SegmentId,
+                validFrom: ValidFrom,
+                validTo: ValidTo);
         }
     }
 }

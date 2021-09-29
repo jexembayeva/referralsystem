@@ -9,11 +9,26 @@ namespace ReferralSystem.Models.Domain.Routes
         {
         }
 
-        public LadStop(int stopOrder, int distance, int passCount)
+        public LadStop(
+            int stopOrder,
+            int distance,
+            bool isControlPoint,
+            bool isEnding,
+            int passCount,
+            bool hasLunch,
+            long ladId,
+            int direction,
+            long stopId)
         {
             StopOrder = stopOrder;
             Distance = distance;
+            IsControlPoint = isControlPoint;
+            IsEnding = isEnding;
             PassCount = passCount;
+            HasLunch = hasLunch;
+            LadId = ladId;
+            Direction = direction;
+            StopId = stopId;
         }
 
         public int StopOrder { get; protected set; }
@@ -34,11 +49,26 @@ namespace ReferralSystem.Models.Domain.Routes
 
         public long StopId { get; protected set; }
 
-        public void UpdateOrFail(int stopOrder, int distance, int passCount)
+        public void UpdateOrFail(
+            int stopOrder,
+            int distance,
+            bool isControlPoint,
+            bool isEnding,
+            int passCount,
+            bool hasLunch,
+            long ladId,
+            int direction,
+            long stopId)
         {
             StopOrder = stopOrder;
             Distance = distance;
+            IsControlPoint = isControlPoint;
+            IsEnding = isEnding;
             PassCount = passCount;
+            HasLunch = hasLunch;
+            LadId = ladId;
+            Direction = direction;
+            StopId = stopId;
 
             this.ThrowIfInvalid();
         }

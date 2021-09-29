@@ -18,7 +18,13 @@ namespace ReferralSystem.Models.Domain.Stop
             double? longitude,
             double? latitude,
             short? direction,
-            string comment)
+            string comment,
+            bool hasStopZone,
+            bool hasLongStopZone,
+            int? districtId,
+            int? segmentId,
+            DateTimeOffset validFrom,
+            DateTimeOffset? validTo)
         {
             NameEn = nameEn;
             NameRu = nameRu;
@@ -27,6 +33,12 @@ namespace ReferralSystem.Models.Domain.Stop
             Latitude = latitude;
             Direction = direction;
             Comment = comment;
+            HasStopZone = hasStopZone;
+            HasLongStopZone = hasLongStopZone;
+            DistrictId = districtId;
+            SegmentId = segmentId;
+            ValidFrom = validFrom;
+            ValidTo = validTo;
         }
 
         public string NameRu { get; protected set; }
@@ -55,11 +67,34 @@ namespace ReferralSystem.Models.Domain.Stop
 
         public DateTimeOffset? ValidTo { get; protected set; }
 
-        public void UpdateOrFail(string nameEn, string nameKk, string nameRu)
+        public void UpdateOrFail(
+            string nameRu,
+            string nameEn,
+            string nameKk,
+            double? longitude,
+            double? latitude,
+            short? direction,
+            string comment,
+            bool hasStopZone,
+            bool hasLongStopZone,
+            int? districtId,
+            int? segmentId,
+            DateTimeOffset validFrom,
+            DateTimeOffset? validTo)
         {
+            NameEn = nameEn;
             NameRu = nameRu;
             NameKk = nameKk;
-            NameEn = nameEn;
+            Longitude = longitude;
+            Latitude = latitude;
+            Direction = direction;
+            Comment = comment;
+            HasStopZone = hasStopZone;
+            HasLongStopZone = hasLongStopZone;
+            DistrictId = districtId;
+            SegmentId = segmentId;
+            ValidFrom = validFrom;
+            ValidTo = validTo;
 
             this.ThrowIfInvalid();
         }

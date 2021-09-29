@@ -64,9 +64,9 @@ namespace ReferralSystem.Api.Config
                      .AddTransient<ILadStopService>(options =>
                         new LadStopService(options.GetRequiredService<ILadStopRepository>()))
                      .AddTransient<IRoutePlanService>(options =>
-                        new RoutePlanService(options.GetRequiredService<IRoutePlanRepository>()))
+                        new RoutePlanService(options.GetRequiredService<IRoutePlanRepository>(), options.GetRequiredService<IRouteRepository>()))
                      .AddTransient<IRouteScheduleService>(options =>
-                        new RouteScheduleService(options.GetRequiredService<IRouteScheduleRepository>()))
+                        new RouteScheduleService(options.GetRequiredService<IRouteScheduleRepository>(), options.GetRequiredService<IRouteRepository>()))
                     .AddTransient<IVehicleBaseService>(options =>
                         new VehicleBaseService(options.GetRequiredService<IVehicleBaseRepository>()))
                     .AddTransient<IDeviceService>(options =>

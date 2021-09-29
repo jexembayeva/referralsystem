@@ -19,7 +19,9 @@ namespace ReferralSystem.Domain.Dtos.Providers
             return new City(
                 nameRu: NameRu,
                 nameEn: NameEn,
-                nameKk: NameKk);
+                nameKk: NameKk,
+                regionId: RegionId,
+                comment: Comment);
         }
     }
 }

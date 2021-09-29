@@ -1,5 +1,9 @@
 ﻿using System;
+using Dapper.Contrib.Extensions;
 using ReferralSystem.Models.Domain.BaseModels;
+using Utils.Attributes;
+using Utils.Enums;
+using Utils.Exceptions;
 using Utils.Interfaces;
 using Utils.Validators;
 
@@ -11,11 +15,36 @@ namespace ReferralSystem.Models.Domain.Routes
         {
         }
 
-        public RoutePlan(string name, string comment, long routeId)
+        public RoutePlan(
+            string name,
+            long routeId,
+            int roundCount,
+            DateTimeOffset startTime,
+            DateTimeOffset endTime,
+            int interval,
+            string comment,
+            int durationAB,
+            int durationBA,
+            int capacity,
+            int maxStopTime,
+            DateTimeOffset validFrom,
+            DateTimeOffset? validTo,
+            Status status)
         {
             Name = name;
-            Comment = comment;
             RouteId = routeId;
+            RoundCount = roundCount;
+            StartTime = startTime;
+            EndTime = endTime;
+            Interval = interval;
+            Comment = comment;
+            DurationAB = durationAB;
+            DurationBA = durationBA;
+            Capacity = capacity;
+            MaxStopTime = maxStopTime;
+            ValidFrom = validFrom;
+            ValidTo = validTo;
+            Status = status;
         }
 
         public string Name { get; protected set; }
@@ -44,12 +73,54 @@ namespace ReferralSystem.Models.Domain.Routes
 
         public DateTimeOffset? ValidTo { get; protected set; }
 
-        public void UpdateOrFail(string name, string comment, long routeId)
+        [NotDefaultValue]
+        public Status Status { get; protected set; }
+
+        [Write(false)]
+        public bool Active => Status == Status.Active;
+
+        public void UpdateOrFail(
+            string name,
+            long routeId,
+            int roundCount,
+            DateTimeOffset startTime,
+            DateTimeOffset endTime,
+            int interval,
+            string comment,
+            int durationAB,
+            int durationBA,
+            int capacity,
+            int maxStopTime,
+            DateTimeOffset? validTo)
         {
             Name = name;
-            Comment = comment;
             RouteId = routeId;
+            RoundCount = roundCount;
+            StartTime = startTime;
+            EndTime = endTime;
+            Interval = interval;
+            Comment = comment;
+            DurationAB = durationAB;
+            DurationBA = durationBA;
+            Capacity = capacity;
+            MaxStopTime = maxStopTime;
+            ValidTo = validTo;
 
+            this.ThrowIfInvalid();
+        }
+
+        public void UpdateToMakeOutdatedOrFail(DateTimeOffset validTo)
+        {
+            ValidTo = validTo;
+            Status = Status.Outdated;
+
+            if (this.RangeReversed(true))
+            {
+                throw new BadRequestException($"Previous {nameof(RoutePlan)} becomes invalid due to this operation");
+            }
+
+            this.ThrowIfDateRangeIsNotValid(true);
+            this.ThrowIfDateRangeIsOutOfAllowedLimits();
             this.ThrowIfInvalid();
         }
     }

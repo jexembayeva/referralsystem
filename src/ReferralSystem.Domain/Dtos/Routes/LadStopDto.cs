@@ -16,7 +16,7 @@ namespace ReferralSystem.Domain.Dtos.Routes
 
         public bool HasLunch { get; set; }
 
-        public bool LadId { get; set; }
+        public long LadId { get; set; }
 
         public int Direction { get; set; }
 
@@ -27,7 +27,13 @@ namespace ReferralSystem.Domain.Dtos.Routes
             return new LadStop(
                 stopOrder: StopOrder,
                 distance: Distance,
-                passCount: PassCount);
+                isControlPoint: IsControlPoint,
+                isEnding: IsEnding,
+                passCount: PassCount,
+                hasLunch: HasLunch,
+                ladId: LadId,
+                direction: Direction,
+                stopId: StopId);
         }
     }
 }

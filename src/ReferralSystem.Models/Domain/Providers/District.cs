@@ -12,11 +12,20 @@ namespace ReferralSystem.Models.Domain.Providers
         {
         }
 
-        public District(string nameRu, string nameKk, string nameEn)
+        public District(
+            string nameRu,
+            string nameKk,
+            string nameEn,
+            double polygon,
+            string color,
+            long regionId)
         {
             NameRu = nameRu;
             NameKk = nameKk;
             NameEn = nameEn;
+            Polygon = polygon;
+            Color = color;
+            RegionId = regionId;
         }
 
         public District(string nameRu, string nameKk, string nameEn,  IEnumerable<Segment> segments)
@@ -47,11 +56,20 @@ namespace ReferralSystem.Models.Domain.Providers
             return Segments.FirstOrDefault(x => x.Active);
         }
 
-        public void UpdateOrFail(string nameRu, string nameKk, string nameEn)
+        public void UpdateOrFail(
+            string nameRu,
+            string nameKk,
+            string nameEn,
+            double polygon,
+            string color,
+            long regionId)
         {
             NameRu = nameRu;
             NameKk = nameKk;
             NameEn = nameEn;
+            Polygon = polygon;
+            Color = color;
+            RegionId = regionId;
 
             this.ThrowIfInvalid();
         }

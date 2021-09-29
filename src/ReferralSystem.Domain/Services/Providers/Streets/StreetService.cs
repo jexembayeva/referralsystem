@@ -34,7 +34,14 @@ namespace ReferralSystem.Domain.Services.Providers.Streets
         {
             var street = await _streetRepository.GetByIdAsync(data.Id);
 
-            street.UpdateOrFail(data.NameEn, data.NameKk, data.NameRu);
+            street.UpdateOrFail(
+                data.NameRu,
+                data.NameKk,
+                data.NameEn,
+                data.Comment,
+                data.ValidFrom,
+                data.ValidTo);
+
             await _streetRepository.UpdateAsync(street);
         }
 

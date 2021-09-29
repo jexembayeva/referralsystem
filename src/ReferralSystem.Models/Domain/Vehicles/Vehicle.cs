@@ -16,21 +16,37 @@ namespace ReferralSystem.Models.Domain.Vehicles
         public Vehicle(
             string model,
             int year,
+            long deviceId,
+            long providerId,
             bool isOwned,
+            long manufacturerId,
+            long vehicleTypeId,
+            TransportMode transportMode,
             string comment,
             string phoneNumber,
             string licencePlate,
+            long baseId,
             int fuelConsumptionRate,
-            int fuelConsumptionRateWinter)
+            int fuelConsumptionRateWinter,
+            DateTimeOffset validFrom,
+            DateTimeOffset? validTo)
         {
             Model = model;
             Year = year;
+            DeviceId = deviceId;
+            ProviderId = providerId;
             IsOwned = isOwned;
+            ManufacturerId = manufacturerId;
+            VehicleTypeId = vehicleTypeId;
+            TransportMode = transportMode;
             Comment = comment;
             PhoneNumber = phoneNumber;
             LicencePlate = licencePlate;
+            BaseId = baseId;
             FuelConsumptionRate = fuelConsumptionRate;
             FuelConsumptionRateWinter = fuelConsumptionRateWinter;
+            ValidFrom = validFrom;
+            ValidTo = validTo;
         }
 
         public string Model { get; protected set; }
@@ -66,11 +82,38 @@ namespace ReferralSystem.Models.Domain.Vehicles
 
         public DateTimeOffset? ValidTo { get; protected set; }
 
-        public void UpdateOrFail(string licencePlate, string phoneNumber, int fuelConsumptionRate)
+        public void UpdateOrFail(
+            string model,
+            int year,
+            long deviceId,
+            long providerId,
+            bool isOwned,
+            long manufacturerId,
+            long vehicleTypeId,
+            TransportMode transportMode,
+            string comment,
+            string phoneNumber,
+            string licencePlate,
+            long baseId,
+            int fuelConsumptionRate,
+            int fuelConsumptionRateWinter,
+            DateTimeOffset? validTo)
         {
-            LicencePlate = licencePlate;
+            Model = model;
+            Year = year;
+            DeviceId = deviceId;
+            ProviderId = providerId;
+            IsOwned = isOwned;
+            ManufacturerId = manufacturerId;
+            VehicleTypeId = vehicleTypeId;
+            TransportMode = transportMode;
+            Comment = comment;
             PhoneNumber = phoneNumber;
+            LicencePlate = licencePlate;
+            BaseId = baseId;
             FuelConsumptionRate = fuelConsumptionRate;
+            FuelConsumptionRateWinter = fuelConsumptionRateWinter;
+            ValidTo = validTo;
 
             this.ThrowIfInvalid();
         }

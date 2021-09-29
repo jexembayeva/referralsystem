@@ -35,7 +35,15 @@ namespace ReferralSystem.Domain.Services.Devices.SimCards
         {
             var simCard = await _simCardRepository.GetByIdAsync(data.Id);
 
-            simCard.UpdateOrFail(data.SerialNumber, data.Comment, data.PhoneNumber);
+            simCard.UpdateOrFail(
+                data.SerialNumber,
+                data.PhoneNumber,
+                data.PIN1,
+                data.PIN2,
+                data.PUK1,
+                data.PUK2,
+                data.Comment);
+
             await _simCardRepository.UpdateAsync(simCard);
         }
 

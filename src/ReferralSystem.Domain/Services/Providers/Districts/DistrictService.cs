@@ -34,7 +34,14 @@ namespace ReferralSystem.Domain.Services.Providers.Districts
         {
             var district = await _districtRepository.GetByIdAsync(data.Id);
 
-            district.UpdateOrFail(data.NameEn, data.NameKk, data.NameRu);
+            district.UpdateOrFail(
+                data.NameRu,
+                data.NameKk,
+                data.NameEn,
+                data.Polygon,
+                data.Color,
+                data.RegionId);
+
             await _districtRepository.UpdateAsync(district);
         }
 

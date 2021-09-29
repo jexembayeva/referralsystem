@@ -1,9 +1,12 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.Routes;
+using Utils.Dates;
+using Utils.Enums;
+using Utils.Interfaces;
 
 namespace ReferralSystem.Domain.Dtos.Routes
 {
-    public class RoutePlanDto : BaseModelDto
+    public class RoutePlanDto : BaseModelDto, IHasFromToDates
     {
         public string Name { get; set; }
 
@@ -35,8 +38,25 @@ namespace ReferralSystem.Domain.Dtos.Routes
         {
             return new RoutePlan(
                 name: Name,
+                routeId: RouteId,
+                roundCount: RoundCount,
+                startTime: StartTime,
+                endTime: EndTime,
+                interval: Interval,
                 comment: Comment,
-                routeId: RouteId);
+                durationAB: DurationAB,
+                durationBA: DurationBA,
+                capacity: Capacity,
+                maxStopTime: MaxStopTime,
+                validFrom: ValidFrom,
+                validTo: ValidTo,
+                status: Status.Active);
+        }
+
+        public void CorrectDates()
+        {
+            ValidFrom = this.Since().StartOfTheDay();
+            ValidTo = this.ToAsDateOrNull()?.EndOfTheDay();
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System;
 using ReferralSystem.Models.Domain.Routes;
 using Utils.Attributes;
+using Utils.Dates;
 using Utils.Enums;
+using Utils.Interfaces;
 
 namespace ReferralSystem.Domain.Dtos.Routes
 {
-    public class RouteScheduleDto : BaseModelDto
+    public class RouteScheduleDto : BaseModelDto, IHasFromToDates
     {
         public string Name { get; set; }
 
@@ -32,8 +34,22 @@ namespace ReferralSystem.Domain.Dtos.Routes
         {
             return new RouteSchedule(
                 name: Name,
+                routeId: RouteId,
                 comment: Comment,
-                timeLineCount: TimeLineCount);
+                startTime: StartTime,
+                endTime: EndTime,
+                interval: Interval,
+                timeLineCount: TimeLineCount,
+                dayType: DayType,
+                validFrom: ValidFrom,
+                validTo: ValidTo,
+                status: Status.Active);
+        }
+
+        public void CorrectDates()
+        {
+            ValidFrom = this.Since().StartOfTheDay();
+            ValidTo = this.ToAsDateOrNull()?.EndOfTheDay();
         }
     }
 }

@@ -34,7 +34,23 @@ namespace ReferralSystem.Domain.Services.Providers.Segments
         {
             var provider = await _providerRepository.GetByIdAsync(data.Id);
 
-            provider.UpdateOrFail(data.NameEn, data.NameKk, data.NameRu);
+            provider.UpdateOrFail(
+                            data.NameRu,
+                            data.NameEn,
+                            data.NameKk,
+                            data.Address,
+                            data.Head,
+                            data.PhoneNumber,
+                            data.Email,
+                            data.Bank,
+                            data.BIN,
+                            data.BIK,
+                            data.DispatcherPhoneNumber,
+                            data.TechServicePhoneNumber,
+                            data.Comment,
+                            data.RegionId,
+                            data.ValidTo);
+
             await _providerRepository.UpdateAsync(provider);
         }
 

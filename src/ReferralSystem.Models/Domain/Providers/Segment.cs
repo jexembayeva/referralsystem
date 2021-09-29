@@ -119,7 +119,7 @@ namespace ReferralSystem.Models.Domain.Providers
 
             if (this.RangeReversed(true))
             {
-                throw new BadRequestException("Previous segment becomes invalid due to this operation");
+                throw new BadRequestException($"Previous {nameof(Segment)} becomes invalid due to this operation");
             }
 
             this.ThrowIfDateRangeIsNotValid(true);

@@ -34,7 +34,15 @@ namespace ReferralSystem.Domain.Services.Devices
         {
             var device = await _deviceRepository.GetByIdAsync(data.Id);
 
-            device.UpdateOrFail(data.SerialNumber, data.Comment, data.IMEI);
+            device.UpdateOrFail(
+                data.FirmWareId,
+                data.StabilizerId,
+                data.SimcardId,
+                data.IMEI,
+                data.SerialNumber,
+                data.Comment,
+                data.ValidTo);
+
             await _deviceRepository.UpdateAsync(device);
         }
 

@@ -34,7 +34,21 @@ namespace ReferralSystem.Domain.Services.Stops
         {
             var stop = await _stopRepository.GetByIdAsync(data.Id);
 
-            stop.UpdateOrFail(data.NameEn, data.NameKk, data.NameRu);
+            stop.UpdateOrFail(
+                data.NameRu,
+                data.NameKk,
+                data.NameEn,
+                data.Longitude,
+                data.Latitude,
+                data.Direction,
+                data.Comment,
+                data.HasStopZone,
+                data.HasLongStopZone,
+                data.DistrictId,
+                data.SegmentId,
+                data.ValidFrom,
+                data.ValidTo);
+
             await _stopRepository.UpdateAsync(stop);
         }
 

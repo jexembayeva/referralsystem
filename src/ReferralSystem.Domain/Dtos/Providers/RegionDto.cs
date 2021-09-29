@@ -21,7 +21,8 @@ namespace ReferralSystem.Domain.Dtos.Providers
             return new Region(
                 nameRu: NameRu,
                 nameEn: NameEn,
-                nameKk: NameKk);
+                nameKk: NameKk,
+                comment: Comment);
         }
     }
 }

@@ -9,11 +9,22 @@ namespace ReferralSystem.Models.Domain.Devices
         {
         }
 
-        public SimCard(string serialNumber, string comment, string phoneNumber)
+        public SimCard(
+            string serialNumber,
+            string phoneNumber,
+            string pin1,
+            string pin2,
+            string puk1,
+            string puk2,
+            string comment)
         {
             SerialNumber = serialNumber;
-            Comment = comment;
             PhoneNumber = phoneNumber;
+            PIN1 = pin1;
+            PIN2 = pin2;
+            PUK1 = puk1;
+            PUK2 = puk2;
+            Comment = comment;
         }
 
         public string SerialNumber { get; set; }
@@ -30,11 +41,22 @@ namespace ReferralSystem.Models.Domain.Devices
 
         public string Comment { get; set; }
 
-        public void UpdateOrFail(string serialNumber, string comment, string phoneNumber)
+        public void UpdateOrFail(
+            string serialNumber,
+            string phoneNumber,
+            string pin1,
+            string pin2,
+            string puk1,
+            string puk2,
+            string comment)
         {
             SerialNumber = serialNumber;
-            Comment = comment;
             PhoneNumber = phoneNumber;
+            PIN1 = pin1;
+            PIN2 = pin2;
+            PUK1 = puk1;
+            PUK2 = puk2;
+            Comment = comment;
 
             this.ThrowIfInvalid();
         }

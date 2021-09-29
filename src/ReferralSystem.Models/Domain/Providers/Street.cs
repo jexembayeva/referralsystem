@@ -11,11 +11,20 @@ namespace ReferralSystem.Models.Domain.Providers
         {
         }
 
-        public Street(string nameRu, string nameKk, string nameEn)
+        public Street(
+            string nameRu,
+            string nameKk,
+            string nameEn,
+            string comment,
+            DateTimeOffset validFrom,
+            DateTimeOffset? validTo)
         {
             NameRu = nameRu;
             NameKk = nameKk;
             NameEn = nameEn;
+            Comment = comment;
+            ValidFrom = validFrom;
+            ValidTo = validTo;
         }
 
         public string NameRu { get; protected set; }
@@ -30,11 +39,20 @@ namespace ReferralSystem.Models.Domain.Providers
 
         public string Comment { get; protected set; }
 
-        public void UpdateOrFail(string nameRu, string nameKk, string nameEn)
+        public void UpdateOrFail(
+            string nameRu,
+            string nameKk,
+            string nameEn,
+            string comment,
+            DateTimeOffset validFrom,
+            DateTimeOffset? validTo)
         {
             NameRu = nameRu;
             NameKk = nameKk;
             NameEn = nameEn;
+            Comment = comment;
+            ValidFrom = validFrom;
+            ValidTo = validTo;
 
             this.ThrowIfInvalid();
         }

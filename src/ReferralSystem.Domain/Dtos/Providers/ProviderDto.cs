@@ -1,9 +1,11 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using ReferralSystem.Models.Domain.Providers;
+using Utils.Interfaces;
 
 namespace ReferralSystem.Domain.Dtos.Providers
 {
-    public class ProviderDto : BaseModelDto
+    public class ProviderDto : BaseModelDto, IHasFromToDates
     {
         public string NameRu { get; set; }
 
@@ -33,6 +35,10 @@ namespace ReferralSystem.Domain.Dtos.Providers
 
         public long RegionId { get; set; }
 
+        public DateTimeOffset ValidFrom { get; set; }
+
+        public DateTimeOffset? ValidTo { get; set; }
+
         public Provider NewProvider()
         {
             return new Provider(
@@ -48,7 +54,10 @@ namespace ReferralSystem.Domain.Dtos.Providers
                 bik: BIK,
                 dispatcherPhoneNumber: DispatcherPhoneNumber,
                 techServicePhoneNumber: TechServicePhoneNumber,
-                comment: Comment);
+                regionId: RegionId,
+                comment: Comment,
+                validFrom: ValidFrom,
+                validTo: ValidTo);
         }
     }
 }

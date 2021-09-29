@@ -11,11 +11,18 @@ namespace ReferralSystem.Models.Domain.Routes
         {
         }
 
-        public DedicatedLane(string name, int peakSpeed, int offPeakSpeed)
+        public DedicatedLane(
+            string name,
+            int peakSpeed,
+            int offPeakSpeed,
+            DateTimeOffset validFrom,
+            DateTimeOffset? validTo)
         {
             Name = name;
             PeakSpeed = peakSpeed;
             OffPeakSpeed = offPeakSpeed;
+            ValidFrom = validFrom;
+            ValidTo = validTo;
         }
 
         public string Name { get; protected set; }
@@ -28,11 +35,18 @@ namespace ReferralSystem.Models.Domain.Routes
 
         public DateTimeOffset? ValidTo { get; protected set; }
 
-        public void UpdateOrFail(string name, int peakSpeed, int offPeakSpeed)
+        public void UpdateOrFail(
+            string name,
+            int peakSpeed,
+            int offPeakSpeed,
+            DateTimeOffset validFrom,
+            DateTimeOffset? validTo)
         {
             Name = name;
             PeakSpeed = peakSpeed;
             OffPeakSpeed = offPeakSpeed;
+            ValidFrom = validFrom;
+            ValidTo = validTo;
 
             this.ThrowIfInvalid();
         }

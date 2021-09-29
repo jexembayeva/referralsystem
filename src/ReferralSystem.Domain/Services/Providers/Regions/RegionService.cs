@@ -34,7 +34,12 @@ namespace ReferralSystem.Domain.Services.Providers.Regions
         {
             var region = await _regionRepository.GetByIdAsync(data.Id);
 
-            region.UpdateOrFail(data.NameEn, data.NameKk, data.NameRu);
+            region.UpdateOrFail(
+                data.NameEn,
+                data.NameKk,
+                data.NameRu,
+                data.Comment);
+
             await _regionRepository.UpdateAsync(region);
         }
 

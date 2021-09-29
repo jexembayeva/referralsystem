@@ -34,7 +34,13 @@ namespace ReferralSystem.Domain.Services.Routes.DedicatedLanes
         {
             var dedicatedLane = await _dedicatedLaneRepository.GetByIdAsync(data.Id);
 
-            dedicatedLane.UpdateOrFail(data.Name, data.OffPeakSpeed, data.PeakSpeed);
+            dedicatedLane.UpdateOrFail(
+                data.Name,
+                data.OffPeakSpeed,
+                data.PeakSpeed,
+                data.ValidFrom,
+                data.ValidTo);
+
             await _dedicatedLaneRepository.UpdateAsync(dedicatedLane);
         }
 

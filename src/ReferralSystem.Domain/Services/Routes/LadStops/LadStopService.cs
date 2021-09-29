@@ -34,7 +34,17 @@ namespace ReferralSystem.Domain.Services.Routes.LadStops
         {
             var ladStop = await _ladStopRepository.GetByIdAsync(data.Id);
 
-            ladStop.UpdateOrFail(data.StopOrder, data.Distance, data.PassCount);
+            ladStop.UpdateOrFail(
+                data.StopOrder,
+                data.Distance,
+                data.IsControlPoint,
+                data.IsEnding,
+                data.PassCount,
+                data.HasLunch,
+                data.LadId,
+                data.Direction,
+                data.StopId);
+
             await _ladStopRepository.UpdateAsync(ladStop);
         }
 

@@ -34,7 +34,22 @@ namespace ReferralSystem.Domain.Services.Vehicles
         {
             var vehicle = await _vehicleRepository.GetByIdAsync(data.Id);
 
-            vehicle.UpdateOrFail(data.LicencePlate, data.PhoneNumber, data.FuelConsumptionRate);
+            vehicle.UpdateOrFail(
+                data.Model,
+                data.Year,
+                data.DeviceId,
+                data.ProviderId,
+                data.IsOwned,
+                data.ManufacturerId,
+                data.VehicleTypeId,
+                data.TransportMode,
+                data.Comment,
+                data.PhoneNumber,
+                data.LicencePlate,
+                data.BaseId,
+                data.FuelConsumptionRate,
+                data.FuelConsumptionRateWinter,
+                data.ValidTo);
             await _vehicleRepository.UpdateAsync(vehicle);
         }
 

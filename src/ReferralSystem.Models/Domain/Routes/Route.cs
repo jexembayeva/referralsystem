@@ -69,7 +69,8 @@ namespace ReferralSystem.Models.Domain.Routes
             RouteType routeType,
             DateTimeOffset validFrom,
             DateTimeOffset? validTo,
-            IEnumerable<Alternative> alternatives)
+            IEnumerable<Alternative> alternatives,
+            IEnumerable<RoutePlan> routePlans)
         {
             NameRu = nameRu;
             NameEn = nameEn;
@@ -87,6 +88,7 @@ namespace ReferralSystem.Models.Domain.Routes
             ValidFrom = validFrom;
             ValidTo = validTo;
             Alternatives = alternatives;
+            RoutePlans = routePlans;
         }
 
         [Required]
@@ -143,9 +145,25 @@ namespace ReferralSystem.Models.Domain.Routes
         [Write(false)]
         public IEnumerable<Alternative> Alternatives { get; protected set; }
 
+        [Write(false)]
+        public IEnumerable<RoutePlan> RoutePlans { get; protected set; }
+
+        [Write(false)]
+        public IEnumerable<RouteSchedule> RouteSchedules { get; protected set; }
+
         public Alternative ActiveAlternativeOrNull()
         {
             return Alternatives.FirstOrDefault(x => x.Active);
+        }
+
+        public RoutePlan ActiveRoutePlanOrNull()
+        {
+            return RoutePlans.FirstOrDefault(x => x.Active);
+        }
+
+        public RouteSchedule ActiveRouteScheduleOrNull()
+        {
+            return RouteSchedules.FirstOrDefault(x => x.Active);
         }
 
         public void UpdateOrFail(string nameEn, string nameKk, string nameRu)
