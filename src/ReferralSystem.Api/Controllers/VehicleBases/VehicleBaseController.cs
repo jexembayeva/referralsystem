@@ -30,8 +30,8 @@ namespace ReferralSystem.Api.Controllers.VehicleBases
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetAllAsync()
         {
-            var basePlatforms = await _vehicleBaseService.GetAllAsync();
-            return this.List(basePlatforms);
+            var vehicleBases = await _vehicleBaseService.GetAllAsync();
+            return this.List(vehicleBases);
         }
 
         [HttpGet("[action]/{id}")]
@@ -40,8 +40,8 @@ namespace ReferralSystem.Api.Controllers.VehicleBases
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> GetByIdAsync([FromRoute] long id)
         {
-            var basePlatform = await _vehicleBaseService.GetByIdAsync(id);
-            return this.Get(basePlatform);
+            var vehicleBase = await _vehicleBaseService.GetByIdAsync(id);
+            return this.Get(vehicleBase);
         }
 
         [HttpPost("[action]")]
