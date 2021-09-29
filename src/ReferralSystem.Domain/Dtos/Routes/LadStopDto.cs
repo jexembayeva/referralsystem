@@ -16,8 +16,6 @@ namespace ReferralSystem.Domain.Dtos.Routes
 
         public bool HasLunch { get; set; }
 
-        public bool AlternativeId { get; set; }
-
         public bool LadId { get; set; }
 
         public int Direction { get; set; }

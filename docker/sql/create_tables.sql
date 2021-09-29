@@ -76,7 +76,6 @@ CREATE TABLE IF NOT EXISTS ladstop (
   IsEnding boolean NOT NULL,
   PassCount INT,
   HasLunch boolean NOT NULL,
-  AlternativeId INT NOT NULL,
   LadId INT NOT NULL,
   Direction INT,
   StopId INT,

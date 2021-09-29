@@ -28,8 +28,6 @@ namespace ReferralSystem.Models.Domain.Routes
 
         public bool HasLunch { get; protected set; }
 
-        public long AlternativeId { get; protected set; }
-
         public long LadId { get; protected set; }
 
         public int Direction { get; protected set; }
