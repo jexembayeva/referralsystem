@@ -64,6 +64,8 @@ namespace ReferralSystem.Models.Domain.Routes
             WorkSeason workSeason,
             RouteCategory routeCategory,
             RouteType routeType,
+            DateTimeOffset validFrom,
+            DateTimeOffset? validTo,
             IEnumerable<Alternative> alternatives)
         {
             NameRu = nameRu;
@@ -79,6 +81,8 @@ namespace ReferralSystem.Models.Domain.Routes
             WorkSeason = workSeason;
             RouteCategory = routeCategory;
             RouteType = routeType;
+            ValidFrom = validFrom;
+            ValidTo = validTo;
             Alternatives = alternatives;
         }
 

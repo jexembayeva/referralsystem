@@ -55,6 +55,7 @@ namespace ReferralSystem.Domain.Services.Routes.Alternatives
 
             alternativeToInsert.ThrowIfDateRangeIsNotValid(false);
             alternativeToInsert.ThrowIfDateRangeIsOutOfAllowedLimits();
+            alternativeToInsert.ThrowIfDateRangeIsNotIntersect(route);
 
             var validTo = new Date(data.ValidFrom).EndOfTheDay();
             alternativeToMakeOutdated?.UpdateToMakeOutdatedOrFail(validTo);

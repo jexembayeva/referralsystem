@@ -21,7 +21,7 @@ namespace Utils.Validators
             return entity;
         }
 
-                /// <summary>
+        /// <summary>
         /// Throws if date range is out of allowed limits.
         /// </summary>
         /// <typeparam name="T">Entity type.</typeparam>
@@ -48,8 +48,28 @@ namespace Utils.Validators
             return instance;
         }
 
+        public static TChild ThrowIfDateRangeIsNotIntersect<TChild, TParent>(this TChild instance, TParent parent)
+        where TChild : IHasFromToDates
+        where TParent : IHasFromToDates
+        {
+            instance.ThrowIfNull(nameof(instance));
+
+            if (parent.ValidFrom.Later((DateTimeOffset)instance.ValidTo) || parent.ValidTo.Earlier(instance.ValidFrom))
+            {
+                throw new InvalidDateRangeException(
+                      $"{nameof(TimeRange.From)} is not intersect");
+            }
+
+            if (Date.Today.StartOfTheDay().Later(instance.ValidFrom))
+            {
+                throw new InvalidDateRangeException($"You can't create {nameof(instance)} in past");
+            }
+
+            return instance;
+        }
+
         public static T ThrowIfDateRangeIsNotValid<T>(this T instance, bool toIsRequired)
-            where T : IHasFromToDates
+        where T : IHasFromToDates
         {
             if (instance.ValidFrom.Earlier(TimeRange.Min))
             {

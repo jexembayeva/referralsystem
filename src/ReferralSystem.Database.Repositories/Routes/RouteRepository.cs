@@ -36,6 +36,8 @@ namespace ReferralSystem.Database.Repositories.Routes
                 workSeason: route.WorkSeason,
                 routeCategory: route.RouteCategory,
                 routeType: route.RouteType,
+                validFrom: route.ValidFrom,
+                validTo: route.ValidTo,
                 alternatives: alternatives);
         }
     }
