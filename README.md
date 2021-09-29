@@ -4,14 +4,14 @@
 
 ## Настройка портала управления pgAdmin для ReferralSystem.Api
 
-*  Запустить infrastructure.ps
-*  Открыть pgAdmin (localhost:5050)
-*  Залогиниться в систему через
+- Запустить infrastructure.ps
+-  Открыть pgAdmin (localhost:5050)
+-  Залогиниться в систему через
 
       - PGADMIN_DEFAULT_EMAIL=rs@aspnetrun.com
       - PGADMIN_DEFAULT_PASSWORD=Str0ngPass!
 
-*  Добавить новый сервер и подключиться к базе данных referral-system-database
+-  Добавить новый сервер и подключиться к базе данных referral-system-database
 
 
 ## Ссылки
